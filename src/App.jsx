@@ -1,8 +1,15 @@
 import React from 'react'
-import Navbar from './Components/Navbar'
+import Navbar from './components/Navbar'
+import './App.css'
+import Homepage from './components/Homepage'
 
-export default function App() {
+ function App() {
   return (
-    <div><h1>ABU HASIM</h1></div>
+    <>
+    <Navbar/>
+    <Homepage homepage="HOME"/>
+    </>
   )
 }
+
+export default App
