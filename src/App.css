@@ -58,3 +58,8 @@ padding-left: 0px;
     border: 2px solid black;
     justify-content:flex-start;
 }
+
+.d-grid{
+
+  margin-top: 18px;
+}

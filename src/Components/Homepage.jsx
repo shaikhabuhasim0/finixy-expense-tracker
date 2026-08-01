@@ -1,8 +1,17 @@
 import React, { useState } from 'react'
+import { useEffect } from "react";
 
 export default function Homepage(props) {
     const [currentbalance , setcurrentbalance]=useState("")
 
+useEffect(() => {
+  const data = localStorage.getItem("amount");
+  console.log("Loaded:", data);
+
+  if (data !== null) {
+    setcurrentbalance(data);
+  }
+}, []);
 
   
  function editcb(){
@@ -12,11 +21,15 @@ export default function Homepage(props) {
 
  function savecb(){
 
-let a =localStorage.setItem("amount","currentbalance")
+// localStorage.setItem("amount",currentbalance)
+localStorage.setItem("amount", currentbalance);
 
 }
 
+function addtransiction(){
 
+
+}
 
   return (<>
   <div className='homeposition'>
@@ -35,7 +48,6 @@ let a =localStorage.setItem("amount","currentbalance")
     value={currentbalance}
     onChange={(e)=>setcurrentbalance(e.target.value)}
     />
-    {localStorage.setItem("amount",currentbalance)}
 
   <button className="btn btn-primary" onClick={editcb}>Edit</button>
   <button className="btn btn-danger" onClick={savecb}>Save</button>
@@ -46,6 +58,9 @@ let a =localStorage.setItem("amount","currentbalance")
   <div className="box">Income </div>
   <div className="box">Expense </div>
 </div>
+<div className="d-grid  col-2 ">
+  <button className="btn btn-primary" type="button" onClick={addtransiction}>Add New Transiction + </button>
+  </div>
     </>
   )
 }
