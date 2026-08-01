@@ -29,3 +29,19 @@
     align-items: center;
     justify-content: center;
 }
+
+/* maininput box  */
+.input-cb{
+border: 2px solid red;
+height: 100px;
+width: 300px;
+margin-top: 20px;
+padding-top: 10px;
+padding-left: 0px;
+
+}
+
+.form-control{
+max-width: 150px;
+
+}
