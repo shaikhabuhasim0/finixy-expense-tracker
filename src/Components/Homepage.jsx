@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { useEffect } from "react";
 
 export default function Homepage(props) {
-    const [currentbalance , setcurrentbalance]=useState("")
+    const [currentbalance , setcurrentbalance]=useState("");
+    const [test,settext]=useState("");
+    const [type, setType] = useState("");
 
 useEffect(() => {
   const data = localStorage.getItem("amount");
@@ -55,11 +57,44 @@ function addtransiction(){
 </div>
 
 <div className="container1">
-  <div className="box">Income </div>
-  <div className="box">Expense </div>
+  <div className="box">Income 
+    <div className="amountbox">
+      <h4 className="amounts1">  </h4>
+      </div>
+  </div>
+  <div className="box">Expense
+    <div className="amountbox">
+      <h4 className="amounts1">   </h4>
+      </div> 
+    </div>
 </div>
 <div className="d-grid  col-2 ">
   <button className="btn btn-primary" type="button" onClick={addtransiction}>Add New Transiction + </button>
+  </div>
+  <div className="transictions">
+    <div className="twobtn">
+   <button type="button" className="btn btn-outline-warning" onClick={() => setType("income")}>IN</button>
+   <button type="button" className="btn btn-outline-warning" onClick={() => setType("expense")}>EX</button>
+   
+   {type === "income" && (
+    <div>
+        <h3>Income Form</h3>
+
+        <input type="text" placeholder="Income Source" />
+        <input type="number" placeholder="Amount" />
+    </div>
+)}
+
+{type === "expense" && (
+    <div>
+        <h3>Expense Form</h3>
+
+        <input type="text" placeholder="Expense Name" />
+        <input type="number" placeholder="Amount" />
+    </div>
+)}
+   </div>
+   
   </div>
     </>
   )

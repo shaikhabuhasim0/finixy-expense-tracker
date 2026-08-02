@@ -63,3 +63,25 @@ padding-left: 0px;
 
   margin-top: 18px;
 }
+
+.amountbox{
+
+border: 2px solid red ;
+height: 50px;
+width: 110px;
+margin-left: 7px;
+margin-top: 5px;
+}
+
+.transictions{
+border: 2px solid black;
+height: 80px;
+width: 300px;
+margin-top: 27px;
+}
+
+.twobtn{
+  gap:3px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
