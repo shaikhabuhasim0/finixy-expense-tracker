@@ -77,8 +77,8 @@ function addtransiction(){
    <button type="button" className="btn btn-outline-warning" onClick={() => setType("expense")}>EX</button>
    
    {type === "income" && (
-    <div>
-        <h3>Income Form</h3>
+    <div className='liningbox'>
+        <h3 className='liningbox2'>Income Form</h3>
 
         <input type="text" placeholder="Income Source" />
         <input type="number" placeholder="Amount" />
@@ -86,8 +86,8 @@ function addtransiction(){
 )}
 
 {type === "expense" && (
-    <div>
-        <h3>Expense Form</h3>
+    <div className='liningbox' >
+        <h3 className='liningbox2' >Expense Form</h3>
 
         <input type="text" placeholder="Expense Name" />
         <input type="number" placeholder="Amount" />

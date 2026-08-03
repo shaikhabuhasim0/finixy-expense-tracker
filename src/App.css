@@ -75,7 +75,7 @@ margin-top: 5px;
 
 .transictions{
 border: 2px solid black;
-height: 200px;
+height: 50px;
 width: 300px;
 margin-top: 27px;
 }
@@ -84,4 +84,21 @@ margin-top: 27px;
   gap:3px;
   margin-left: 5px;
   margin-top: 5px;
+}
+
+.liningbox{
+
+border: 2px solid red ;
+height : 140px;
+width: 220px;
+margin-top: 20px;
+margin-left: 0px;
+padding-left: 15px;
+
+}
+
+.liningbox2{
+
+margin-top: 15px;
+
 }
