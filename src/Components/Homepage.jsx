@@ -20,29 +20,52 @@ useEffect(() => {
 }, []);
 
 useEffect(() => {
-  const data = localStorage.getItem("income");
+  const data1 = localStorage.getItem("income");
 
 
-  if (data !== null) {
-    setincomesrc(data);
+  if (data1 !== null) {
+    setincomesrc(data1);
   }
 }, []);
 
 useEffect(() => {
-  const data = localStorage.getItem("newamount");
+  const data1 = localStorage.getItem("newamount");
+
+
+  if (data1 !== null) {
+    setamountsrc(data1);
+  }
+}, []);
+
+useEffect(() => {
+  const data = localStorage.getItem("income1");
 
 
   if (data !== null) {
-    setamountsrc(data);
+    setincomesrc1(data);
+  }
+}, []);
+
+useEffect(() => {
+  const data = localStorage.getItem("newamount1");
+
+
+  if (data !== null) {
+    setamountsrc1(data);
   }
 }, []);
 
 
 function incsavebtn (){
-localStorage.setItem("income", setincomesrc);
-localStorage.setItem("newamount", setamountsrc );
+localStorage.setItem("income", incomesrc);
+localStorage.setItem("newamount", amountsrc );
 }
   
+function incsavebtn1 (){
+localStorage.setItem("income1", incomesrc1);
+localStorage.setItem("newamount1", amountsrc1 );
+}
+
  function editcb(){
 
 
@@ -120,8 +143,9 @@ function addtransiction(){
     <div className='liningbox' >
         <h3 className='liningbox2' >Expense source</h3>
 
-        <input type="text" placeholder="Expense Name" />
-        <input type="number" placeholder="Amount" />
+        <input type="text" placeholder="Expense Name" onChange={(x)=>setincomesrc1(x.target.value)} value={incomesrc1} />
+        <input type="number" placeholder="Amount" onChange={(z)=>setamountsrc1(z.target.value)} value={amountsrc1} />
+        <button  type="button" class="btn btn-primary" onClick={incsavebtn1}>Save</button>
     </div>
 )}
    </div>
