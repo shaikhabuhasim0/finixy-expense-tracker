@@ -6,16 +6,42 @@ export default function Homepage(props) {
     const [test,settext]=useState("");
     const [type, setType] = useState("");
     const [incomesrc,setincomesrc] = useState ("");
+    const [amountsrc, setamountsrc] = useState("");
+    const [incomesrc1,setincomesrc1] = useState ("");
+    const [amountsrc1, setamountsrc1] = useState("");
 
 useEffect(() => {
   const data = localStorage.getItem("amount");
-  console.log("Loaded:", data);
+
 
   if (data !== null) {
     setcurrentbalance(data);
   }
 }, []);
 
+useEffect(() => {
+  const data = localStorage.getItem("income");
+
+
+  if (data !== null) {
+    setincomesrc(data);
+  }
+}, []);
+
+useEffect(() => {
+  const data = localStorage.getItem("newamount");
+
+
+  if (data !== null) {
+    setamountsrc(data);
+  }
+}, []);
+
+
+function incsavebtn (){
+localStorage.setItem("income", setincomesrc);
+localStorage.setItem("newamount", setamountsrc );
+}
   
  function editcb(){
 
@@ -24,7 +50,6 @@ useEffect(() => {
 
  function savecb(){
 
-// localStorage.setItem("amount",currentbalance)
 localStorage.setItem("amount", currentbalance);
 
 }
@@ -40,7 +65,7 @@ function addtransiction(){
     <div className='usergreetings'> Good Morning Abu ,</div>
     </div>
 
-    {/* main box of CURRENT BALANCE  */}
+  
     <div className='input-cb'>
       <p>CURRENT BALANCE </p>
     <div className="d-flex gap-2">
@@ -82,9 +107,9 @@ function addtransiction(){
     <div className='liningbox'>
         <h3 className='liningbox2'>Income Form</h3>
 
-        <input type="text" placeholder="Income Source" />
-        <input type="number" placeholder="Amount" />
-       <button  type="button" class="btn btn-primary">Save</button>
+        <input type="text" placeholder="Income Source"  onChange={(i)=>setincomesrc(i.target.value)} value={incomesrc}/>
+        <input type="number" placeholder="Amount" onChange={(j)=>setamountsrc(j.target.value)} value={amountsrc}/>
+       <button  type="button" class="btn btn-primary" onClick={incsavebtn}>Save</button>
     </div>
   
     </>
