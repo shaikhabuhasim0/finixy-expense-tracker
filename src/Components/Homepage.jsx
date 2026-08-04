@@ -5,6 +5,7 @@ export default function Homepage(props) {
     const [currentbalance , setcurrentbalance]=useState("");
     const [test,settext]=useState("");
     const [type, setType] = useState("");
+    const [incomesrc,setincomesrc] = useState ("");
 
 useEffect(() => {
   const data = localStorage.getItem("amount");
@@ -76,18 +77,23 @@ function addtransiction(){
    <button type="button" className="btn btn-outline-warning" onClick={() => setType("income")}>IN</button>
    <button type="button" className="btn btn-outline-warning" onClick={() => setType("expense")}>EX</button>
    
-   {type === "income" && (
+   {type === "income"  && (
+    <>
     <div className='liningbox'>
         <h3 className='liningbox2'>Income Form</h3>
 
         <input type="text" placeholder="Income Source" />
         <input type="number" placeholder="Amount" />
+       <button  type="button" class="btn btn-primary">Save</button>
     </div>
+  
+    </>
+    
 )}
 
 {type === "expense" && (
     <div className='liningbox' >
-        <h3 className='liningbox2' >Expense Form</h3>
+        <h3 className='liningbox2' >Expense source</h3>
 
         <input type="text" placeholder="Expense Name" />
         <input type="number" placeholder="Amount" />

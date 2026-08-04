@@ -90,7 +90,7 @@ margin-top: 27px;
 
 border: 2px solid red ;
 height : 140px;
-width: 220px;
+width: 300px;
 margin-top: 20px;
 margin-left: 0px;
 padding-left: 15px;
@@ -100,5 +100,7 @@ padding-left: 15px;
 .liningbox2{
 
 margin-top: 15px;
+/* display: flex; */
 
 }
+
