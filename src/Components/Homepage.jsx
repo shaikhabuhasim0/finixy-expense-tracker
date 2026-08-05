@@ -108,12 +108,12 @@ function addtransiction(){
 <div className="container1">
   <div className="box">Income 
     <div className="amountbox">
-      <h6 className="amounts1">{amountsrc}</h6>
+      <h5 className="amounts1">{amountsrc}</h5>
       </div>
   </div>
   <div className="box">Expense
     <div className="amountbox">
-      <h6 className="amounts1"> {amountsrc1}  </h6>
+      <h5 className="amounts2"> {amountsrc1}  </h5>
       </div> 
     </div>
 </div>
