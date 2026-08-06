@@ -146,7 +146,9 @@ function addtransiction(){
         <input type="text" placeholder="Expense Name" onChange={(x)=>setincomesrc1(x.target.value)} value={incomesrc1} />
         <input type="number" placeholder="Amount" onChange={(z)=>setamountsrc1(z.target.value)} value={amountsrc1} />
         <button  type="button" class="btn btn-primary" onClick={incsavebtn1}>Save</button>
+        <p>abuhasaimis lahkdjh </p>
     </div>
+    
 )}
    </div>
    
