@@ -11,6 +11,12 @@ export default function Homepage(props) {
     const [amountsrc1, setamountsrc1] = useState("");
     const [addtrans,setaddtrans] = useState("");
 
+// function for new trans btn 
+function handleClick() {
+  saveData();
+  closeForm();
+}
+
 useEffect(() => {
   const data = localStorage.getItem("amount");
 
@@ -117,6 +123,7 @@ localStorage.setItem("amount", currentbalance);
 </div>
 <div className="d-grid  col-2 ">
   <button className="btn btn-primary" type="button" onClick={() => setaddtrans("moneyform")}>Add New Transiction + </button>
+  <div><h1>ABU HASIM </h1></div>
   </div>
 
   {addtrans === "moneyform" && (
@@ -135,12 +142,17 @@ localStorage.setItem("amount", currentbalance);
 
         <input type="text" placeholder="Income Source"  onChange={(i)=>setincomesrc(i.target.value)} value={incomesrc}/>
         <input type="number" placeholder="Amount" onChange={(j)=>setamountsrc(j.target.value)} value={amountsrc}/>
-       <button  type="button" class="btn btn-primary" onClick={incsavebtn}>Save</button>
+       <button  type="button" class="btn btn-primary" onClick={incsavebtn} onClick={() => setType("savetoremove")} >Save</button>
     </div>
   
     </>
     
 )}
+
+{type === "savetoremove" && (
+  {}
+)}
+
 
 {type === "expense" && (
     <div className='liningbox' >
