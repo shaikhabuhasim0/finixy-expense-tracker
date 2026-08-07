@@ -78,10 +78,7 @@ localStorage.setItem("amount", currentbalance);
 
 }
 
-function addtransiction(){
 
-
-}
 
   return (<>
   <div className='homeposition'>
@@ -119,9 +116,12 @@ function addtransiction(){
     </div>
 </div>
 <div className="d-grid  col-2 ">
-  <button className="btn btn-primary" type="button" onClick={addtransiction}>Add New Transiction + </button>
+  <button className="btn btn-primary" type="button" onClick={() => setaddtrans("moneyform")}>Add New Transiction + </button>
   </div>
-  {/* transiction btn working  */}
+
+  {addtrans === "moneyform" && (
+    
+  
 
   <div className="transictions">
     <div className="twobtn">
@@ -156,8 +156,11 @@ function addtransiction(){
    </div>
    
   </div>
-    </>
+  )} 
+    </> 
+    
   )
 }
+
 
 
