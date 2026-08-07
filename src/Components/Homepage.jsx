@@ -9,6 +9,7 @@ export default function Homepage(props) {
     const [amountsrc, setamountsrc] = useState("");
     const [incomesrc1,setincomesrc1] = useState ("");
     const [amountsrc1, setamountsrc1] = useState("");
+    const [addtrans,setaddtrans] = useState("");
 
 useEffect(() => {
   const data = localStorage.getItem("amount");
@@ -120,6 +121,8 @@ function addtransiction(){
 <div className="d-grid  col-2 ">
   <button className="btn btn-primary" type="button" onClick={addtransiction}>Add New Transiction + </button>
   </div>
+  {/* transiction btn working  */}
+
   <div className="transictions">
     <div className="twobtn">
    <button type="button" className="btn btn-outline-warning" onClick={() => setType("income")}>IN</button>
