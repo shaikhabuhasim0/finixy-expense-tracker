@@ -13,9 +13,21 @@ export default function Homepage(props) {
 
 // function for new trans btn 
 function handleClick() {
-  saveData();
-  closeForm();
+  //save btn fun to save things 
+  // save btn fun to get it before stage 
+          function incsavebtn (){
+localStorage.setItem("income", incomesrc);
+localStorage.setItem("newamount", amountsrc );
 }
+
+function reverse(){
+  addtrans === false
+}
+
+incsavebtn()
+reverse()
+}
+
 
 useEffect(() => {
   const data = localStorage.getItem("amount");
@@ -62,12 +74,13 @@ useEffect(() => {
   }
 }, []);
 
-
-function incsavebtn (){
-localStorage.setItem("income", incomesrc);
-localStorage.setItem("newamount", amountsrc );
-}
+// save btn function first == remove this one after all 
+// function incsavebtn (){
+// localStorage.setItem("income", incomesrc);
+// localStorage.setItem("newamount", amountsrc );
+// }
   
+// save btn function second
 function incsavebtn1 (){
 localStorage.setItem("income1", incomesrc1);
 localStorage.setItem("newamount1", amountsrc1 );
@@ -127,8 +140,6 @@ localStorage.setItem("amount", currentbalance);
   </div>
 
   {addtrans === "moneyform" && (
-    
-  
 
   <div className="transictions">
     <div className="twobtn">
@@ -142,13 +153,14 @@ localStorage.setItem("amount", currentbalance);
 
         <input type="text" placeholder="Income Source"  onChange={(i)=>setincomesrc(i.target.value)} value={incomesrc}/>
         <input type="number" placeholder="Amount" onChange={(j)=>setamountsrc(j.target.value)} value={amountsrc}/>
-       <button  type="button" class="btn btn-primary" onClick={incsavebtn} onClick={() => setType("savetoremove")} >Save</button>
+       <button  type="button" class="btn btn-primary" onClick={handleClick}  >Save</button>
     </div>
   
     </>
     
 )}
 
+ 
 {type === "savetoremove" && (
   {}
 )}
