@@ -23,7 +23,7 @@ localStorage.setItem("newamount", amountsrc );
 setTimeout (function reverse(){
       setaddtrans("");
     setType("");
-},2000);
+},1500);
 
 incsavebtn()
 reverse()
@@ -41,7 +41,7 @@ localStorage.setItem("newamount1", amountsrc1 );
 setTimeout (function reverse1(){
       setaddtrans("");
     setType("");
-},2000);
+},1500);
 
 incsavebtn1()
 reverse1()
@@ -156,7 +156,7 @@ localStorage.setItem("amount", currentbalance);
 </div>
 <div className="d-grid  col-2 ">
   <button className="btn btn-primary" type="button" onClick={() => setaddtrans("moneyform")}>Add New Transiction + </button>
-  <div><h1>ABU HASIM </h1></div>
+  
   </div>
 
   {addtrans === "moneyform" && (
@@ -201,10 +201,19 @@ localStorage.setItem("amount", currentbalance);
    
   </div>
   )} 
+
+  <div className='historybox'>
+    <h4 className='histo'>History
+      <br></br>
+      <p>
+
+
+      </p>
+    </h4>
+  </div>
     </> 
     
   )
 
 }
-
 
