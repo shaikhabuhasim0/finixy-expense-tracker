@@ -20,13 +20,33 @@ localStorage.setItem("income", incomesrc);
 localStorage.setItem("newamount", amountsrc );
 }
 
-function reverse(){
-  addtrans === false
-}
+setTimeout (function reverse(){
+      setaddtrans("");
+    setType("");
+},2000);
 
 incsavebtn()
 reverse()
 }
+
+// 
+
+function handleClick1(){
+
+function incsavebtn1 (){
+localStorage.setItem("income1", incomesrc1);
+localStorage.setItem("newamount1", amountsrc1 );
+}
+
+setTimeout (function reverse1(){
+      setaddtrans("");
+    setType("");
+},2000);
+
+incsavebtn1()
+reverse1()
+}
+
 
 
 useEffect(() => {
@@ -81,10 +101,10 @@ useEffect(() => {
 // }
   
 // save btn function second
-function incsavebtn1 (){
-localStorage.setItem("income1", incomesrc1);
-localStorage.setItem("newamount1", amountsrc1 );
-}
+// function incsavebtn1 (){
+// localStorage.setItem("income1", incomesrc1);
+// localStorage.setItem("newamount1", amountsrc1 );
+// }
 
  function editcb(){
 
@@ -172,7 +192,7 @@ localStorage.setItem("amount", currentbalance);
 
         <input type="text" placeholder="Expense Name" onChange={(x)=>setincomesrc1(x.target.value)} value={incomesrc1} />
         <input type="number" placeholder="Amount" onChange={(z)=>setamountsrc1(z.target.value)} value={amountsrc1} />
-        <button  type="button" class="btn btn-primary" onClick={incsavebtn1}>Save</button>
+        <button  type="button" class="btn btn-primary" onClick={handleClick1}>Save</button>
         
     </div>
     
@@ -184,7 +204,7 @@ localStorage.setItem("amount", currentbalance);
     </> 
     
   )
-}
 
+}
 
 
