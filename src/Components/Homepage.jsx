@@ -23,7 +23,10 @@ localStorage.setItem("newamount", amountsrc );
 setTimeout (function reverse(){
       setaddtrans("");
     setType("");
+    // alert ("saved successfuly ")
 },1500);
+
+
 
 incsavebtn()
 reverse()
@@ -41,6 +44,7 @@ localStorage.setItem("newamount1", amountsrc1 );
 setTimeout (function reverse1(){
       setaddtrans("");
     setType("");
+    // alert ("saved successfuly ")
 },1500);
 
 incsavebtn1()
