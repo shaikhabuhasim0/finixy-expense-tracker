@@ -158,11 +158,11 @@ localStorage.setItem("amount", currentbalance);
       </div> 
     </div>
 </div>
+<div className='transictionbtnnn'>
 <div className="d-grid  col-2 ">
   <button className="btn btn-primary" type="button" onClick={() => setaddtrans("moneyform")}>Add New Transiction + </button>
-  
   </div>
-
+</div>
   {addtrans === "moneyform" && (
 
   <div className="transictions">
@@ -208,11 +208,17 @@ localStorage.setItem("amount", currentbalance);
 
   <div className='historybox'>
     <h4 className='histo'>History
-      <br></br>
-      <p>
+      <h6 className='colornames'>
 
+{amountsrc} IN
 
-      </p>
+      </h6>
+
+      <h6 className='colornames1'>
+
+        {amountsrc1} EX
+        
+      </h6>
     </h4>
   </div>
     </> 
