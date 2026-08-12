@@ -10,6 +10,7 @@ export default function Homepage(props) {
     const [incomesrc1,setincomesrc1] = useState ("");
     const [amountsrc1, setamountsrc1] = useState("");
     const [addtrans,setaddtrans] = useState("");
+    const [hsitory,sethsitory]= useState("");
 
 // function for new trans btn 
 function handleClick() {
@@ -26,8 +27,8 @@ setTimeout (function reverse(){
     // alert ("saved successfuly ")
 },1500);
 
-
-
+setamountsrc("")
+setincomesrc("")
 incsavebtn()
 reverse()
 }
@@ -47,6 +48,8 @@ setTimeout (function reverse1(){
     // alert ("saved successfuly ")
 },1500);
 
+setamountsrc1("")
+setincomesrc1("")
 incsavebtn1()
 reverse1()
 }
