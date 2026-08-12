@@ -24,15 +24,10 @@ localStorage.setItem("newamount", amountsrc );
 setTimeout (function reverse(){
       setaddtrans("");
     setType("");
-    setamountsrc("")
-setincomesrc("");
-function refreshPage() {
-    window.location.reload();
-}
+
     // alert ("saved successfuly ")
 },1500);
 
-refreshPage()
 incsavebtn()
 reverse()
 }
@@ -49,14 +44,11 @@ localStorage.setItem("newamount1", amountsrc1 );
 setTimeout (function reverse1(){
       setaddtrans("");
     setType("");
-    setamountsrc1("")
-setincomesrc1("");
-function refreshPage1() {
-    window.location.reload();
-    // alert ("saved successfuly ")
-}},1500);
 
-refreshPage1()
+
+    // alert ("saved successfuly ")
+},1500);
+
 incsavebtn1()
 reverse1()
 }
