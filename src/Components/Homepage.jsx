@@ -84,7 +84,7 @@ useEffect(() => {
 
 useEffect(() => {
   const data = localStorage.getItem("income1");
-
+  
 
   if (data !== null) {
     setincomesrc1(data);
