@@ -10,13 +10,16 @@ import { Link } from 'react-router-dom';
   return (
     <>
     <BrowserRouter>
-        <Navbar/>
+
+    <Navbar/>
     <Homepage homepage="HOME"/>
-    <Transictions/>
+    
+
 <Routes>
 
 <Route path="Transiction" element={<Transictions/>}/>
 </Routes>
+
     </BrowserRouter>
 
     
