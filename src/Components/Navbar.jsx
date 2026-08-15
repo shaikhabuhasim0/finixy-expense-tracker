@@ -6,6 +6,9 @@ import {
   HandCoins,
   CircleUser,
 } from "lucide-react";
+import Transictions from './Transictions';
+import Homepage from './Homepage';
+import { Link } from "react-router-dom";
 
 
 export default function Navbar(props) {
@@ -13,23 +16,23 @@ export default function Navbar(props) {
     <>
     <div className='navbar1'>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <a className="navbar-brand" href="#"><House size={25} /></a>
+  <Link className="navbar-brand" to="#"><House size={25} /></Link>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
   <div className="collapse navbar-collapse" id="navbarNav">
     <ul className="navbar-nav">
       <li className="nav-item active">
-        <a className="nav-link" href="#"><Wallet size={25} /><span className="sr-only"></span></a>
+        <Link className="nav-link" to="Transiction"><Wallet size={25} /><span className="sr-only"></span></Link>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#"><ChartColumn size={25} /></a>
+        <Link className="nav-link" to="#"><ChartColumn size={25} /></Link>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#"><HandCoins size={25} /></a>
+        <Link className="nav-link" to="#"><HandCoins size={25} /></Link>
       </li>
       <li className="nav-item">
-        <a className="nav-link disabled" href="#"><CircleUser size={25} /></a>
+        <Link className="nav-link disabled" to="#"><CircleUser size={25} /></Link>
       </li>
     </ul>
   </div>
