@@ -26,13 +26,13 @@ export default function Navbar(props) {
         <Link className="nav-link" to="Transiction"><Wallet size={25} /><span className="sr-only"></span></Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="#"><ChartColumn size={25} /></Link>
+        <Link className="nav-link" to="Inslights"><ChartColumn size={25} /></Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="#"><HandCoins size={25} /></Link>
+        <Link className="nav-link" to="Loan"><HandCoins size={25} /></Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link disabled" to="#"><CircleUser size={25} /></Link>
+        <Link className="nav-link" to="User"><CircleUser size={25} /></Link>
       </li>
     </ul>
   </div>
