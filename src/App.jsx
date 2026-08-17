@@ -12,15 +12,13 @@ import { Link } from 'react-router-dom';
     <BrowserRouter>
 
     <Navbar/>
-    <Homepage homepage="HOME"/>
     
-
 <Routes>
-
+<Route path="Homepage" element={<Homepage/>}/>
 <Route path="Transiction" element={<Transictions/>}/>
 </Routes>
 
-    </BrowserRouter>
+</BrowserRouter>
 
     
     </>
