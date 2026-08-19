@@ -139,6 +139,8 @@ useEffect(() => {
 // useEffect(() => {
 //   const data1 = localStorage.getItem("income");
 
+// added 
+
 
 //   if (data1 !== null) {
 //     setincomesrc(data1);
