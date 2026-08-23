@@ -54,7 +54,12 @@ function handleClick() {
 }
 
 function delethsitory (){
-  
+  // to delet history 
+    localStorage.removeItem(
+    "transactions",
+    
+  );
+  sethistory("");
 }
 
 function handleClick1() {
