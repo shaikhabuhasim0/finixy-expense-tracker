@@ -4,13 +4,9 @@ import { Link } from "react-router-dom";
 
 export default function Homepage(props) {
     const [currentbalance , setcurrentbalance]=useState("");
-    // const [test,settext]=useState("");
+
     const [type, setType] = useState("");
-    // const [incomesrc,setincomesrc] = useState ("");
-    // const [amountsrc, setamountsrc] = useState("");
-    // const [incomesrc1,setincomesrc1] = useState ("");
-    // const [amountsrc1, setamountsrc1] = useState("");
-    // const [hsitory,sethsitory]= useState("");
+
     const [addtrans,setaddtrans] = useState("");
   const [transaction, setTransaction] = useState({
   type: "",
@@ -19,27 +15,15 @@ export default function Homepage(props) {
 });
     const [history,sethistory] = useState([]);
     
+    // for income
+  const totalIncome = history
+  .filter((item) => item.type === "income")
+  .reduce((total, item) => total + Number(item.amount), 0);
 
-// function for new trans btn 
-// function handleClick() {
-//   save btn fun to save things 
-//   save btn fun to get it before stage 
-//           function incsavebtn (){
-// localStorage.setItem("income", incomesrc);
-// localStorage.setItem("newamount", amountsrc );
-// }
-
-// setTimeout (function reverse(){
-//       setaddtrans("");
-//     setType("");
-
-//     alert ("saved successfuly ")
-// },1500);
-
-// incsavebtn()
-// reverse()
-// }
-
+// for expence 
+  const totalIncome1 = history
+  .filter((item) => item.type === "expense")
+  .reduce((total, item) => total + Number(item.amount), 0);
 
 function handleClick() {
 
@@ -68,26 +52,10 @@ function handleClick() {
   setaddtrans("");
   setType("");
 }
-// 
 
-// function handleClick1(){
-
-// function incsavebtn1 (){
-// localStorage.setItem("income1", incomesrc1);
-// localStorage.setItem("newamount1", amountsrc1 );
-// }
-
-// setTimeout (function reverse1(){
-//       setaddtrans("");
-//     setType("");
-
-
-//     // alert ("saved successfuly ")
-// },1500);
-
-// incsavebtn1()
-// reverse1()
-// }
+function delethsitory (){
+  
+}
 
 function handleClick1() {
 
@@ -136,55 +104,6 @@ useEffect(() => {
   }
 }, []);
 
-// useEffect(() => {
-//   const data1 = localStorage.getItem("income");
-
-// added 
-
-
-//   if (data1 !== null) {
-//     setincomesrc(data1);
-//   }
-// }, []);
-
-// useEffect(() => {
-//   const data1 = localStorage.getItem("newamount");
-
-
-//   if (data1 !== null) {
-//     setamountsrc(data1);
-//   }
-// }, []);
-
-// useEffect(() => {
-//   const data = localStorage.getItem("income1");
-  
-
-//   if (data !== null) {
-//     setincomesrc1(data);
-//   }
-// }, []);
-
-// useEffect(() => {
-//   const data = localStorage.getItem("newamount1");
-
-
-//   if (data !== null) {
-//     setamountsrc1(data);
-//   }
-// }, []);
-
-// save btn function first == remove this one after all 
-// function incsavebtn (){
-// localStorage.setItem("income", incomesrc);
-// localStorage.setItem("newamount", amountsrc );
-// }
-  
-// save btn function second
-// function incsavebtn1 (){
-// localStorage.setItem("income1", incomesrc1);
-// localStorage.setItem("newamount1", amountsrc1 );
-// }
 
  function editcb(){
 
@@ -225,12 +144,14 @@ localStorage.setItem("amount", currentbalance);
 <div className="container1">
   <div className="box">Income 
     <div className="amountbox">
-      <h5 className="amounts1">0</h5>
+      <h5 className="amounts1"> ₹{totalIncome}
+         
+        </h5>
       </div>
   </div>
   <div className="box">Expense
     <div className="amountbox">
-      <h5 className="amounts2"> 0</h5>
+      <h5 className="amounts2"> ₹{totalIncome1}</h5>
       </div> 
     </div>
 </div>
@@ -251,7 +172,7 @@ localStorage.setItem("amount", currentbalance);
     <div className='liningbox'>
         <h3 className='liningbox2'>Income Form</h3>
 
-        {/* <input type="text" placeholder="Income Source"  onChange={(i)=>setincomesrc(i.target.value)} value={incomesrc}/> */}
+
         <input
   type="text"
   placeholder="Income Source"
@@ -263,7 +184,7 @@ localStorage.setItem("amount", currentbalance);
     })
   }
 />
-        {/* <input type="number" placeholder="Amount" onChange={(j)=>setamountsrc(j.target.value)} value={amountsrc}/> */}
+
         <input
   type="number"
   placeholder="Amount"
@@ -275,9 +196,7 @@ localStorage.setItem("amount", currentbalance);
     })
   }
 />
-        {/* <p>
-  {transaction.source} - {transaction.amount}
-</p> */}
+
        <button  type="button" class="btn btn-primary" onClick={handleClick}  >Save</button>
     </div>
   
@@ -295,7 +214,7 @@ localStorage.setItem("amount", currentbalance);
     <div className='liningbox' >
         <h3 className='liningbox2' >Expense source</h3>
 
-        {/* <input type="text" placeholder="Expense Name" onChange={(x)=>setincomesrc1(x.target.value)} value={incomesrc1} /> */}
+
         <input
   type="text"
   placeholder="Expense Name"
@@ -307,8 +226,9 @@ localStorage.setItem("amount", currentbalance);
     })
   }
 />
-        {/* <input type="number" placeholder="Amount" onChange={(z)=>setamountsrc1(z.target.value)} value={amountsrc1} /> */}
+
         <input
+        
   type="number"
   placeholder="Amount"
   value={transaction.amount}
@@ -329,27 +249,23 @@ localStorage.setItem("amount", currentbalance);
   </div>
   )} 
 
-{/* <div className='historybox'>
-  <h4 className='histo'>History</h4>
 
-  <h6 className='colornames'>
-    {amountsrc} IN
-  </h6>
-
-  <h6 className='colornames1'>
-    {amountsrc1} EX
-  </h6>
-</div> */}
 <div className='historybox'>
-  <h4 className='histo'>History</h4>
+  <h4 className='histo'>History <button onClick={delethsitory}> <i className="fa-solid fa-trash"></i></button></h4> 
 
-  {history.map((item) => (
-    <div key={item.id} className="history-item">
-      <span>{item.source}</span>
+  {history.map((item) => 
+
+  (
+    
+    <div key={item.id} className={item.type==="income"? "history-type income" : "history-type expence"}>
+      <span>{item.type === "income" ? "+" : "-"} {item.source}</span>
       <span>
-        ₹{item.amount} {item.type === "income" ? "IN" : "EX"}
+
+        ₹{item.amount} {item.type === "income" ? " IN" : "  EX"}
+
       </span>
     </div>
+  
   ))}
 </div>
     </> 

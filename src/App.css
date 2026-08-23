@@ -202,7 +202,7 @@
   border-radius: 12px;
 
   width: 300px;
-  height: 100px;
+  height: 175px;
 
   margin-top: 20px;
 
@@ -215,9 +215,35 @@
   overflow-y: auto;
 }
 
-.histo{
+/* .histo{
   margin: top;
+   display: flex;
 
+}
+
+.histo1{
+  margin: top;
+ 
+
+} */
+
+.histo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.histo button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: red;
+}
+
+.histo button:hover {
+  color: red;
+  transform: scale(1.1);
 }
 
 .historybox::-webkit-scrollbar{
@@ -246,6 +272,16 @@
 .transictionbtnnn{
   margin-left: 20px;
 }
+
+.history-type.income{
+  color: green;
+}
+
+.history-type.expence{
+  color:red;
+}
+
+
 /* mobile */
 
 /* @media (max-width: 600px){
