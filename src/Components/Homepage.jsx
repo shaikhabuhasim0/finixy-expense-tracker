@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 
 export default function Homepage(props) {
     const [currentbalance , setcurrentbalance]=useState("");
-
+    const [notification , setnotification]=useState("")
     const [type, setType] = useState("");
+
 
     const [addtrans,setaddtrans] = useState("");
   const [transaction, setTransaction] = useState({
@@ -13,15 +14,22 @@ export default function Homepage(props) {
   source: "",
   amount: ""
 });
-    const [history,sethistory] = useState([]);
-    
+const [history,sethistory] = useState([]);
+
+
+// current balance ko functional banane ke liye !! 
+const setcurrentbalance1 = history
+.filter((item)=>item.type === "income.amount" - "expense.amount")
+.every((totalcb,item)=> totalcb + Number(item.amount),0)
+
+
     // for income
   const totalIncome = history
   .filter((item) => item.type === "income")
   .reduce((total, item) => total + Number(item.amount), 0);
 
 // for expence 
-  const totalIncome1 = history
+  const totalExpence = history
   .filter((item) => item.type === "expense")
   .reduce((total, item) => total + Number(item.amount), 0);
 
@@ -59,7 +67,8 @@ function delethsitory (){
     "transactions",
     
   );
-  sethistory("");
+  sethistory([]);
+
 }
 
 function handleClick1() {
@@ -95,11 +104,18 @@ function handleClick1() {
 useEffect(() => {
   const data = localStorage.getItem("amount");
 
-
   if (data !== null) {
     setcurrentbalance(data);
   }
 }, []);
+
+// useEffect(() => {
+//   const data = localStorage.getItem("amount");
+
+//   if (data !== null) {
+//     {setcurrentbalance(data)};
+//   }
+// }, []);
 
 useEffect(() => {
   const savedHistory = localStorage.getItem("transactions");
@@ -121,7 +137,10 @@ localStorage.setItem("amount", currentbalance);
 
 }
 
-
+// current balance = expense - income 
+// cb = 2000 - 10000 
+// ab = 8000 
+// my simple algoriths 
 
   return (<>
   <div className='homeposition'>
@@ -139,6 +158,7 @@ localStorage.setItem("amount", currentbalance);
     placeholder="Enter Amount$"
     value={currentbalance}
     onChange={(e)=>setcurrentbalance(e.target.value)}
+    value1 = {setcurrentbalance1}
     />
 
   <button className="btn btn-primary" onClick={editcb}>Edit</button>
@@ -156,7 +176,7 @@ localStorage.setItem("amount", currentbalance);
   </div>
   <div className="box">Expense
     <div className="amountbox">
-      <h5 className="amounts2"> ₹{totalIncome1}</h5>
+      <h5 className="amounts2"> ₹{totalExpence}</h5>
       </div> 
     </div>
 </div>
@@ -272,6 +292,10 @@ localStorage.setItem("amount", currentbalance);
     </div>
   
   ))}
+</div>
+
+<div className='notifications'>
+  <span className='notifications1'>Current balance Saved Successfully</span>
 </div>
     </> 
     

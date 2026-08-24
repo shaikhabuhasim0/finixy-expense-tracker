@@ -281,6 +281,18 @@
   color:red;
 }
 
+.notifications {
+  border: 2px solid red;
+  height: 75px;
+  width: 300px;
+  margin-top: 15px;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center; /* left-right center */
+  align-items: center;     /* top-bottom center */
+}
+
 
 /* mobile */
 
