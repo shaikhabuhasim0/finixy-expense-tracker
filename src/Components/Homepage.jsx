@@ -6,7 +6,7 @@ export default function Homepage(props) {
     const [currentbalance , setcurrentbalance]=useState("");
     const [notification , setnotification]=useState("")
     const [type, setType] = useState("");
-
+    const [startingbalance , setstartingbalance]= useState("")
 
     const [addtrans,setaddtrans] = useState("");
   const [transaction, setTransaction] = useState({
@@ -15,6 +15,7 @@ export default function Homepage(props) {
   amount: ""
 });
 const [history,sethistory] = useState([]);
+
 
 
 // current balance ko functional banane ke liye !! 
@@ -29,9 +30,14 @@ const setcurrentbalance1 = history
   .reduce((total, item) => total + Number(item.amount), 0);
 
 // for expence 
-  const totalExpence = history
+  const totalExpense = history
   .filter((item) => item.type === "expense")
   .reduce((total, item) => total + Number(item.amount), 0);
+
+  const finalBalance =
+  Number(currentbalance || 0) +
+  totalIncome -
+  totalExpense;
 
 function handleClick() {
 
@@ -150,6 +156,13 @@ useEffect(() => {
   }
 }, []);
 
+useEffect(() => {
+  const data = localStorage.getItem("amount");
+
+  if (data !== null) {
+    setstartingbalance(data);
+  }
+}, []);
 
  function editcb(){
 
@@ -160,12 +173,16 @@ useEffect(() => {
 
 localStorage.setItem("amount", currentbalance);
 
+localStorage.setItem("amount", startingbalance);
+
  setnotification("Current Balance Update Sucessfully 💰")
 
   setTimeout(()=>{
     setnotification("")
   },3000)
 }
+
+
 
 // current balance = expense - income 
 // cb = 2000 - 10000 
@@ -186,9 +203,9 @@ localStorage.setItem("amount", currentbalance);
     type="text"
     className="form-control"
     placeholder="Enter Amount$"
-    value={currentbalance}
+    value={finalBalance}
     onChange={(e)=>setcurrentbalance(e.target.value)}
-    value1 = {setcurrentbalance1}
+    
     />
 
   <button className="btn btn-primary" onClick={editcb}>Edit</button>
@@ -206,7 +223,7 @@ localStorage.setItem("amount", currentbalance);
   </div>
   <div className="box">Expense
     <div className="amountbox">
-      <h5 className="amounts2"> ₹{totalExpence}</h5>
+      <h5 className="amounts2"> ₹{totalExpense}</h5>
       </div> 
     </div>
 </div>
