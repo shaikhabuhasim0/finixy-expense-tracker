@@ -59,15 +59,35 @@ function handleClick() {
 
   setaddtrans("");
   setType("");
+  setnotification("Task Has Been Saved Successfully ✅")
+
+  setTimeout(()=>{
+  setnotification("")
+  },3000)
 }
 
-function delethsitory (){
   // to delet history 
-    localStorage.removeItem(
+function delethsitory (){
+
+ if (history.length===0){
+setnotification("There is Nothing To Delet 🚫")
+setTimeout(()=>{
+  setnotification("")
+},3000)
+ }
+ 
+ else {
+  
+      localStorage.removeItem(
     "transactions",
-    
   );
-  sethistory([]);
+ sethistory([]);
+  
+  setnotification("History Has Been Deleted 🗑️ ")
+setTimeout(()=>{
+  setnotification("")
+},3000)
+}
 
 }
 
@@ -97,6 +117,11 @@ function handleClick1() {
 
   setaddtrans("");
   setType("");
+  setnotification("Task Has Been Saved Successfully ✅")
+
+  setTimeout(()=>{
+    setnotification("")
+  },3000)
 }
 
 
@@ -135,6 +160,11 @@ useEffect(() => {
 
 localStorage.setItem("amount", currentbalance);
 
+ setnotification("Current Balance Update Sucessfully 💰")
+
+  setTimeout(()=>{
+    setnotification("")
+  },3000)
 }
 
 // current balance = expense - income 
@@ -295,7 +325,7 @@ localStorage.setItem("amount", currentbalance);
 </div>
 
 <div className='notifications'>
-  <span className='notifications1'>Current balance Saved Successfully</span>
+  <span className='notifications1'><h6>{notification}</h6></span>
 </div>
     </> 
     
