@@ -336,19 +336,27 @@
 
 
 .historyboxx{
-  border : 2px solid white ; 
+  border: 1px solid #e2e8f0;
+    background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
 height : 90px ;
 width: 300px;
     display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 12px;
 }
 .history-buttons{
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 15px;
+  padding-right: 5px;
+  font-size: 10px;
 
+}
+.historyboxx5{
+  margin-left: 5px;
 }
 
 /* mobile */

@@ -276,7 +276,7 @@ localStorage.setItem("amount", startingbalance);
   }
 />
 
-       <button  type="button" class="btn btn-primary" onClick={()=>{ if (transaction.amount.length === 0)
+       <button  type="button" className="btn btn-primary" onClick={()=>{ if (transaction.amount.length === 0)
        { setnotification("There is Nothing To Save 🚫")
 setTimeout(()=>{
   setnotification("")
@@ -322,7 +322,7 @@ setTimeout(()=>{
     })
   }
 />
-        <button  type="button" class="btn btn-primary" onClick={()=>{ if (transaction.amount.length === 0)
+        <button  type="button" className="btn btn-primary" onClick={()=>{ if (transaction.amount.length === 0)
           {setnotification("There is Nothing To Save 🚫")
 setTimeout(()=>{
   setnotification("")
@@ -367,11 +367,11 @@ setTimeout(()=>{
 </div>
 
 {type === "delethsitory" && (
-  <div className='historyboxx'><h7 className="historyboxx5"> Do You Want To Delet History ? </h7>
+  <div className='historyboxx'><h6 className="historyboxx5"> Do You Want To Delet History ? </h6>
   
 <div className='history-buttons '>
     <button type="button" className="btn btn-primary" onClick={canclebtn}>Cancle</button>
-  <button type="button" className="btn btn-danger" onClick={delethsitory}>Delet</button>
+  <button type="button" className="btn btn-danger" onClick={delethsitory}>Delet?</button>
 
 </div>
   </div>
