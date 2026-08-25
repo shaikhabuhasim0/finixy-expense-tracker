@@ -8,7 +8,6 @@ export default function Homepage(props) {
     const [notification , setnotification]=useState("")
     const [type, setType] = useState("");
     const [startingbalance , setstartingbalance]= useState("")
-    const [type2 , settype2] = useState ("")
     const [addtrans,setaddtrans] = useState("");
   const [transaction, setTransaction] = useState({
   type: "",
@@ -17,7 +16,10 @@ export default function Homepage(props) {
 });
 const [history,sethistory] = useState([]);
 
-
+// cancle button 
+function canclebtn (){
+  setType("")
+}
 
 // current balance ko functional banane ke liye !! 
 const setcurrentbalance1 = history
@@ -274,18 +276,22 @@ localStorage.setItem("amount", startingbalance);
   }
 />
 
-       <button  type="button" class="btn btn-primary" onClick={handleClick}  >Save</button>
+       <button  type="button" class="btn btn-primary" onClick={()=>{ if (transaction.amount.length === 0)
+       { setnotification("There is Nothing To Save 🚫")
+setTimeout(()=>{
+  setnotification("")
+},3000)}
+       else {
+       {handleClick()}}}} >Save</button>
     </div>
   
     </>
     
 )}
 
- 
 {type === "savetoremove" && (
   {}
 )}
-
 
 {type === "expense" && (
     <div className='liningbox' >
@@ -316,7 +322,11 @@ localStorage.setItem("amount", startingbalance);
     })
   }
 />
-        <button  type="button" class="btn btn-primary" onClick={handleClick1}>Save</button>
+        <button  type="button" class="btn btn-primary" onClick={()=>{ if (transaction.amount.length === 0)
+          {setnotification("There is Nothing To Save 🚫")
+setTimeout(()=>{
+  setnotification("")
+},3000)}{handleClick1()}}}>Save</button>
         
     </div>
     
@@ -327,8 +337,17 @@ localStorage.setItem("amount", startingbalance);
   )} 
 
 
+
+
 <div className='historybox'>
-  <h4 className='histo'>History <button onClick={()=>setType("delethsitory")}> <i className="fa-solid fa-trash"></i></button></h4> 
+  <h4 className='histo'>History <button onClick={()=>{ if (history.length===0){
+setnotification("There is Nothing To Delet 🚫")
+setTimeout(()=>{
+  setnotification("")
+},3000)
+ }
+ 
+ else {setType("delethsitory")}}}> <i className="fa-solid fa-trash"></i></button></h4>
 
 
   {history.map((item) => 
@@ -351,7 +370,7 @@ localStorage.setItem("amount", startingbalance);
   <div className='historyboxx'><h7 className="historyboxx5"> Do You Want To Delet History ? </h7>
   
 <div className='history-buttons '>
-    <button type="button" className="btn btn-primary">Cancle</button>
+    <button type="button" className="btn btn-primary" onClick={canclebtn}>Cancle</button>
   <button type="button" className="btn btn-danger" onClick={delethsitory}>Delet</button>
 
 </div>
