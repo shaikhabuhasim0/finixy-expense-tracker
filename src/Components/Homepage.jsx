@@ -1,3 +1,4 @@
+import { Type } from 'lucide-react';
 import React, { useState } from 'react'
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -7,7 +8,7 @@ export default function Homepage(props) {
     const [notification , setnotification]=useState("")
     const [type, setType] = useState("");
     const [startingbalance , setstartingbalance]= useState("")
-
+    const [type2 , settype2] = useState ("")
     const [addtrans,setaddtrans] = useState("");
   const [transaction, setTransaction] = useState({
   type: "",
@@ -24,7 +25,7 @@ const setcurrentbalance1 = history
 .every((totalcb,item)=> totalcb + Number(item.amount),0)
 
 
-    // for income
+// for income
   const totalIncome = history
   .filter((item) => item.type === "income")
   .reduce((total, item) => total + Number(item.amount), 0);
@@ -88,12 +89,16 @@ setTimeout(()=>{
     "transactions",
   );
  sethistory([]);
-  
-  setnotification("History Has Been Deleted 🗑️ ")
+  setTimeout(()=>{
+    setType("")
+  },2000)
+
+setnotification("History Has Been Deleted 🗑️ ")
 setTimeout(()=>{
   setnotification("")
 },3000)
 }
+
 
 }
 
@@ -323,7 +328,8 @@ localStorage.setItem("amount", startingbalance);
 
 
 <div className='historybox'>
-  <h4 className='histo'>History <button onClick={delethsitory}> <i className="fa-solid fa-trash"></i></button></h4> 
+  <h4 className='histo'>History <button onClick={()=>setType("delethsitory")}> <i className="fa-solid fa-trash"></i></button></h4> 
+
 
   {history.map((item) => 
 
@@ -340,6 +346,18 @@ localStorage.setItem("amount", startingbalance);
   
   ))}
 </div>
+
+{type === "delethsitory" && (
+  <div className='historyboxx'><h7 className="historyboxx5"> Do You Want To Delet History ? </h7>
+  
+<div className='history-buttons '>
+    <button type="button" className="btn btn-primary">Cancle</button>
+  <button type="button" className="btn btn-danger" onClick={delethsitory}>Delet</button>
+
+</div>
+  </div>
+  
+)}
 
 <div className='notifications'>
   <span className='notifications1'><h6>{notification}</h6></span>

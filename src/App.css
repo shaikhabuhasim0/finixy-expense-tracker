@@ -334,6 +334,23 @@
   }
 }
 
+
+.historyboxx{
+  border : 2px solid white ; 
+height : 90px ;
+width: 300px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.history-buttons{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
+
+}
+
 /* mobile */
 
 /* @media (max-width: 600px){
