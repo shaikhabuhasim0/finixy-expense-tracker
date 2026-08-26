@@ -199,7 +199,7 @@ localStorage.setItem("amount", startingbalance);
 // 
 function setincomebocin (){
   setType("income");
-   
+  // yhi sahi hai 
 }
 
 // current balance = expense - income 
@@ -245,11 +245,13 @@ function setincomebocin (){
       </div> 
     </div>
 </div>
+
 <div className='transictionbtnnn'>
 <div className="d-grid  col-2 ">
   <button className="btn btn-primary" type="button" onClick={() => setaddtrans("moneyform")}>Add New Transiction + </button>
   </div>
 </div>
+
   {addtrans === "moneyform" && (
 
   <div className="transictions">
@@ -350,9 +352,9 @@ setTimeout(()=>{
 )}
    </div>
    
-  
   </div>
-  )} 
+  
+   )}
 
 
 
@@ -405,3 +407,4 @@ setTimeout(()=>{
 
 }
 
+// HOME PAGE IS DONE PROPERLY AND NEXT MOVE TO TRANSICTIONS PAGE !! 

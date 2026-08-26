@@ -3,7 +3,7 @@
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 75px;
-  margin-top: 40px;
+  margin-top: 80px;
 }
 
 /* main navbar */
@@ -370,17 +370,6 @@ width: 300px;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 /* mobile */
 
 /* @media (max-width: 600px){
@@ -426,3 +415,11 @@ width: 300px;
   }
 
 } */
+
+
+/* CSS FOR TRANSICTIONS PAGE !!  */
+
+.tran{
+  color: red;
+  justify-content: center;
+}
