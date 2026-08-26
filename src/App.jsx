@@ -14,9 +14,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
   return (
     <>
     <BrowserRouter>
-
-    <Navbar/>
-    
+      <Navbar/>
 <Routes>
 <Route path="Homepage" element={<Homepage/>}/>
 <Route path="Transiction" element={<Transictions/>}/>

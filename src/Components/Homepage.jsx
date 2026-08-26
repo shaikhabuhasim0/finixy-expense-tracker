@@ -18,6 +18,7 @@ const [history,sethistory] = useState([]);
 
 // cancle button 
 function canclebtn (){
+
   setType("")
 }
 
@@ -101,7 +102,13 @@ setTimeout(()=>{
 },3000)
 }
 
+}
 
+// close icon funation 
+
+function closetransictions1 (){
+  setaddtrans("");
+  setType("");
 }
 
 function handleClick1() {
@@ -189,7 +196,11 @@ localStorage.setItem("amount", startingbalance);
   },3000)
 }
 
-
+// 
+function setincomebocin (){
+  setType("income");
+   
+}
 
 // current balance = expense - income 
 // cb = 2000 - 10000 
@@ -243,9 +254,15 @@ localStorage.setItem("amount", startingbalance);
 
   <div className="transictions">
     <div className="twobtn">
-   <button type="button" className="btn btn-outline-warning" onClick={() => setType("income")}>IN</button>
+   <button type="button" className="btn btn-outline-warning" onClick={setincomebocin}>IN</button>
    <button type="button" className="btn btn-outline-warning" onClick={() => setType("expense")}>EX</button>
+
+   <div className="itemno1">
+  <button type="button" className="btn-close" onClick={closetransictions1}></button>
+</div>
+   </div>
    
+   <div className='transictionbtnnn110'>
    {type === "income"  && (
     <>
     <div className='liningbox'>
@@ -333,6 +350,7 @@ setTimeout(()=>{
 )}
    </div>
    
+  
   </div>
   )} 
 

@@ -131,7 +131,7 @@
 .transictions{
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-
+ 
   min-height: 50px;
   width: 300px;
 
@@ -142,16 +142,25 @@
   background: #ffffff;
 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+
 }
 
 
 .twobtn{
   gap: 5px;
-
+display: flex;
   margin-left: 5px;
   margin-top: 5px;
 }
 
+.itemno1{
+
+ margin-left: 160px;
+ margin-top: 5px;
+ font-size: 10px;
+
+}
 
 /* transaction details */
 
@@ -163,7 +172,7 @@
   width: 300px;
 
   margin-top: 20px;
-  margin-left: -15px;
+  margin-left: -11px;
 
   padding-left: 15px;
   padding-top: 10px;
@@ -176,6 +185,7 @@
 
 .liningbox2{
   margin-top: 15px;
+ 
 }
 
 
@@ -358,6 +368,18 @@ width: 300px;
 .historyboxx5{
   margin-left: 5px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* mobile */
 
