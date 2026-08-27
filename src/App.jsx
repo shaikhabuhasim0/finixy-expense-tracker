@@ -9,15 +9,50 @@ import Inslights from './components/Inslights';
 import Loan from './components/Loan';
 import User from './components/User';
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { useState } from 'react';
 
  function App() {
+    const [transaction, setTransaction] = useState({
+    type: "",
+    source: "",
+    amount: "",
+    date :""
+  });
+  const [history,sethistory] = useState([]);
+  const [addtrans,setaddtrans] = useState("");
+  const [currentbalance , setcurrentbalance]=useState("");
+  const [type, setType] = useState("");
+
   return (
     <>
     <BrowserRouter>
+
       <Navbar/>
+      
 <Routes>
-<Route path="Homepage" element={<Homepage/>}/>
-<Route path="Transiction" element={<Transictions/>}/>
+<Route path="/" element={<Homepage 
+transaction={transaction} setTransaction={setTransaction}
+history={history} sethistory={sethistory} 
+addtrans={addtrans} setaddtrans={setaddtrans} 
+currentbalance={currentbalance} setcurrentbalance={setcurrentbalance}
+type={type} setType={setType}
+/>}/>
+
+<Route path="Homepage" element={<Homepage transaction={transaction} setTransaction={setTransaction}
+  history={history} sethistory={sethistory}
+  addtrans={addtrans} setaddtrans={setaddtrans} 
+  currentbalance={currentbalance} setcurrentbalance={setcurrentbalance}
+  type={type} setType={setType}
+  />}/>
+
+<Route path="Transiction" element={<Transictions 
+transaction={transaction} setTransaction={setTransaction}
+history={history} sethistory={sethistory} 
+addtrans={addtrans} setaddtrans={setaddtrans}
+currentbalance={currentbalance} setcurrentbalance={setcurrentbalance}
+type={type} setType={setType}
+/>}/>
+
 <Route path="Inslights" element={<Inslights/>}/>
 <Route path="Loan" element={<Loan/>}/>
 <Route path="User" element={<User/>}/>

@@ -4,29 +4,18 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Homepage(props) {
-    const [currentbalance , setcurrentbalance]=useState("");
+  // ye props pass kiye huye hai from app.jsx 
+   const { transaction, setTransaction, history, sethistory ,addtrans ,setaddtrans ,currentbalance, setcurrentbalance} = props;
+   // upar wale 4 
     const [notification , setnotification]=useState("")
-    const [type, setType] = useState("");
+    
     const [startingbalance , setstartingbalance]= useState("")
-    const [addtrans,setaddtrans] = useState("");
-  const [transaction, setTransaction] = useState({
-  type: "",
-  source: "",
-  amount: ""
-});
-const [history,sethistory] = useState([]);
-
+   
 // cancle button 
 function canclebtn (){
 
   setType("")
 }
-
-// current balance ko functional banane ke liye !! 
-const setcurrentbalance1 = history
-.filter((item)=>item.type === "income.amount" - "expense.amount")
-.every((totalcb,item)=> totalcb + Number(item.amount),0)
-
 
 // for income
   const totalIncome = history
@@ -208,6 +197,8 @@ function setincomebocin (){
 // my simple algoriths 
 
   return (<>
+
+<h3 className='homeboxx'>HOME</h3>
   <div className='homeposition'>
     <div><h3>{props.homepage}</h3></div>
     <div className='usergreetings'> Good Morning Abu ,</div>

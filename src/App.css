@@ -369,7 +369,12 @@ width: 300px;
   margin-left: 5px;
 }
 
+.homeboxx{
 
+margin-bottom: 15px;
+/* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+
+}
 /* mobile */
 
 /* @media (max-width: 600px){
@@ -420,6 +425,61 @@ width: 300px;
 /* CSS FOR TRANSICTIONS PAGE !!  */
 
 .tran{
-  color: red;
   justify-content: center;
 }
+
+.mainbox-inex{
+display: flex;
+gap: 15px;
+margin-top: 30px;
+}
+
+.incomeboxes{
+
+  border:2px solid black;
+  height: 100px;
+  width: 140px;
+
+ 
+ 
+}
+
+.incomeboxes-value{
+  border:2px solid black;
+  height: 40px;
+  width: 100px;
+
+}
+
+.mainboxfor-tin{
+  display: flex;
+gap: 15px;
+margin-top: 30px;
+}
+
+.totalincomebox{
+  margin-top: 8px;
+    border:2px solid black;
+  height: 50px;
+  width: 140px;
+  display: flex;
+  
+}
+
+.totalincomebox1{
+    border:2px solid black;
+  height: 30px;
+  width: 100px;
+  margin-top: 8px;
+}
+
+.dropdown-all{
+margin-top: 30px;
+gap: 30px;
+display: flex;
+}
+
+.btn-group{
+  margin-left: 20px;
+}
+
