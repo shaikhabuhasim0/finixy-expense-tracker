@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 export default function Transictions(props) {
 
-   const { transaction, setTransaction, history, sethistory ,addtrans ,setaddtrans ,currentbalance, setcurrentbalance ,} = props;
+   const { transaction, setTransaction, history, sethistory ,addtrans ,setaddtrans ,currentbalance, setcurrentbalance , type , setType} = props;
 
 const showhighestincome = Math.max(
   ...history
@@ -29,6 +29,13 @@ const totalexpenseofalltime = history
 
   const totaltransictionsofalltime = history
   .filter((item)=>item.type==="income" + item.type==="expence").length
+
+  function alltransictionsinsumarry(){
+
+(setType === "showalltransiction")
+
+
+  }
 
   return (
     <>
@@ -56,7 +63,7 @@ const totalexpenseofalltime = history
     Filter Types
   </button>
   <ul className="dropdown-menu">
-   <li type="button">All Transiction</li>
+   <li type="button" onClick={alltransictionsinsumarry}>All Transiction</li>
    <li type="button">Income</li>
    <li type="button">Expense</li>
   </ul>
@@ -73,6 +80,41 @@ const totalexpenseofalltime = history
   </ul>
 </div>
     </div>
+    <div className="totaltransictoiionnnn">
+      <h6>TOTAL NO OF TRANSICTIONS = {totalincomeofalltime+totalexpenseofalltime}</h6>
+    </div>
+    <div className="sumarrybox">
+      <h5 className="summaryname">SUMMARY</h5>
+     
+{(type === "showalltransiction" && {
+  
+
+})}
+
+{(type === "showallincomessss" && {
+
+})}
+
+{(type === "showallexpences" && {
+
+})}
+
+        {history.map((item) => 
+
+  (
+    
+    <div key={item.id} className={item.type==="income"? "history-type income" : "history-type expence"}>
+      <span>{item.type === "income" ? "+" : "-"} {item.source}</span>
+      <span>
+
+        ₹{item.amount} {item.type === "income" ? " IN" : "  EX"}
+
+      </span>
+    </div>
+  
+  ))}
+    </div>
     </>
   )
 }
+
