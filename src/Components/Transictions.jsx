@@ -6,7 +6,7 @@ import { useEffect } from "react";
 export default function Transictions(props) {
 
    const { transaction, setTransaction, history, sethistory ,addtrans ,setaddtrans ,currentbalance, setcurrentbalance , type , setType} = props;
-
+const [filterType, setFilterType] = useState("all");
 const showhighestincome = Math.max(
   ...history
     .filter((item) => item.type === "income")
@@ -30,29 +30,23 @@ const totalexpenseofalltime = history
   const totaltransictionsofalltime = history
   .filter((item)=>item.type==="income" + item.type==="expence").length
 
-  function alltransictionsinsumarry(){
-
-(setType === "showalltransiction")
-
-
-  }
 
   return (
     <>
     <div className="tran"><h3>WALLET</h3></div>
     <div className="mainbox-inex">
-      <div className="incomeboxes">Heighest IN
+      <div className="incomeboxes">Heighest Income
         <div className="incomeboxes-value">{showhighestincome}</div>
       </div>
-            <div className="incomeboxes">Heighest EX
+            <div className="incomeboxes">Heighest Expense
         <div className="incomeboxes-value">{showhighestexpense}</div>
       </div>
     </div>
     <div className="mainboxfor-tin">
-      <div className="totalincomebox">IN`S 
+      <div className="totalincomebox">Total Income`s 
         <div className="totalincomebox1">{totalincomeofalltime}</div>
       </div>
-      <div className="totalincomebox">EX`S 
+      <div className="totalincomebox">Total Expense`s 
         <div className="totalincomebox1">{totalexpenseofalltime}</div>
       </div>
     </div>
@@ -63,9 +57,9 @@ const totalexpenseofalltime = history
     Filter Types
   </button>
   <ul className="dropdown-menu">
-   <li type="button" onClick={alltransictionsinsumarry}>All Transiction</li>
-   <li type="button">Income</li>
-   <li type="button">Expense</li>
+   <li type="button" onClick={() => setFilterType("all")}>All Transiction</li>
+   <li type="button" onClick={() => setFilterType("income")}>Income</li>
+   <li type="button" onClick={() => setFilterType("expense")}>Expense</li>
   </ul>
 
 </div>
@@ -84,35 +78,35 @@ const totalexpenseofalltime = history
       <h6>TOTAL NO OF TRANSICTIONS = {totalincomeofalltime+totalexpenseofalltime}</h6>
     </div>
     <div className="sumarrybox">
-      <h5 className="summaryname">SUMMARY</h5>
-     
-{(type === "showalltransiction" && {
-  
+      <h5 className="summaryname">SUMMARY  <h6 className={filterType==="income" ? "greencolor" : "redcolor"}>  {filterType==="income"? "All Income" : "All Expense"}</h6> </h5>
+{/* start  */}
+{history
+  .filter((item) => {
+    if (filterType === "all") {
+      return true;
+    }
 
-})}
-
-{(type === "showallincomessss" && {
-
-})}
-
-{(type === "showallexpences" && {
-
-})}
-
-        {history.map((item) => 
-
-  (
-    
-    <div key={item.id} className={item.type==="income"? "history-type income" : "history-type expence"}>
-      <span>{item.type === "income" ? "+" : "-"} {item.source}</span>
+    return item.type === filterType;
+  })
+  .map((item) => (
+    <div
+      key={item.id}
+      className={
+        item.type === "income"
+          ? "history-type income"
+          : "history-type expence"
+      }
+    >
       <span>
+        {item.type === "income" ? "+" : "-"} {item.source}
+      </span>
 
-        ₹{item.amount} {item.type === "income" ? " IN" : "  EX"}
-
+      <span>
+        ₹{item.amount}
       </span>
     </div>
-  
   ))}
+{/* end  */}
     </div>
     </>
   )
