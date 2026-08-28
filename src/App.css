@@ -657,7 +657,7 @@ display: flex;
 .totaltransictoiionnnn h6 {
   margin: 0;
 
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
 
   color: #475569;
@@ -805,9 +805,19 @@ display: flex;
 }
 
 .greencolor{
+
   color: #15803d;
 }
 
 .redcolor{
   color : red ;
+}
+
+.blueclass{
+  color: dodgerblue;
+}
+
+.boldtrans{
+  color:dodgerblue;
+  font-size: 20px;
 }

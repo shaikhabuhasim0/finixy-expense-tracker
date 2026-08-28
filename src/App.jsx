@@ -12,6 +12,8 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState } from 'react';
 
  function App() {
+
+
     const [transaction, setTransaction] = useState({
     type: "",
     source: "",
@@ -22,6 +24,8 @@ import { useState } from 'react';
   const [addtrans,setaddtrans] = useState("");
   const [currentbalance , setcurrentbalance]=useState("");
   const [type, setType] = useState("");
+  const [date , setdate] = useState("")
+  
 
   return (
     <>
@@ -35,6 +39,8 @@ transaction={transaction} setTransaction={setTransaction}
 history={history} sethistory={sethistory} 
 addtrans={addtrans} setaddtrans={setaddtrans} 
 currentbalance={currentbalance} setcurrentbalance={setcurrentbalance}
+date = {date }
+setdate = {setdate}
 type={type} setType={setType}
 />}/>
 
@@ -43,6 +49,7 @@ type={type} setType={setType}
   addtrans={addtrans} setaddtrans={setaddtrans} 
   currentbalance={currentbalance} setcurrentbalance={setcurrentbalance}
   type={type} setType={setType}
+  date = {date }setdate = {setdate}
   />}/>
 
 <Route path="Transiction" element={<Transictions 
@@ -50,7 +57,8 @@ transaction={transaction} setTransaction={setTransaction}
 history={history} sethistory={sethistory} 
 addtrans={addtrans} setaddtrans={setaddtrans}
 currentbalance={currentbalance} setcurrentbalance={setcurrentbalance}
-type={type} setType={setType}
+type={type} setType={setType} 
+date = {date }setdate = {setdate}
 />}/>
 
 <Route path="Inslights" element={<Inslights/>}/>

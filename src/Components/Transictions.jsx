@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 export default function Transictions(props) {
 
-   const { transaction, setTransaction, history, sethistory ,addtrans ,setaddtrans ,currentbalance, setcurrentbalance , type , setType} = props;
+   const { transaction, setTransaction, history, sethistory ,addtrans ,setaddtrans ,currentbalance, setcurrentbalance , type , setType , date , setdate} = props;
 const [filterType, setFilterType] = useState("all");
 const showhighestincome = Math.max(
   ...history
@@ -30,6 +30,18 @@ const totalexpenseofalltime = history
   const totaltransictionsofalltime = history
   .filter((item)=>item.type==="income" + item.type==="expence").length
 
+  const datefilter = new Date ( Math.max (...history
+    .map((item)=> new Date (item.date).getTime ())
+  )
+)
+
+const newestdate = [...history].sort(
+  (a,b)=> new Date (b.date) - new Date (a.date)
+)
+
+const oldesttdate = [...history].sort(
+  (a,b)=> new Date (a.date) - new Date (b.date)
+)
 
   return (
     <>
@@ -69,13 +81,13 @@ const totalexpenseofalltime = history
     Short Dates
   </button>
   <ul className="dropdown-menu">
-   <li type="button">Newest</li>
-   <li type="button">Oldest</li>
+   <li type="button" onClick={()=>setdate("newsest")}>Newest</li>
+   <li type="button" onClick={()=>setdate("oldest")}>Oldest</li>
   </ul>
 </div>
     </div>
     <div className="totaltransictoiionnnn">
-      <h6>TOTAL NO OF TRANSICTIONS = {totalincomeofalltime+totalexpenseofalltime}</h6>
+      <h6>TOTAL NO OF TRANSICTIONS = <span className="boldtrans"> {totalincomeofalltime+totalexpenseofalltime}</span></h6>
     </div>
     <div className="sumarrybox">
       <h5 className="summaryname">SUMMARY  <h6 className={filterType==="income" ? "greencolor" : "redcolor"}>  {filterType==="income"? "All Income" : "All Expense"}</h6> </h5>
@@ -104,7 +116,12 @@ const totalexpenseofalltime = history
       <span>
         ₹{item.amount}
       </span>
+
+      <span className="blueclass">
+      {new Date(item.date).toLocaleDateString()}
+      </span>
     </div>
+
   ))}
 {/* end  */}
     </div>
