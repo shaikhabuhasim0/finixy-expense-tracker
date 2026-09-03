@@ -81,8 +81,8 @@ const oldesttdate = [...history].sort(
     Short Dates
   </button>
   <ul className="dropdown-menu">
-   <li type="button" onClick={()=>setdate("newsest")}>Newest</li>
-   <li type="button" onClick={()=>setdate("oldest")}>Oldest</li>
+   <li type="button" onClick={()=>setdate("newest")}>newest</li>
+   <li type="button" onClick={()=>setdate("oldest")}>oldest</li>
   </ul>
 </div>
     </div>
@@ -91,7 +91,7 @@ const oldesttdate = [...history].sort(
     </div>
     <div className="sumarrybox">
       <h5 className="summaryname">SUMMARY  <h6 className={filterType==="income" ? "greencolor" : "redcolor"}>  {filterType==="income"? "All Income" : "All Expense"}</h6> </h5>
-{/* start  */}
+
 {history
   .filter((item) => {
     if (filterType === "all") {
@@ -99,6 +99,17 @@ const oldesttdate = [...history].sort(
     }
 
     return item.type === filterType;
+  })
+  .sort((a, b) => {
+    if (date === "newest") {
+      return new Date(b.date) - new Date(a.date);
+    }
+
+    if (date === "oldest") {
+      return new Date(a.date) - new Date(b.date);
+    }
+
+    return 0;
   })
   .map((item) => (
     <div
@@ -118,12 +129,11 @@ const oldesttdate = [...history].sort(
       </span>
 
       <span className="blueclass">
-      {new Date(item.date).toLocaleDateString()}
+        {new Date(item.date).toLocaleDateString()}
       </span>
     </div>
-
   ))}
-{/* end  */}
+
     </div>
     </>
   )

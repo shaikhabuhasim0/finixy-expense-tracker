@@ -39,7 +39,7 @@ function handleClick() {
     type: "income",
     source: transaction.source,
     amount: transaction.amount,
-    date : new Date ()
+    date: new Date().toISOString()
   };
 
   const updatedHistory = [...history, newTransaction];
@@ -109,7 +109,7 @@ function handleClick1() {
     type: "expense",
     source: transaction.source,
     amount: transaction.amount,
-    date : new Date ()
+    date: new Date().toISOString()
   };
 
   const updatedHistory = [...history, newTransaction];
