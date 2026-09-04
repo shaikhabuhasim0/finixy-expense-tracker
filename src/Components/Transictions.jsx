@@ -139,3 +139,4 @@ const oldesttdate = [...history].sort(
   )
 }
 
+// TRANSICTION PAGE IS DONE PROPERLY AND NEXT MOVE TO INSLIGHTS PAGE !! 
