@@ -821,3 +821,42 @@ display: flex;
   color:dodgerblue;
   font-size: 20px;
 }
+
+/* css for LOAN page  */
+
+.loancards{
+  display: flex;
+  gap: 10px;
+}
+
+
+.loancards1{
+  border: 2px solid black ;
+  height: 80px;
+  width: 115px;
+}
+
+.loancards2{
+  border: 2px solid black ;
+  height: 80px;
+  width: 115px;
+}
+
+.loancardsnosecond{
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+
+.loancardsno1{
+  border: 2px solid black ;
+  height: 60px;
+  width: 115px;
+}
+
+.loancardsno2{
+  border: 2px solid black ;
+  height: 60px;
+  width: 115px;
+}
