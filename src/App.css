@@ -860,3 +860,18 @@ display: flex;
   height: 60px;
   width: 115px;
 }
+
+.loanbtnnn{
+  margin-top: 20px;
+}
+
+.loanboxxx{
+  margin-top: 20px;
+  border: 2px solid black;
+  height: 400px;
+  width: 300px;
+}
+
+.nameinputbox{
+  width: 150px;
+}

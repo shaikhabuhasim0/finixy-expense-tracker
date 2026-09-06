@@ -62,7 +62,9 @@ date = {date }setdate = {setdate}
 />}/>
 
 <Route path="Inslights" element={<Inslights/>}/>
-<Route path="Loan" element={<Loan/>}/>
+<Route path="Loan" element={<Loan 
+type={type} setType={setType}
+/>}/>
 <Route path="User" element={<User/>}/>
 
 </Routes>
