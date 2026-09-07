@@ -27,6 +27,17 @@ import { useState } from 'react';
   const [date , setdate] = useState("")
   
 
+const [form , setform] = useState ({
+loanname : "" ,
+lendername : "",
+totalamount : "",
+intrestrate : "",
+timeperiod : "",
+date : ""
+  })
+
+const [formhistory,setformhistory] = useState([])
+
   return (
     <>
     <BrowserRouter>
@@ -64,6 +75,8 @@ date = {date }setdate = {setdate}
 <Route path="Inslights" element={<Inslights/>}/>
 <Route path="Loan" element={<Loan 
 type={type} setType={setType}
+form = {form} setform = {setform}
+formhistory = {formhistory} setformhistory={setformhistory}
 />}/>
 <Route path="User" element={<User/>}/>
 

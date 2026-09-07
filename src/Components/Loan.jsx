@@ -1,8 +1,50 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 
 export default function Loan(props) {
   
-const {type , setType }= props ;
+const {type , setType , form , setform , formhistory , setformhistory }= props ;
+
+
+function handleclick (){
+
+const newform = {
+loanname : form.loanname ,
+lendername : form.lendername ,
+totalamount : form.totalamount ,
+intrestrate: form.intrestrate,
+timeperiod : form.timeperiod,
+date : new Date().toISOString()
+}
+
+  const updatedHistory = [...formhistory , newform];
+
+  setformhistory(updatedHistory);
+
+  localStorage.setItem(
+    "form",
+    JSON.stringify(updatedHistory)
+  )
+
+  setform({
+    loanname: "",
+    lendername: "",
+    totalamount: "",
+    intrestrate : "",
+    timeperiod:"",
+    date:""
+  });
+
+}
+
+useEffect(()=>{
+const saveHistory = localStorage.getItem("form")
+
+if (saveHistory!== null){
+  setformhistory(JSON.parse(saveHistory));
+}
+},[])
+
 
   return (
     <>
@@ -32,6 +74,13 @@ const {type , setType }= props ;
     type="text"
     className="nameinputbox"
     placeholder="Enter Name"
+    value={form.loanname}
+      onChange={(i) =>
+    setform({
+      ...form,
+      loanname: i.target.value
+    })
+  }
     />
     </div>
     
@@ -40,6 +89,13 @@ const {type , setType }= props ;
     type="text"
     className="nameinputbox"
     placeholder="Enter Name"
+    value={form.lendername}
+          onChange={(e) =>
+    setform({
+      ...form,
+      lendername: e.target.value
+    })
+  }
     />
     </div>
         <div>Total Amount :
@@ -47,6 +103,13 @@ const {type , setType }= props ;
     type="text"
     className="nameinputbox"
     placeholder="Enter Amount"
+    value={form.totalamount}
+          onChange={(e) =>
+    setform({
+      ...form,
+      totalamount: e.target.value
+    })
+  }
     />
     </div>
         <div> Intrest Rate % :
@@ -54,6 +117,13 @@ const {type , setType }= props ;
     type="text"
     className="nameinputbox"
     placeholder="Intrest Rate % "
+    value={form.intrestrate}
+          onChange={(e) =>
+    setform({
+      ...form,
+      intrestrate: e.target.value
+    })
+  }
     />
     </div>
         <div> Time Period :
@@ -61,9 +131,17 @@ const {type , setType }= props ;
     type="text"
     className="nameinputbox"
     placeholder="Time Period"
+    value={form.timeperiod}
+          onChange={(e) =>
+    setform({
+      ...form,
+      timeperiod: e.target.value
+    })
+  }
     />
     </div>
     </div>
+    <button type="button" class="btn btn-success" onClick={handleclick}>save </button>
   </div>
   
 )}
