@@ -51,11 +51,17 @@ function clearbutton (){
  },300)
 }
 
-const nextduecalculator = {
+const totalloan = formhistory.length
 
+const nextdues =  Math.min(
+...formhistory.map((item)=>{
+  const nextdues1 = new Date(item.date);
+  nextdues1.setMonth(nextdues1.getMonth() + 1);
+  return nextdues1.getMonth()
+})
+)
 
-}
-
+const remainingamount = {}
 
   return (
     <>
@@ -64,13 +70,16 @@ const nextduecalculator = {
     </div>
 
 <div className='loancards'>
-  <div className='loancards1'>Total Loan</div>
+  <div className='loancards1'>Total Loan {totalloan} </div>
   <div className='loancards2'>Total Paid</div>
 </div>
 
 <div className='loancardsnosecond'>
   <div className='loancardsno1'>Remaining</div>
-  <div className='loancardsno2'>Next Due</div>
+  <div className='loancardsno2'>Next Due on 
+   {new Date(nextdues).toLocaleDateString()}
+    
+  </div>
 </div>
 
 <div className='loanbtnnn'>
@@ -110,7 +119,7 @@ const nextduecalculator = {
     </div>
         <div>Total Amount :
   <input
-    type="text"
+    type="number"
     className="nameinputbox"
     placeholder="Enter Amount"
     value={form.totalamount}
@@ -124,7 +133,7 @@ const nextduecalculator = {
     </div>
         <div> Intrest Rate % :
   <input
-    type="text"
+    type="number"
     className="nameinputbox"
     placeholder="Intrest Rate % "
     value={form.intrestrate}
@@ -138,7 +147,7 @@ const nextduecalculator = {
     </div>
         <div> Time Period :
   <input
-    type="text"
+    type="number"
     className="nameinputbox"
     placeholder="Time Period"
     value={form.timeperiod}
@@ -158,8 +167,10 @@ const nextduecalculator = {
 
 <div className='allloans'>All Dues
 {formhistory.map((item)=>{
+  const dueDate = new Date(item.date);
+  dueDate.setMonth(dueDate.getMonth() + 1);
 return (
-<div>Type = {item.loanname} Amount = ₹{item.totalamount} next due on  {new Date(item.date).toLocaleDateString()}  </div>
+<div>Type = {item.loanname} Amount = ₹{item.totalamount}  Next due on {dueDate.toLocaleDateString()}  </div>
 )
 })}
 </div>
