@@ -868,10 +868,21 @@ display: flex;
 .loanboxxx{
   margin-top: 20px;
   border: 2px solid black;
-  height: 400px;
+  height: 300px;
   width: 300px;
+  
 }
 
 .nameinputbox{
   width: 150px;
+  margin-top: 10px;
+  
+}
+
+.allloans{
+border: 2px solid black ;
+height: 120px;
+width: 280px;
+margin-top: 20px;
+position: fixed;
 }

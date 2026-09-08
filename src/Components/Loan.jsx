@@ -45,6 +45,17 @@ if (saveHistory!== null){
 }
 },[])
 
+function clearbutton (){
+ setTimeout(()=>{
+   setType("")
+ },300)
+}
+
+const nextduecalculator = {
+
+
+}
+
 
   return (
     <>
@@ -81,9 +92,8 @@ if (saveHistory!== null){
       loanname: i.target.value
     })
   }
-    />
+    /> <button type="button" className="btn-close" onClick={clearbutton}></button>
     </div>
-    
         <div>Lender's Name :
   <input
     type="text"
@@ -141,10 +151,18 @@ if (saveHistory!== null){
     />
     </div>
     </div>
-    <button type="button" class="btn btn-success" onClick={handleclick}>save </button>
+    <button type="button" className="btn btn-success" onClick={handleclick}>save </button>
   </div>
   
 )}
+
+<div className='allloans'>All Dues
+{formhistory.map((item)=>{
+return (
+<div>Type = {item.loanname} Amount = ₹{item.totalamount} next due on  {new Date(item.date).toLocaleDateString()}  </div>
+)
+})}
+</div>
     </>
   )
 }
