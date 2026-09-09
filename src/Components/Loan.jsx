@@ -63,6 +63,14 @@ const nextdues =  Math.min(
 
 const remainingamount = {}
 
+function payduebtn (item){
+setform(item)
+setType("loadpayingform");
+
+
+}
+
+
   return (
     <>
     <div>
@@ -170,9 +178,28 @@ const remainingamount = {}
   const dueDate = new Date(item.date);
   dueDate.setMonth(dueDate.getMonth() + 1);
 return (
-<div>Type = {item.loanname} Amount = ₹{item.totalamount}  Next due on {dueDate.toLocaleDateString()}  </div>
+<div>Type = {item.loanname} Amount = ₹{item.totalamount}  Next due on {dueDate.toLocaleDateString()} <button type="button" class="btn btn-success my-btn" onClick={() => payduebtn(item)}>Pay </button> </div>
 )
 })}
+</div>
+<div>
+  {type==="loadpayingform" && (
+    <div className='payingform'><h4>PAY REMAINING DUE <button type="button" className="btn-close" onClick={clearbutton}></button></h4> 
+    
+<div>
+  Name = {form.loanname}
+  <br />
+  Lender = {form.lendername}
+  <br />
+  Amount = ₹{form.totalamount}
+  <br />
+  Intrest = {form.intrestrate}
+  <br />
+  Remaining = {form.timeperiod}
+</div>
+    
+    </div>
+  )}
 </div>
     </>
   )

@@ -884,5 +884,26 @@ border: 2px solid black ;
 height: 120px;
 width: 280px;
 margin-top: 20px;
-position: fixed;
+/* position: fixed; */
+}
+
+.my-btn {
+  padding: 0px 8px !important;
+  font-size: 9px !important;
+  width: auto !important;
+  height: 20px !important;
+}
+
+.payingform{
+border : 2px solid black ;
+height: 200px;
+width: 300px;
+
+}
+
+.btn-close{
+
+ font-size: 13px ;
+ gap : 16px;
+
 }
