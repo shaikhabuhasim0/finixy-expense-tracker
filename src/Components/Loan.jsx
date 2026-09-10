@@ -70,6 +70,7 @@ setType("loadpayingform");
 
 }
 
+const monthscalculator = {}
 
   return (
     <>
