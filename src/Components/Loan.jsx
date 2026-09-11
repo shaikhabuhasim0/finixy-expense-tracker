@@ -70,6 +70,10 @@ setform(item)
 setType("loadpayingform");
 }
 
+function payduebtn2 (item){
+  setform(item)
+}
+
 const interest = (Number(form.totalamount) * Number(form.intrestrate)) / 100;
 
 const totalAmount = Number(form.totalamount) + interest;
@@ -88,6 +92,8 @@ const totalremainingamount = formhistory.reduce((total, item) => {
 
 }, 0);
 
+
+
   return (
     <>
     <div>
@@ -102,14 +108,14 @@ const totalremainingamount = formhistory.reduce((total, item) => {
 
   <div className="loancard">
     <span>Total Paid</span>
-    <strong>₹0</strong>
+    <strong className='allpaidtransictions'>₹0</strong>
   </div>
 </div>
 
 <div className="loancardsnosecond">
   <div className="loancard">
     <span>Remaining</span>
-    <strong>₹ {totalremainingamount} </strong>
+    <strong className='allunpaidtransictions'>₹ {totalremainingamount} </strong>
   </div>
 
   <div className="loancard">
@@ -235,29 +241,20 @@ const totalremainingamount = formhistory.reduce((total, item) => {
   const dueDate = new Date(item.date);
   dueDate.setMonth(dueDate.getMonth() + 1);
 return (
- <div className="due-item">
-    <div className="due-row">
-      <span className="due-label"><b>Type = </b></span>
-      <span className="due-value">{item.loanname}</span>
-    </div>
-
-    <div className="due-row">
-      <span className="due-label"><b>Amount = </b> </span>
-      <span className="due-value">₹{item.totalamount}</span>
-    </div>
-
-    <div className="due-footer">
-      <span className="due-label"><b>Next Due =</b> </span>
-      <span className="due-date">{dueDate.toLocaleDateString()}</span>
-      <button 
-        type="button"
-        className="btn btn-success my-btn"
-        onClick={() => payduebtn(item)}
-      >
-        Pay
-      </button>
-    </div>
+<div className="due-item">
+  <div className="due-row">
+    <span className="due-label">Type = </span>
+    <span className="due-value">{item.loanname}</span>
   </div>
+  <div className="due-row">
+    <span className="due-label">Amount = </span>
+    <span className="due-value">₹{item.totalamount}</span>
+  </div>
+  <div className="due-footer">
+    <span className="due-date">Due = {dueDate.toLocaleDateString()}</span>
+    <button type="button" className="btn btn-success my-btn" onClick={() => payduebtn(item)}>Pay</button>
+  </div>
+</div>
 )
 })}
 </div>
@@ -280,6 +277,19 @@ return (
   Remaining Amount = {totalAmount}
   <br />
   Per Month = ₹ {permonthamount}
+  <br />
+  <input
+  type = "number"
+  className='inputtagtocloseloan'  
+  placeholder={totalAmount}
+  />
+  <button
+  type="button"
+  className="btn btn-success my-btn2"
+  onClick={() => payduebtn2(item)}
+>
+  Pay
+</button>
 </div>
 
     </div>
