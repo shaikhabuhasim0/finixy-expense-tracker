@@ -35,6 +35,10 @@ date : new Date().toISOString()
     date:""
   });
 
+ setTimeout(()=>{
+   setType("")
+ },300)
+
 }
 
 useEffect(()=>{
@@ -61,16 +65,18 @@ const nextdues =  Math.min(
 })
 )
 
-const remainingamount = {}
-
 function payduebtn (item){
 setform(item)
 setType("loadpayingform");
-
-
 }
 
-const monthscalculator = {}
+const interest = (Number(form.totalamount) * Number(form.intrestrate)) / 100;
+
+const totalAmount = Number(form.totalamount) + interest;
+
+const permonthamount = Number(totalAmount) / Number(form.timeperiod)
+
+const totalremainingamount = {}
 
   return (
     <>
@@ -78,100 +84,141 @@ const monthscalculator = {}
       <div className="tran"><h3>LOANS</h3></div>
     </div>
 
-<div className='loancards'>
-  <div className='loancards1'>Total Loan {totalloan} </div>
-  <div className='loancards2'>Total Paid</div>
-</div>
+<div className="loancards">
+  <div className="loancard">
+    <span>Total Loan</span>
+    <strong>₹{totalloan}</strong>
+  </div>
 
-<div className='loancardsnosecond'>
-  <div className='loancardsno1'>Remaining</div>
-  <div className='loancardsno2'>Next Due on 
-   {new Date(nextdues).toLocaleDateString()}
-    
+  <div className="loancard">
+    <span>Total Paid</span>
+    <strong>₹0</strong>
   </div>
 </div>
+
+<div className="loancardsnosecond">
+  <div className="loancard">
+    <span>Remaining</span>
+    <strong>₹{totalloan}</strong>
+  </div>
+
+  <div className="loancard">
+    <span>Next Due</span>
+    <strong>
+      {new Date(nextdues).toLocaleDateString()}
+    </strong>
+  </div>
+</div>
+{/* end  */}
 
 <div className='loanbtnnn'>
  <button className="btn btn-primary" type="button" onClick={()=>setType("addnewloan")}> + Add New Loan</button>
 </div>
 
 {type === "addnewloan" && (
-  <div className='loanboxxx'>
-    <div>
-    <div>Loan Name :
-  <input
-    type="text"
-    className="nameinputbox"
-    placeholder="Enter Name"
-    value={form.loanname}
+
+<div className="loanboxxx">
+
+  <h4>Add New Loan</h4>
+
+  <button
+    type="button"
+    className="btn-close loan-close"
+    onClick={clearbutton}
+  ></button>
+
+  <div className="loan-field">
+    <label>Loan Name</label>
+    <input
+      type="text"
+      className="nameinputbox"
+      placeholder="Enter loan name"
+      value={form.loanname}
       onChange={(i) =>
-    setform({
-      ...form,
-      loanname: i.target.value
-    })
-  }
-    /> <button type="button" className="btn-close" onClick={clearbutton}></button>
-    </div>
-        <div>Lender's Name :
-  <input
-    type="text"
-    className="nameinputbox"
-    placeholder="Enter Name"
-    value={form.lendername}
-          onChange={(e) =>
-    setform({
-      ...form,
-      lendername: e.target.value
-    })
-  }
+        setform({
+          ...form,
+          loanname: i.target.value
+        })
+      }
     />
-    </div>
-        <div>Total Amount :
-  <input
-    type="number"
-    className="nameinputbox"
-    placeholder="Enter Amount"
-    value={form.totalamount}
-          onChange={(e) =>
-    setform({
-      ...form,
-      totalamount: e.target.value
-    })
-  }
-    />
-    </div>
-        <div> Intrest Rate % :
-  <input
-    type="number"
-    className="nameinputbox"
-    placeholder="Intrest Rate % "
-    value={form.intrestrate}
-          onChange={(e) =>
-    setform({
-      ...form,
-      intrestrate: e.target.value
-    })
-  }
-    />
-    </div>
-        <div> Time Period :
-  <input
-    type="number"
-    className="nameinputbox"
-    placeholder="Time Period"
-    value={form.timeperiod}
-          onChange={(e) =>
-    setform({
-      ...form,
-      timeperiod: e.target.value
-    })
-  }
-    />
-    </div>
-    </div>
-    <button type="button" className="btn btn-success" onClick={handleclick}>save </button>
   </div>
-  
+
+  <div className="loan-field">
+    <label>Lender's Name</label>
+    <input
+      type="text"
+      className="nameinputbox"
+      placeholder="Enter lender name"
+      value={form.lendername}
+      onChange={(e) =>
+        setform({
+          ...form,
+          lendername: e.target.value
+        })
+      }
+    />
+  </div>
+
+  <div className="loan-field">
+    <label>Total Amount</label>
+    <input
+      type="number"
+      className="nameinputbox"
+      placeholder="Enter amount"
+      value={form.totalamount}
+      onChange={(e) =>
+        setform({
+          ...form,
+          totalamount: e.target.value
+        })
+      }
+    />
+  </div>
+
+  <div className="loan-field">
+    <label>Interest Rate %</label>
+    <input
+      type="number"
+      className="nameinputbox"
+      placeholder="Interest rate"
+      value={form.intrestrate}
+      onChange={(e) =>
+        setform({
+          ...form,
+          intrestrate: e.target.value
+        })
+      }
+    />
+  </div>
+
+  <div className="loan-field">
+    <label>Time Period</label>
+    <input
+      type="number"
+      className="nameinputbox"
+      placeholder="Months"
+      value={form.timeperiod}
+      onChange={(e) =>
+        setform({
+          ...form,
+          timeperiod: e.target.value
+        })
+      }
+    />
+  </div>
+
+  <button
+    type="button"
+    className="btn btn-success save-loan-btn"
+    onClick={handleclick}
+  >
+    Save Loan
+  </button>
+
+</div>
+
+// end
+
 )}
 
 <div className='allloans'>All Dues
@@ -194,11 +241,15 @@ return (
   <br />
   Amount = ₹{form.totalamount}
   <br />
-  Intrest = {form.intrestrate}
+  Intrest = {form.intrestrate} %
   <br />
-  Remaining = {form.timeperiod}
+  Months  = {form.timeperiod}
+  <br />
+  Remaining Amount = {totalAmount}
+  <br />
+  Per Month = ₹ {permonthamount}
 </div>
-    
+
     </div>
   )}
 </div>
