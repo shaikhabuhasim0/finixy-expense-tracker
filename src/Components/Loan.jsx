@@ -76,7 +76,17 @@ const totalAmount = Number(form.totalamount) + interest;
 
 const permonthamount = Number(totalAmount) / Number(form.timeperiod)
 
-const totalremainingamount = {}
+const totalremainingamount = formhistory.reduce((total, item) => {
+
+  const interest =
+    (Number(item.totalamount) * Number(item.intrestrate)) / 100;
+
+  const totalLoanAmount =
+    Number(item.totalamount) + interest;
+
+  return total + totalLoanAmount;
+
+}, 0);
 
   return (
     <>
@@ -87,7 +97,7 @@ const totalremainingamount = {}
 <div className="loancards">
   <div className="loancard">
     <span>Total Loan</span>
-    <strong>₹{totalloan}</strong>
+    <strong>{totalloan}</strong>
   </div>
 
   <div className="loancard">
@@ -99,7 +109,7 @@ const totalremainingamount = {}
 <div className="loancardsnosecond">
   <div className="loancard">
     <span>Remaining</span>
-    <strong>₹{totalloan}</strong>
+    <strong>₹ {totalremainingamount} </strong>
   </div>
 
   <div className="loancard">
@@ -109,13 +119,14 @@ const totalremainingamount = {}
     </strong>
   </div>
 </div>
-{/* end  */}
 
 <div className='loanbtnnn'>
  <button className="btn btn-primary" type="button" onClick={()=>setType("addnewloan")}> + Add New Loan</button>
 </div>
 
 {type === "addnewloan" && (
+
+ <div className="modal-overlay">
 
 <div className="loanboxxx">
 
@@ -128,7 +139,7 @@ const totalremainingamount = {}
   ></button>
 
   <div className="loan-field">
-    <label>Loan Name</label>
+    <label className='boldnames'>Loan Name</label>
     <input
       type="text"
       className="nameinputbox"
@@ -144,7 +155,7 @@ const totalremainingamount = {}
   </div>
 
   <div className="loan-field">
-    <label>Lender's Name</label>
+    <label className='boldnames'>Lender's Name</label>
     <input
       type="text"
       className="nameinputbox"
@@ -160,7 +171,7 @@ const totalremainingamount = {}
   </div>
 
   <div className="loan-field">
-    <label>Total Amount</label>
+    <label className='boldnames'>Total Amount</label>
     <input
       type="number"
       className="nameinputbox"
@@ -176,7 +187,7 @@ const totalremainingamount = {}
   </div>
 
   <div className="loan-field">
-    <label>Interest Rate %</label>
+    <label className='boldnames'>Interest Rate %</label>
     <input
       type="number"
       className="nameinputbox"
@@ -192,7 +203,7 @@ const totalremainingamount = {}
   </div>
 
   <div className="loan-field">
-    <label>Time Period</label>
+    <label className='boldnames'>Time Period</label>
     <input
       type="number"
       className="nameinputbox"
@@ -216,9 +227,7 @@ const totalremainingamount = {}
   </button>
 
 </div>
-
-// end
-
+</div>
 )}
 
 <div className='allloans'>All Dues
@@ -226,12 +235,35 @@ const totalremainingamount = {}
   const dueDate = new Date(item.date);
   dueDate.setMonth(dueDate.getMonth() + 1);
 return (
-<div>Type = {item.loanname} Amount = ₹{item.totalamount}  Next due on {dueDate.toLocaleDateString()} <button type="button" class="btn btn-success my-btn" onClick={() => payduebtn(item)}>Pay </button> </div>
+ <div className="due-item">
+    <div className="due-row">
+      <span className="due-label"><b>Type = </b></span>
+      <span className="due-value">{item.loanname}</span>
+    </div>
+
+    <div className="due-row">
+      <span className="due-label"><b>Amount = </b> </span>
+      <span className="due-value">₹{item.totalamount}</span>
+    </div>
+
+    <div className="due-footer">
+      <span className="due-label"><b>Next Due =</b> </span>
+      <span className="due-date">{dueDate.toLocaleDateString()}</span>
+      <button 
+        type="button"
+        className="btn btn-success my-btn"
+        onClick={() => payduebtn(item)}
+      >
+        Pay
+      </button>
+    </div>
+  </div>
 )
 })}
 </div>
 <div>
   {type==="loadpayingform" && (
+    <div className="modal-overlay2">
     <div className='payingform'><h4>PAY REMAINING DUE <button type="button" className="btn-close" onClick={clearbutton}></button></h4> 
     
 <div>
@@ -250,6 +282,7 @@ return (
   Per Month = ₹ {permonthamount}
 </div>
 
+    </div>
     </div>
   )}
 </div>

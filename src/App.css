@@ -913,7 +913,7 @@ width: 300px;
 ========================= */
 
 .loan-page {
-  padding: 20px 22px 100px;
+  padding: 18px 20px 90px;
 }
 
 
@@ -924,17 +924,17 @@ width: 300px;
 .loancards,
 .loancardsnosecond {
   display: flex;
-  gap: 12px;
-  margin-top: 15px;
+  gap: 10px;
+  margin-top: 14px;
 }
 
 .loancard {
   background: white;
   border: 1px solid #e2e7ed;
   border-radius: 12px;
-  padding: 14px;
-  width: 150px;
-  min-height: 65px;
+  padding: 12px;
+  width: 140px;
+  min-height: 60px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 
   display: flex;
@@ -943,13 +943,13 @@ width: 300px;
 }
 
 .loancard span {
-  font-size: 14px;
+  font-size: 13px;
   color: #555;
 }
 
 .loancard strong {
-  font-size: 19px;
-  margin-top: 6px;
+  font-size: 18px;
+  margin-top: 5px;
 }
 
 
@@ -958,14 +958,52 @@ width: 300px;
 ========================= */
 
 .loanbtnnn {
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .loanbtnnn button {
-  width: 280px;
+  width: 260px;
   max-width: 100%;
 }
 
+
+/* =========================
+   MODAL OVERLAY (shared by Add Loan + Pay Due)
+========================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  z-index: 1000;
+  padding: 16px;
+  padding-top: 120px;
+  padding-left: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.modal-overlay2{
+    position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  z-index: 1000;
+  padding: 16px;
+  padding-top: 350px;
+  padding-left: 16px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
 
 /* =========================
    ADD LOAN FORM
@@ -974,22 +1012,21 @@ width: 300px;
 .loanboxxx {
   position: relative;
 
-  margin-top: 18px;
-  padding: 18px;
+  width: 300px;
+  max-width: 100%;
 
-  width: 320px;
-  max-width: calc(100% - 10px);
+  padding: 16px;
 
   background: white;
   border: 1px solid #e2e7ed;
   border-radius: 12px;
 
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .loanboxxx h4 {
-  margin: 0 0 18px;
-  font-size: 19px;
+  margin: 0 0 16px;
+  font-size: 18px;
 }
 
 
@@ -997,21 +1034,21 @@ width: 300px;
 
 .loan-close {
   position: absolute;
-  right: 15px;
-  top: 17px;
+  right: 14px;
+  top: 15px;
 }
 
 
 /* Each input row */
 
 .loan-field {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .loan-field label {
   display: block;
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-size: 13px;
+  margin-bottom: 4px;
   color: #333;
 }
 
@@ -1022,13 +1059,13 @@ width: 300px;
   width: 100%;
   box-sizing: border-box;
 
-  padding: 9px 10px;
+  padding: 8px 10px;
 
   border: 1px solid #d9dfe6;
   border-radius: 7px;
 
   outline: none;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .nameinputbox:focus {
@@ -1040,7 +1077,7 @@ width: 300px;
 
 .save-loan-btn {
   width: 100%;
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
 
@@ -1049,15 +1086,15 @@ width: 300px;
 ========================= */
 
 .allloans {
-  margin-top: 20px;
+  margin-top: 18px;
 
-  width: 320px;
-  max-width: calc(100% - 10px);
+  width: 300px;
+  max-width: 100%;
 
-  max-height: 260px;
+  max-height: 240px;
   overflow-y: auto;
 
-  padding: 15px;
+  padding: 14px;
 
   box-sizing: border-box;
 
@@ -1067,7 +1104,7 @@ width: 300px;
 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
 }
 
@@ -1075,22 +1112,22 @@ width: 300px;
 /* Individual loan row */
 
 .allloans > div {
-  margin-top: 10px;
-  padding: 12px;
+  margin-top: 9px;
+  padding: 10px;
 
   background: #f7f9fb;
   border-radius: 8px;
 
   font-size: 13px;
   font-weight: normal;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 
 /* Pay button */
 
 .my-btn {
-  padding: 3px 10px !important;
+  padding: 3px 9px !important;
   font-size: 12px !important;
 
   height: auto !important;
@@ -1107,12 +1144,10 @@ width: 300px;
 .payingform {
   position: relative;
 
-  margin-top: 20px;
+  width: 300px;
+  max-width: 100%;
 
-  width: 320px;
-  max-width: calc(100% - 10px);
-
-  padding: 18px;
+  padding: 16px;
 
   box-sizing: border-box;
 
@@ -1120,18 +1155,18 @@ width: 300px;
   border: 1px solid #e2e7ed;
   border-radius: 12px;
 
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .payingform h4 {
-  margin: 0 0 18px;
-  font-size: 18px;
+  margin: 0 0 16px;
+  font-size: 17px;
 }
 
 .payingform .btn-close {
   position: absolute;
-  right: 15px;
-  top: 18px;
+  right: 14px;
+  top: 16px;
 }
 
 
@@ -1141,12 +1176,23 @@ width: 300px;
   background: #f7f9fb;
   border-radius: 8px;
 
-  padding: 12px;
+  padding: 11px;
 
-  font-size: 14px;
-  line-height: 2;
+  font-size: 13px;
+  line-height: 1.8;
 }
 
+.due-value{
+  font-weight: 600;
+}
+
+.due-date{
+  font-weight: 600;
+}
+
+.my-btn{
+  margin-left: 60px;
+}
 
 /* =========================
    MOBILE
@@ -1155,12 +1201,12 @@ width: 300px;
 @media (max-width: 500px) {
 
   .loan-page {
-    padding: 18px 15px 90px;
+    padding: 16px 14px 80px;
   }
 
   .loancards,
   .loancardsnosecond {
-    gap: 8px;
+    gap: 7px;
   }
 
   .loancard {
