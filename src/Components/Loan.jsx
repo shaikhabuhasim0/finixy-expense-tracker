@@ -14,7 +14,8 @@ lendername : form.lendername ,
 totalamount : form.totalamount ,
 intrestrate: form.intrestrate,
 timeperiod : form.timeperiod,
-date : new Date().toISOString()
+date : new Date().toISOString(),
+amountreceived : form.amountreceived
 }
 
   const updatedHistory = [...formhistory , newform];
@@ -32,7 +33,8 @@ date : new Date().toISOString()
     totalamount: "",
     intrestrate : "",
     timeperiod:"",
-    date:""
+    date:"" ,
+    amountreceived :""
   });
 
  setTimeout(()=>{
@@ -70,15 +72,11 @@ setform(item)
 setType("loadpayingform");
 }
 
-function payduebtn2 (item){
-  setform(item)
-}
-
 const interest = (Number(form.totalamount) * Number(form.intrestrate)) / 100;
 
-const totalAmount = Number(form.totalamount) + interest;
+const totalAmount = (Number(form.totalamount) + interest)- Number(form.amountreceived) 
 
-const permonthamount = Number(totalAmount) / Number(form.timeperiod)
+const permonthamount = (Number(totalAmount) / Number(form.timeperiod)) -Number (form.amountreceived) 
 
 const totalremainingamount = formhistory.reduce((total, item) => {
 
@@ -92,7 +90,9 @@ const totalremainingamount = formhistory.reduce((total, item) => {
 
 }, 0);
 
-
+function payduebtn2 (item){
+  setform(item)
+}
 
   return (
     <>
@@ -108,7 +108,7 @@ const totalremainingamount = formhistory.reduce((total, item) => {
 
   <div className="loancard">
     <span>Total Paid</span>
-    <strong className='allpaidtransictions'>₹0</strong>
+    <strong className='allpaidtransictions'>₹{form.amountreceived}</strong>
   </div>
 </div>
 
@@ -150,7 +150,7 @@ const totalremainingamount = formhistory.reduce((total, item) => {
       type="text"
       className="nameinputbox"
       placeholder="Enter loan name"
-      value={form.loanname}
+      // value={form.loanname}
       onChange={(i) =>
         setform({
           ...form,
@@ -166,7 +166,7 @@ const totalremainingamount = formhistory.reduce((total, item) => {
       type="text"
       className="nameinputbox"
       placeholder="Enter lender name"
-      value={form.lendername}
+      // value={form.lendername}
       onChange={(e) =>
         setform({
           ...form,
@@ -182,7 +182,7 @@ const totalremainingamount = formhistory.reduce((total, item) => {
       type="number"
       className="nameinputbox"
       placeholder="Enter amount"
-      value={form.totalamount}
+      // value={form.totalamount}
       onChange={(e) =>
         setform({
           ...form,
@@ -198,7 +198,7 @@ const totalremainingamount = formhistory.reduce((total, item) => {
       type="number"
       className="nameinputbox"
       placeholder="Interest rate"
-      value={form.intrestrate}
+      // value={form.intrestrate}
       onChange={(e) =>
         setform({
           ...form,
@@ -214,7 +214,7 @@ const totalremainingamount = formhistory.reduce((total, item) => {
       type="number"
       className="nameinputbox"
       placeholder="Months"
-      value={form.timeperiod}
+      // value={form.timeperiod}
       onChange={(e) =>
         setform({
           ...form,
@@ -251,7 +251,7 @@ return (
     <span className="due-value">₹{item.totalamount}</span>
   </div>
   <div className="due-footer">
-    <span className="due-date">Due = {dueDate.toLocaleDateString()}</span>
+    <span className="due-date">Next Due = {dueDate.toLocaleDateString()}</span>
     <button type="button" className="btn btn-success my-btn" onClick={() => payduebtn(item)}>Pay</button>
   </div>
 </div>
@@ -281,7 +281,14 @@ return (
   <input
   type = "number"
   className='inputtagtocloseloan'  
-  placeholder={totalAmount}
+  placeholder={Number (totalAmount)}
+  value = {form.amountreceived}
+  onChange={(e)=>
+setform({
+  ...form,
+  amountreceived:e.target.value
+})
+  }
   />
   <button
   type="button"
