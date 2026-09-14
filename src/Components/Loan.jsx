@@ -295,7 +295,7 @@ setform({
   className="btn btn-success my-btn2"
   onClick={() => payduebtn2(item)}
 >
-  Pay
+  Payy
 </button>
 </div>
 
