@@ -92,6 +92,7 @@ const totalremainingamount = formhistory.reduce((total, item) => {
 
 function payduebtn2 (item){
   setform(item)
+  console.log("pay wala btn hai yeh !! ")
 }
 
   return (
