@@ -76,7 +76,7 @@ const interest = (Number(form.totalamount) * Number(form.intrestrate)) / 100;
 
 const totalAmount = (Number(form.totalamount) + interest)- Number(form.amountreceived) 
 
-const permonthamount = (Number(totalAmount) / Number(form.timeperiod)) -Number (form.amountreceived) 
+const permonthamount = (Number(totalAmount) / Number(form.timeperiod)) 
 
 const totalremainingamount = formhistory.reduce((total, item) => {
 
@@ -86,9 +86,11 @@ const totalremainingamount = formhistory.reduce((total, item) => {
   const totalLoanAmount =
     Number(item.totalamount) + interest;
 
-  return total + totalLoanAmount;
+  return ((total + totalLoanAmount)-form.amountreceived);
 
 }, 0);
+
+const remainingamount =Number(totalAmount) 
 
 function payduebtn2 (item){
   setform(item)
@@ -275,7 +277,7 @@ return (
   <br />
   Months  = {form.timeperiod}
   <br />
-  Remaining Amount = {totalAmount}
+  Remaining Amount = {remainingamount}
   <br />
   Per Month = ₹ {permonthamount}
   <br />
@@ -296,9 +298,9 @@ setform({
   className="btn btn-success my-btn2"
   onClick={() => payduebtn2(item)}
 >
-  Payy
+  Pay
 </button>
-</div>
+</div> 
 
     </div>
     </div>
