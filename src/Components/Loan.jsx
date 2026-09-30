@@ -59,13 +59,14 @@ function clearbutton (){
 
 const totalloan = formhistory.length
 
-const nextdues =  Math.min(
-...formhistory.map((item)=>{
-  const nextdues1 = new Date(item.date);
-  nextdues1.setMonth(nextdues1.getMonth() + 1);
-  return nextdues1.getMonth()
-})
-)
+const nextdues = Math.min(
+  ...formhistory.map((item) => {
+    const nextdues1 = new Date(item.date);
+    nextdues1.setMonth(nextdues1.getMonth() + 1);
+
+    return nextdues1.getTime();
+  })
+);
 
 function payduebtn (item){
 setform(item)
@@ -76,7 +77,7 @@ const interest = (Number(form.totalamount) * Number(form.intrestrate)) / 100;
 
 const totalAmount = (Number(form.totalamount) + interest)- Number(form.amountreceived) 
 
-const permonthamount = (Number(totalAmount) / Number(form.timeperiod)) 
+const permonthamount = (Number(totalAmount) / Number(form.timeperiod))
 
 const totalremainingamount = formhistory.reduce((total, item) => {
 
@@ -285,6 +286,7 @@ return (
   type = "number"
   className='inputtagtocloseloan'  
   placeholder={Number (totalAmount)}
+
   value = {form.amountreceived}
   onChange={(e)=>
 setform({
