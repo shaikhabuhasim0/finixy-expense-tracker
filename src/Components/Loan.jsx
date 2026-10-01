@@ -1,3 +1,4 @@
+import { Type } from 'lucide-react';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 
@@ -75,9 +76,25 @@ setType("loadpayingform");
 
 const interest = (Number(form.totalamount) * Number(form.intrestrate)) / 100;
 
-const totalAmount = (Number(form.totalamount) + interest)- Number(form.amountreceived) 
+// const totalAmount = (Number(form.totalamount) + interest)- Number(form.amountreceived) 
 
-const permonthamount = (Number(totalAmount) / Number(form.timeperiod))
+const totalAmount =
+  Number(form.totalamount) +
+  interest -
+  (Number(form.amountreceived) || 0);
+
+const permonthamount = (Number(totalAmount) / Number(form.timeperiod)) 
+// const totalremainingamount = formhistory.reduce((total, item) => {
+
+//   const interest =
+//     (Number(item.totalamount) * Number(item.intrestrate)) / 100;
+
+//   const totalLoanAmount =
+//     Number(item.totalamount) + interest;
+
+//   return ((total + totalLoanAmount)-form.amountreceived);
+
+// }, 0);
 
 const totalremainingamount = formhistory.reduce((total, item) => {
 
@@ -87,12 +104,16 @@ const totalremainingamount = formhistory.reduce((total, item) => {
   const totalLoanAmount =
     Number(item.totalamount) + interest;
 
-  return ((total + totalLoanAmount)-form.amountreceived);
+  const paid =
+    Number(item.amountreceived) || 0;
+
+  return total + totalLoanAmount - paid;
 
 }, 0);
 
-const remainingamount =Number(totalAmount) 
+const remainingamount =Number(totalAmount) || 0 ;
 
+// second pay btn for loan !! 
 function payduebtn2 (item){
   setform(item)
   console.log("pay wala btn hai yeh !! ")
@@ -119,7 +140,7 @@ function payduebtn2 (item){
 <div className="loancardsnosecond">
   <div className="loancard">
     <span>Remaining</span>
-    <strong className='allunpaidtransictions'>₹ {totalremainingamount} </strong>
+    <strong className='allunpaidtransictions'>₹{totalremainingamount.toFixed(2)}  </strong>
   </div>
 
   <div className="loancard">
@@ -131,7 +152,26 @@ function payduebtn2 (item){
 </div>
 
 <div className='loanbtnnn'>
- <button className="btn btn-primary" type="button" onClick={()=>setType("addnewloan")}> + Add New Loan</button>
+ {/* <button className="btn btn-primary" type="button" onClick={()=>setType("addnewloan")}> + Add New Loan</button> */}
+ <button
+  className="btn btn-primary"
+  type="button"
+  onClick={() => {
+    setform({
+      loanname: "",
+      lendername: "",
+      totalamount: "",
+      intrestrate: "",
+      timeperiod: "",
+      date: "",
+      amountreceived: ""
+    });
+
+    setType("addnewloan");
+  }}
+>
+  + Add New Loan
+</button>
 </div>
 
 {type === "addnewloan" && (
@@ -154,7 +194,7 @@ function payduebtn2 (item){
       type="text"
       className="nameinputbox"
       placeholder="Enter loan name"
-      // value={form.loanname}
+      value={form.loanname}
       onChange={(i) =>
         setform({
           ...form,
@@ -170,7 +210,7 @@ function payduebtn2 (item){
       type="text"
       className="nameinputbox"
       placeholder="Enter lender name"
-      // value={form.lendername}
+      value={form.lendername}
       onChange={(e) =>
         setform({
           ...form,
@@ -186,7 +226,7 @@ function payduebtn2 (item){
       type="number"
       className="nameinputbox"
       placeholder="Enter amount"
-      // value={form.totalamount}
+      value={form.totalamount}
       onChange={(e) =>
         setform({
           ...form,
@@ -202,7 +242,7 @@ function payduebtn2 (item){
       type="number"
       className="nameinputbox"
       placeholder="Interest rate"
-      // value={form.intrestrate}
+      value={form.intrestrate}
       onChange={(e) =>
         setform({
           ...form,
@@ -218,7 +258,7 @@ function payduebtn2 (item){
       type="number"
       className="nameinputbox"
       placeholder="Months"
-      // value={form.timeperiod}
+      value={form.timeperiod}
       onChange={(e) =>
         setform({
           ...form,
@@ -231,7 +271,12 @@ function payduebtn2 (item){
   <button
     type="button"
     className="btn btn-success save-loan-btn"
-    onClick={handleclick}
+    // onClick={handleclick}
+    onClick={()=>{ if (form.loanname.length === 0 || form.lendername.length === 0 || form.totalamount.length === 0 || form.intrestrate.length === 0  || form.timeperiod.length === 0)
+// setType("notifications"); 
+console.log("h")
+       else {
+       {handleclick()}}}}
   >
     Save Loan
   </button>
@@ -278,23 +323,27 @@ return (
   <br />
   Months  = {form.timeperiod}
   <br />
-  Remaining Amount = {remainingamount}
+  Remaining Amount = {Number(remainingamount)}
   <br />
-  Per Month = ₹ {permonthamount}
+ Per Month = ₹ {Number(permonthamount || 0).toFixed(2)}
   <br />
   <input
   type = "number"
   className='inputtagtocloseloan'  
   placeholder={Number (totalAmount)}
-
   value = {form.amountreceived}
-  onChange={(e)=>
-setform({
-  ...form,
-  amountreceived:e.target.value
-})
-  }
-  />
+  max = {totalAmount}
+  onChange={(e) => {
+    const value = Number(e.target.value);
+
+    if (value <= remainingamount) {
+      setform({
+        ...form,
+        amountreceived: e.target.value
+      });
+    }
+  }}
+/>
   <button
   type="button"
   className="btn btn-success my-btn2"
@@ -311,3 +360,7 @@ setform({
     </>
   )
 }
+
+// {Type === "notifications" &&(
+//   <div>enter the all vaouea hy</div>
+// )}
