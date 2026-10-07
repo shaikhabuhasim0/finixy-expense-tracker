@@ -7,7 +7,7 @@ export default function Loan(props) {
 const {type , setType , form , setform , formhistory , setformhistory }= props ;
 
 
-function handleclick (){
+function handleclick (){ // start hai btn !!!! 
 
 const newform = {
 loanname : form.loanname ,
@@ -42,7 +42,7 @@ amountreceived : form.amountreceived
    setType("")
  },300)
 
-}
+} // yha end hai ye btn !!!!!!! 
 
 useEffect(()=>{
 const saveHistory = localStorage.getItem("form")
@@ -133,7 +133,7 @@ function payduebtn2 (item){
 
   <div className="loancard">
     <span>Total Paid</span>
-    <strong className='allpaidtransictions'>₹{form.amountreceived}</strong>
+    <strong className='allpaidtransictions'>₹{form.amountreceived||0.00}</strong>
   </div>
 </div>
 
