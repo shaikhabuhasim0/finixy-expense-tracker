@@ -115,8 +115,37 @@ const remainingamount =Number(totalAmount) || 0 ;
 
 // second pay btn for loan !! 
 function payduebtn2 (item){
+  const newform = {
+loanname : form.loanname ,
+lendername : form.lendername ,
+totalamount : form.totalamount ,
+intrestrate: form.intrestrate,
+timeperiod : form.timeperiod,
+date : new Date().toISOString(),
+amountreceived : form.amountreceived
+}
   setform(item)
-  console.log("pay wala btn hai yeh !! ")
+  const updatedHistory = [...formhistory , newform];
+
+  setformhistory(updatedHistory);
+
+  localStorage.setItem(
+    "form",
+    JSON.stringify(updatedHistory)
+  )
+
+  setform({
+    loanname: "",
+    lendername: "",
+    totalamount: "",
+    intrestrate : "",
+    timeperiod:"",
+    date:"" ,
+    amountreceived :""
+  });
+   setTimeout(()=>{
+   setType("")
+ },300)
 }
 
   return (
