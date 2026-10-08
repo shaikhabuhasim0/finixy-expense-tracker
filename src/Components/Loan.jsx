@@ -1,15 +1,16 @@
-import { Type } from 'lucide-react';
-import React, { useEffect } from 'react'
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react'
 
 export default function Loan(props) {
-  
+
 const {type , setType , form , setform , formhistory , setformhistory }= props ;
 
+// pay modal me user jo amount daalega wo yaha store hoga (form.amountreceived = ab tak total paid)
+const [payAmount, setPayAmount] = useState("");
 
 function handleclick (){ // start hai btn !!!! 
 
 const newform = {
+id : Date.now(),
 loanname : form.loanname ,
 lendername : form.lendername ,
 totalamount : form.totalamount ,
@@ -45,14 +46,22 @@ amountreceived : form.amountreceived
 } // yha end hai ye btn !!!!!!! 
 
 useEffect(()=>{
-const saveHistory = localStorage.getItem("form")
+try {
+  const saveHistory = localStorage.getItem("form")
 
-if (saveHistory!== null){
-  setformhistory(JSON.parse(saveHistory));
+  if (saveHistory!== null){
+    const parsed = JSON.parse(saveHistory);
+    // purane loans me id nahi thi, to unko id de do
+    const withIds = parsed.map((l, i) => l.id ? l : { ...l, id: Date.now() + i });
+    setformhistory(withIds);
+  }
+} catch (err) {
+  console.log("localStorage data kharab hai", err);
 }
 },[])
 
 function clearbutton (){
+ setPayAmount("");
  setTimeout(()=>{
    setType("")
  },300)
@@ -69,14 +78,14 @@ const nextdues = Math.min(
   })
 );
 
+// pay button (All Dues list wala) - modal kholta hai
 function payduebtn (item){
-setform(item)
+setform(item)       // form.amountreceived = ab tak jitna paid hai
+setPayAmount("");   // nayi payment ka input khali se start
 setType("loadpayingform");
 }
 
 const interest = (Number(form.totalamount) * Number(form.intrestrate)) / 100;
-
-// const totalAmount = (Number(form.totalamount) + interest)- Number(form.amountreceived) 
 
 const totalAmount =
   Number(form.totalamount) +
@@ -84,17 +93,6 @@ const totalAmount =
   (Number(form.amountreceived) || 0);
 
 const permonthamount = (Number(totalAmount) / Number(form.timeperiod)) 
-// const totalremainingamount = formhistory.reduce((total, item) => {
-
-//   const interest =
-//     (Number(item.totalamount) * Number(item.intrestrate)) / 100;
-
-//   const totalLoanAmount =
-//     Number(item.totalamount) + interest;
-
-//   return ((total + totalLoanAmount)-form.amountreceived);
-
-// }, 0);
 
 const totalremainingamount = formhistory.reduce((total, item) => {
 
@@ -111,21 +109,32 @@ const totalremainingamount = formhistory.reduce((total, item) => {
 
 }, 0);
 
-const remainingamount =Number(totalAmount) || 0 ;
+// saare loans ka total paid
+const totalPaid = formhistory.reduce((total, item) => {
+  return total + (Number(item.amountreceived) || 0);
+}, 0);
+
+const remainingamount = Number(totalAmount) || 0 ;
 
 // second pay btn for loan !! 
-function payduebtn2 (item){
-  const newform = {
-loanname : form.loanname ,
-lendername : form.lendername ,
-totalamount : form.totalamount ,
-intrestrate: form.intrestrate,
-timeperiod : form.timeperiod,
-date : new Date().toISOString(),
-amountreceived : form.amountreceived
-}
-  setform(item)
-  const updatedHistory = [...formhistory , newform];
+// user ne jitni value daali, utni usi loan me add hoti hai aur sab kuch update hota hai
+function payduebtn2 (){
+  const amt = Number(payAmount);
+
+  // invalid ya zyada amount ho to kuch mat karo
+  if (!amt || amt <= 0) return;
+  if (amt > remainingamount + 0.001) return;
+
+  const updatedHistory = formhistory.map((loan) =>
+    loan.id === form.id
+      ? {
+          ...loan,
+          amountreceived: Number(
+            ((Number(loan.amountreceived) || 0) + amt).toFixed(2)
+          )
+        }
+      : loan
+  );
 
   setformhistory(updatedHistory);
 
@@ -143,7 +152,10 @@ amountreceived : form.amountreceived
     date:"" ,
     amountreceived :""
   });
-   setTimeout(()=>{
+
+  setPayAmount("");
+
+  setTimeout(()=>{
    setType("")
  },300)
 }
@@ -162,7 +174,7 @@ amountreceived : form.amountreceived
 
   <div className="loancard">
     <span>Total Paid</span>
-    <strong className='allpaidtransictions'>₹{form.amountreceived||0.00}</strong>
+    <strong className='allpaidtransictions'>₹{totalPaid.toFixed(2)}</strong>
   </div>
 </div>
 
@@ -175,13 +187,12 @@ amountreceived : form.amountreceived
   <div className="loancard">
     <span>Next Due</span>
     <strong>
-      {new Date(nextdues).toLocaleDateString()}
+      {formhistory.length ? new Date(nextdues).toLocaleDateString() : "-"}
     </strong>
   </div>
 </div>
 
 <div className='loanbtnnn'>
- {/* <button className="btn btn-primary" type="button" onClick={()=>setType("addnewloan")}> + Add New Loan</button> */}
  <button
   className="btn btn-primary"
   type="button"
@@ -300,12 +311,19 @@ amountreceived : form.amountreceived
   <button
     type="button"
     className="btn btn-success save-loan-btn"
-    // onClick={handleclick}
-    onClick={()=>{ if (form.loanname.length === 0 || form.lendername.length === 0 || form.totalamount.length === 0 || form.intrestrate.length === 0  || form.timeperiod.length === 0)
-// setType("notifications"); 
-console.log("h")
-       else {
-       {handleclick()}}}}
+    onClick={() => {
+      if (
+        form.loanname.length === 0 ||
+        form.lendername.length === 0 ||
+        form.totalamount.length === 0 ||
+        form.intrestrate.length === 0 ||
+        form.timeperiod.length === 0
+      ) {
+        console.log("fill all fields");
+        return;
+      }
+      handleclick();
+    }}
   >
     Save Loan
   </button>
@@ -319,7 +337,7 @@ console.log("h")
   const dueDate = new Date(item.date);
   dueDate.setMonth(dueDate.getMonth() + 1);
 return (
-<div className="due-item">
+<div className="due-item" key={item.id}>
   <div className="due-row">
     <span className="due-label">Type = </span>
     <span className="due-value">{item.loanname}</span>
@@ -352,31 +370,30 @@ return (
   <br />
   Months  = {form.timeperiod}
   <br />
-  Remaining Amount = {Number(remainingamount)}
+  Remaining Amount = ₹{remainingamount.toFixed(2)}
   <br />
  Per Month = ₹ {Number(permonthamount || 0).toFixed(2)}
   <br />
   <input
   type = "number"
   className='inputtagtocloseloan'  
-  placeholder={Number (totalAmount)}
-  value = {form.amountreceived}
-  max = {totalAmount}
+  placeholder={String(remainingamount.toFixed(2))}
+  value = {payAmount}
+  max = {remainingamount}
   onChange={(e) => {
     const value = Number(e.target.value);
 
+    // remaining se zyada amount allow nahi
     if (value <= remainingamount) {
-      setform({
-        ...form,
-        amountreceived: e.target.value
-      });
+      setPayAmount(e.target.value);
     }
   }}
 />
   <button
   type="button"
   className="btn btn-success my-btn2"
-  onClick={() => payduebtn2(item)}
+  disabled={!Number(payAmount) || Number(payAmount) <= 0}
+  onClick={payduebtn2}
 >
   Pay
 </button>
@@ -389,7 +406,3 @@ return (
     </>
   )
 }
-
-// {Type === "notifications" &&(
-//   <div>enter the all vaouea hy</div>
-// )}
