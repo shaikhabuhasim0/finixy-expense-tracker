@@ -4,7 +4,6 @@ export default function Inslights() {
   return (
     <div> 
       <div className="tran"><h3>INSLIGHTS</h3></div>
-      ye inlisghts hai re baba 
     </div>
   )
 }
