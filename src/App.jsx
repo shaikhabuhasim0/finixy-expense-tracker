@@ -72,7 +72,14 @@ type={type} setType={setType}
 date = {date }setdate = {setdate}
 />}/>
 
-<Route path="Inslights" element={<Inslights/>}/>
+<Route path="Inslights" element={<Inslights
+type={type} setType={setType}
+form = {form} setform = {setform}
+formhistory = {formhistory} setformhistory={setformhistory}
+history={history} sethistory={sethistory} 
+date = {date }setdate = {setdate}
+/>}/>
+
 <Route path="Loan" element={<Loan 
 type={type} setType={setType}
 form = {form} setform = {setform}

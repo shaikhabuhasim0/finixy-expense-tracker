@@ -1335,3 +1335,17 @@ margin-left: 80px;
   margin-left: 0px;
   margin-right: auto; /* left me rakhne ke liye */
 }
+
+.loanbargraph-text{
+
+  font-size: 12px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.paid-text{
+  color: #16a34a;
+}
+
+.remaining-text{
+  color : red ;
+}
