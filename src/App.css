@@ -1349,3 +1349,16 @@ margin-left: 80px;
 .remaining-text{
   color : red ;
 }
+
+.incomesandexpencedata{
+  font-size: 13px;
+  color:#0d6efd;
+}
+
+.incomeexpensebar {
+  width: 250px;
+  height: 150px;
+  margin-top: 20px;
+  font-size: 10px;
+    margin-right: auto; /* left me rakhne ke liye */
+}
