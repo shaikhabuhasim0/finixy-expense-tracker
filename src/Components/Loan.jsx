@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Loan(props) {
 
 const {type , setType , form , setform , formhistory , setformhistory }= props ;
@@ -159,6 +160,11 @@ function payduebtn2 (){
   setTimeout(()=>{
    setType("")
  },300)
+}
+
+function deletallloans() {
+    localStorage.removeItem("form");
+    setformhistory([]);
 }
 
   return (
@@ -336,7 +342,7 @@ function payduebtn2 (){
 </div>
 )}
 
-<div className='allloans'>All Dues
+<div className='allloans'>All Dues  <span className='binbtnhahaha' onClick={deletallloans}><FontAwesomeIcon icon={faTrash} style={{ color: 'red' }} /></span>
 {formhistory.map((item)=>{
   const dueDate = new Date(item.date);
   dueDate.setMonth(dueDate.getMonth() + 1);
@@ -345,6 +351,7 @@ return (
   <div className="due-row">
     <span className="due-label">Type = </span>
     <span className="due-value">{item.loanname}</span>
+    
   </div>
   <div className="due-row">
     <span className="due-label">Amount = </span>
