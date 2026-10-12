@@ -25,7 +25,7 @@ import { useState } from 'react';
   const [currentbalance , setcurrentbalance]=useState("");
   const [type, setType] = useState("");
   const [date , setdate] = useState("")
-  
+  const [notification , setnotification]=useState("")
 
 const [form , setform] = useState ({
 loanname : "" ,
@@ -53,6 +53,7 @@ currentbalance={currentbalance} setcurrentbalance={setcurrentbalance}
 date = {date }
 setdate = {setdate}
 type={type} setType={setType}
+notification={notification} setnotification={setnotification}
 />}/>
 
 <Route path="Homepage" element={<Homepage transaction={transaction} setTransaction={setTransaction}
@@ -61,6 +62,7 @@ type={type} setType={setType}
   currentbalance={currentbalance} setcurrentbalance={setcurrentbalance}
   type={type} setType={setType}
   date = {date }setdate = {setdate}
+  notification={notification} setnotification={setnotification}
   />}/>
 
 <Route path="Transiction" element={<Transictions 
@@ -84,6 +86,7 @@ date = {date }setdate = {setdate}
 type={type} setType={setType}
 form = {form} setform = {setform}
 formhistory = {formhistory} setformhistory={setformhistory}
+notification={notification} setnotification={setnotification}
 />}/>
 <Route path="User" element={<User/>}/>
 

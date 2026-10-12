@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList } from '@fortawesome/free-solid-svg-icons';
 export default function Loan(props) {
 
-const {type , setType , form , setform , formhistory , setformhistory }= props ;
+const {type , setType , form , setform , formhistory , setformhistory , notification , setnotification}= props ;
 
 // pay modal me user jo amount daalega wo yaha store hoga (form.amountreceived = ab tak total paid)
 const [payAmount, setPayAmount] = useState("");
@@ -163,9 +164,33 @@ function payduebtn2 (){
 }
 
 function deletallloans() {
+   if (formhistory.length===0){
+setnotification("There is Nothing To Delet 🚫")
+setTimeout(()=>{
+  setnotification("")
+},3000)
+ }
+
+     else {
     localStorage.removeItem("form");
     setformhistory([]);
+  setTimeout(()=>{
+    setType("")
+  },2000)
+
+setnotification("History Has Been Deleted 🗑️ ")
+setTimeout(()=>{
+  setnotification("")
+},3000)
 }
+}
+
+//for loan history 
+
+function openhistorypage (){
+  // write something !!
+}
+
 
   return (
     <>
@@ -202,6 +227,7 @@ function deletallloans() {
   </div>
 </div>
 
+<div className='addnewloankaflex'>
 <div className='loanbtnnn'>
  <button
   className="btn btn-primary"
@@ -223,7 +249,10 @@ function deletallloans() {
   + Add New Loan
 </button>
 </div>
-
+<div className='listicon1' onClick={openhistorypage}>
+<FontAwesomeIcon icon={faList} />
+</div>
+</div>
 {type === "addnewloan" && (
 
  <div className="modal-overlay">
@@ -414,6 +443,10 @@ return (
     </div>
   )}
 </div>
+<div className='notificationsofloan'>
+  <span className='notifications1ofloan'><h6>{notification}</h6></span>
+</div>
+
     </>
   )
 }

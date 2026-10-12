@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 export default function Homepage(props) {
   // ye props pass kiye huye hai from app.jsx 
-   const { transaction, setTransaction, history, sethistory ,addtrans ,setaddtrans ,currentbalance, setcurrentbalance , type , setType , date , setdate} = props;
+   const { transaction, setTransaction, history, sethistory ,addtrans ,setaddtrans ,currentbalance, setcurrentbalance , type , setType , date , setdate ,notification , setnotification} = props;
    // upar wale 4 
-    const [notification , setnotification]=useState("")
+    
     
     const [startingbalance , setstartingbalance]= useState("")
    
