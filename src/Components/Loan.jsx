@@ -94,6 +94,7 @@ const totalAmount =
 
 const permonthamount = (Number(totalAmount) / Number(form.timeperiod)) 
 
+// total remaining amount 
 const totalremainingamount = formhistory.reduce((total, item) => {
 
   const interest =
@@ -172,12 +173,15 @@ function payduebtn2 (){
     <strong>{totalloan}</strong>
   </div>
 
+
+{/* totalpaid amount !!  */}
   <div className="loancard">
     <span>Total Paid</span>
     <strong className='allpaidtransictions'>₹{totalPaid.toFixed(2)}</strong>
   </div>
 </div>
 
+{/* totalremaining amount !!  */}
 <div className="loancardsnosecond">
   <div className="loancard">
     <span>Remaining</span>

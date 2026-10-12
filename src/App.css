@@ -1353,6 +1353,11 @@ margin-left: 80px;
 .incomesandexpencedata{
   font-size: 13px;
   color:#0d6efd;
+  border: 2px solid red ;
+  height: 200px;
+  width: 270px;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 .incomeexpensebar {
@@ -1361,4 +1366,33 @@ margin-left: 80px;
   margin-top: 20px;
   font-size: 10px;
     margin-right: auto; /* left me rakhne ke liye */
+}
+
+.borderofdonut{
+
+  border: 2px solid red ;
+  height: 160px;
+  width: 180px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.donokabaap{
+  display: flex;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.betano22{
+  border: 2px solid red  ;
+  height: 30px;
+  width: 160px;
+  border-radius: 7px;
+}
+
+.betano11{
+  border: 2px solid red  ;
+  height: 30px;
+  width: 120px;
+  border-radius: 7px;
 }
