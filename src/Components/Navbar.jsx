@@ -9,6 +9,7 @@ import {
 import Transictions from './Transictions';
 import Homepage from './Homepage';
 import { Link } from "react-router-dom";
+import Loanlist from './Loanlist';
 
 
 export default function Navbar(props) {
@@ -33,6 +34,9 @@ export default function Navbar(props) {
       </li>
       <li className="nav-item">
         <Link className="nav-link" to="User"><CircleUser size={25} /></Link>
+      </li>
+            <li className="nav-item">
+        <Link className="nav-link" to="Loanlist"></Link>
       </li>
     </ul>
   </div>

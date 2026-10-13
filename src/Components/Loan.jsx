@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 export default function Loan(props) {
 
 const {type , setType , form , setform , formhistory , setformhistory , notification , setnotification}= props ;
@@ -121,7 +122,9 @@ const remainingamount = Number(totalAmount) || 0 ;
 
 // second pay btn for loan !! 
 // user ne jitni value daali, utni usi loan me add hoti hai aur sab kuch update hota hai
+
 function payduebtn2 (){
+
   const amt = Number(payAmount);
 
   // invalid ya zyada amount ho to kuch mat karo
@@ -161,6 +164,10 @@ function payduebtn2 (){
   setTimeout(()=>{
    setType("")
  },300)
+ // congratualtions bar !! 
+if (Math.abs(amt - remainingamount) < 0.01) {
+setType("congratulations-bar");
+}
 }
 
 function deletallloans() {
@@ -183,12 +190,13 @@ setTimeout(()=>{
   setnotification("")
 },3000)
 }
+
 }
 
-//for loan history 
-
+//for loan history terminator 
+const navigate = useNavigate();
 function openhistorypage (){
-  // write something !!
+      navigate('/Loanlist');
 }
 
 
@@ -427,6 +435,10 @@ return (
     if (value <= remainingamount) {
       setPayAmount(e.target.value);
     }
+
+     else if (value === remainingamount){
+      console.log("khatam hai re baba !!")
+    }
   }}
 />
   <button
@@ -447,6 +459,21 @@ return (
   <span className='notifications1ofloan'><h6>{notification}</h6></span>
 </div>
 
+<div>  
+
+{type === "congratulations-bar" && (
+
+
+<div className="loan-success">
+  <div className="success-icon">🎉</div>
+  <h3>Congratulations!</h3>
+  <p>Your all loans are cleared successfully.</p>
+  <span>Outstanding Balance: ₹0.00</span>
+</div>
+
+)}
+
+</div>
     </>
   )
 }

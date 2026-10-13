@@ -1338,6 +1338,75 @@ margin-left: 20px;
   font-size: 20px;
 }
 
+
+.paidloansection{
+
+  border : 2px solid black ;
+  height : 200px;
+  width: 300px;
+  margin-top: 8px;
+  border-radius: 15px;
+}
+
+.paidloansection1{
+margin-top: 4px;
+margin-left: 8px;
+  color: #0d6efd;
+}
+
+/* congratulations page css  */
+
+.loan-success {
+  background: #fff;
+  color: #333;
+  padding: 18px;
+  margin: 15px 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.loan-success h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.loan-success p {
+  margin: 0 0 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+.loan-success span {
+  font-size: 13px;
+  color: #198754;
+  font-weight: 500;
+}
+
+.loan-success {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  /* transform: translateX(-50%); */
+  z-index: 9999;
+
+  background: white;
+  color: #333;
+  padding: 18px 24px;
+  width: 90%;
+  max-width: 350px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
 /* inslighst page ka css */
 
 .loankainslights{

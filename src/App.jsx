@@ -10,6 +10,7 @@ import Loan from './components/Loan';
 import User from './components/User';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState } from 'react';
+import Loanlist from './components/Loanlist';
 
  function App() {
 
@@ -88,7 +89,15 @@ form = {form} setform = {setform}
 formhistory = {formhistory} setformhistory={setformhistory}
 notification={notification} setnotification={setnotification}
 />}/>
+
 <Route path="User" element={<User/>}/>
+
+<Route path="Loanlist" element={<Loanlist
+type={type} setType={setType}
+form = {form} setform = {setform}
+formhistory = {formhistory} setformhistory={setformhistory}
+notification={notification} setnotification={setnotification}
+/>}/>
 
 </Routes>
 

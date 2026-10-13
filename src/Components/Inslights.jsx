@@ -87,7 +87,7 @@ All Incomes & expence Data
 </div>
 <div className='donokabaap'> 
 <div className='betano11'> savings ={savinginpercent.toFixed(1)}%</div> 
-<div className='betano22'>  Remaining ={remainingamountinpercent}% </div>
+<div className='betano22'>  Remaining ={remainingamountinpercent.toFixed(1)}% </div>
 </div>
     </>
   )
