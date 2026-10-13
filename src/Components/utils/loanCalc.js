@@ -52,4 +52,28 @@ export function gettotalremainingamount (formhistory){
 }, 0);
 }
 
+export function gettotalAmount (){
+  return   Number(form.totalamount) +
+  interest -
+  (Number(form.amountreceived) || 0);
+}
+
+export function getremainingamount (){
+  return Number(gettotalAmount) || 0 ;
+}
+
+// start 
+export function getLoanRemaining(loan) {
+  const interest =
+    (Number(loan.totalamount) * Number(loan.intrestrate)) / 100;
+
+  const totalLoanAmount =
+    Number(loan.totalamount) + interest;
+
+  const paid = Number(loan.amountreceived) || 0;
+
+  return Math.max(0, totalLoanAmount - paid);
+}
+
+
 // (income - expense) / income * 100 formula !! 

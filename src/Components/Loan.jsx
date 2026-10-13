@@ -90,6 +90,7 @@ setType("loadpayingform");
 
 const interest = (Number(form.totalamount) * Number(form.intrestrate)) / 100;
 
+// total amount !! 
 const totalAmount =
   Number(form.totalamount) +
   interest -
@@ -467,7 +468,7 @@ return (
 <div className="loan-success">
   <div className="success-icon">🎉</div>
   <h3>Congratulations!</h3>
-  <p>Your all loans are cleared successfully.</p>
+  <p>Your {form.loanname} has been cleared successfully.</p>
   <span>Outstanding Balance: ₹0.00</span>
 </div>
 
