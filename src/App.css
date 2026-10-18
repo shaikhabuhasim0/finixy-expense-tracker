@@ -1588,3 +1588,34 @@ font-size: 12px;
 .userinformationicon {
   color: blue;
 }
+
+.userinfomationdiv{
+  font-size: 12px;
+  display: flex;
+}
+
+.userinfomationplusbtn{
+
+  margin-left: 50px;
+}
+
+.boxofuserdetails{
+  border : 2px solid black ;
+  height: 150px;
+  width: 270px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.boxofuserdetailsform{
+  margin-left: 9px;
+}
+
+.updateusereinfo{
+  color:#6366f1;
+}
+
+.updateuserinfobtn{
+margin-top: 10px;
+margin-left: 10px;
+}

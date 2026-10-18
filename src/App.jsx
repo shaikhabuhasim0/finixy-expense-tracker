@@ -47,6 +47,19 @@ useEffect(() => {
   localStorage.setItem("username", username);
 }, [username]);
 
+const [userinfo , setuserinfo] = useState({
+  username : "",
+  usermail : "",
+  usermobileno : "",
+  useraadharno : "",
+  useraccountno : "",
+  userpanno : ""
+ })
+
+ useEffect(() => {
+  localStorage.setItem("userinfo", userinfo);
+}, [userinfo]);
+
   return (
     <>
     <BrowserRouter>
@@ -103,6 +116,7 @@ notification={notification} setnotification={setnotification}
 type={type} setType={setType}
 username={username} setusername={setusername}
 notification={notification} setnotification={setnotification}
+userinfo={userinfo} setuserinfo={setuserinfo}
 />}/>
 
 <Route path="Loanlist" element={<Loanlist

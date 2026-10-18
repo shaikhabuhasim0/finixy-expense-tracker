@@ -11,7 +11,6 @@ const {type , setType , form , setform , formhistory , setformhistory , notifica
 const [payAmount, setPayAmount] = useState("");
 
 function handleclick (){ // start hai btn !!!! 
-
 const newform = {
 id : Date.now(),
 loanname : form.loanname ,
@@ -45,8 +44,9 @@ amountreceived : form.amountreceived
  setTimeout(()=>{
    setType("")
  },300)
-
 } // yha end hai ye btn !!!!!!! 
+
+
 
 useEffect(()=>{
 try {
