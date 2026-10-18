@@ -1,79 +1,134 @@
+
 import React, { useEffect, useState } from 'react'
-import {getremainingamount , gettotalAmount ,getLoanRemaining }from "./utils/loanCalc";
+import { getremainingamount, gettotalAmount, getLoanRemaining } from "./utils/loanCalc";
 
 export default function Loanlist(props) {
-    const {type , setType , form , setform , formhistory , setformhistory , notification , setnotification}= props ;
+    const { type, setType, form, setform, formhistory, setformhistory, notification, setnotification } = props;
 
-const allpaidloans = formhistory.filter((loan) => {
-  return getLoanRemaining(loan) === 0;
-});
+    const [search, setSearch] = useState("");
 
-const allunpaidloans = formhistory.filter((loan) => {
-  return getLoanRemaining(loan) > 1;
-});
+    // Search ke according loans filter honge
+    const filteredLoans = formhistory.filter((loan) => {
+        const searchText = search.toLowerCase().trim();
 
-  return (
-    <>
-    <div>
+        return (
+            (loan.loanname || "").toLowerCase().includes(searchText) ||
+            (loan.lendername || "").toLowerCase().includes(searchText)
+        );
+    });
+
+    // Filtered loans mein se Paid aur Unpaid loans
+    const allpaidloans = filteredLoans.filter((loan) => {
+        return getLoanRemaining(loan) === 0;
+    });
+
+    const allunpaidloans = filteredLoans.filter((loan) => {
+        return getLoanRemaining(loan) > 1;
+    });
+
+    return (
+ <>
+ <div>
 <div className="searchbar">
-  <span className="searchicon">⌕</span>
-  <input type="text" placeholder="Search loans..." />
+    <span className="searchicon">⌕</span>
+
+<input
+type="text"
+placeholder="Search by loan or lender name..."
+value={search}
+onChange={(e) => setSearch(e.target.value)}
+/>
+
+ {search && (
+   <button
+     type="button"
+ onClick={() => setSearch("")}
+ >
+✕
+ </button>
+ )}
+ </div>
 </div>
 
-    </div>
-    <div>Loan History</div>
-    <div className='paidloansection'>
-    <div className='paidloansection1'>Paid Loans<span className='right-tick-icon '>✅</span> </div>
-{allpaidloans.length > 0 ? (
+<div>Loan History</div>
+
+<div className='paidloansection'>
+<div className='paidloansection1'>
+   Paid Loans
+  <span className='right-tick-icon'>✅</span>
+ </div>
+
+ {allpaidloans.length > 0 ? (
   allpaidloans.map((loan) => (
-    <div key={loan.id}>
-      Name = {loan.loanname}
-      <br />
-      Amount = ₹{loan.totalamount}
-      <br />
-      Interest = {loan.intrestrate}%
-      <br />
-      Months = {loan.timeperiod}
-      <br />
-      Remaining Amount = ₹{getLoanRemaining(loan).toFixed(2)}
-      <br/>
-      <div className="congratulations">
-   Congratulations 🎉!! Loan Paid ... 
-</div>
+  <div key={loan.id}>
+  Name = {loan.loanname}
+<br />
+     Amount = ₹{loan.totalamount}
+  <br />
+  Interest = {loan.intrestrate}%
+  <br />
+ Months = {loan.timeperiod}
+ <br />
+ Remaining Amount = ₹{getLoanRemaining(loan).toFixed(2)}
+  <br />
 
-    </div>
-  ))
-) : (
-  <div>No history of Paid Loans</div>
-)}
-    </div>
+ <div className="congratulations">
+ Congratulations 🎉!! Loan Paid ...
+  </div>
+ </div>
+ ))
+ ) : (
+  <div>
+  {search
+ ? "No matching paid loans found"
+ : "No history of Paid Loans"}
+ </div>
+ )}
+ </div>
 
-    <div className='remainingloancontainer'>
-    <div>Unpaid Loans <span className='right-tick-icon '>❌</span>
-      {allunpaidloans.length > 0 ? (
+  <div className='remainingloancontainer'>
+  <div>
+  <span className='unpaidloanscolor'>Unpaid Loans</span>
+ <span className='right-tick-icon'>❌</span>
+
+ {allunpaidloans.length > 0 ? (
   allunpaidloans.map((loan) => (
-    <div key={loan.id}>
-      Name = {loan.loanname}
-      <br />
-      Amount = ₹{loan.totalamount}
-      <br />
-      Interest = {loan.intrestrate}%
-      <br />
-      Months = {loan.timeperiod}
-      <br />
-      Remaining Amount = ₹{getLoanRemaining(loan).toFixed(2)}
-      <br/>
+ <div key={loan.id}>
+ Name = {loan.loanname}
+ <br />
+ Amount = ₹{loan.totalamount}
+ <br />
+Interest = {loan.intrestrate}%
+   <br />
+   Months = {loan.timeperiod}
+  <br />
+   Remaining Amount = ₹{getLoanRemaining(loan).toFixed(2)}
+     <br />
     </div>
   ))
-) : (
-  <div>No history of remining Loan Loans</div>
-)}
-    </div>
-    </div>
-    <div className='creditscorebox'>
-      <span className='creditscoretext'>CREDIT SCORE = {}</span>
-    </div>
-    <div></div>
-    </>
-  )
+ ) : (
+  <div>
+  {search
+    ? "No matching unpaid loans found"
+  : "No history of remaining loans"}
+  </div>
+   )}  </div>
+  </div>
+
+<div className='creditscorebox'>
+  <span className='creditscoretext'>
+  CREDIT SCORE = "
+   <span className='redwalacreditreconrdtext'>0</span>
+ " NO Record Found
+  </span>
+ </div>
+
+   <div className='loanlistsectionlast'>
+  <div>Total paid = {allpaidloans.length}</div>
+ <div>Total unpaid = {allunpaidloans.length}</div>
+</div>
+ </>
+    )
 }
+
+// LOAN LIST PAGE IS ALL DOENE !!!!! 

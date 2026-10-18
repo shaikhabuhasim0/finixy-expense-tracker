@@ -1554,3 +1554,17 @@ margin-left: 8px;
 .creditscoretext{
 margin-top: 50px;
 }
+
+.loanlistsectionlast{
+ display: flex;
+ gap : 50px;
+}
+
+.redwalacreditreconrdtext{
+  color : rgb(226, 86, 86);
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.unpaidloanscolor{
+  color: #0d6efd;
+}
