@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Homepage(props) {
   // ye props pass kiye huye hai from app.jsx 
-   const { transaction, setTransaction, history, sethistory ,addtrans ,setaddtrans ,currentbalance, setcurrentbalance , type , setType , date , setdate ,notification , setnotification} = props;
+   const { transaction, setTransaction, history, sethistory ,addtrans ,setaddtrans ,currentbalance, setcurrentbalance , type , setType , date , setdate ,notification , setnotification , username ,setusername} = props;
    // upar wale 4 
     
     
@@ -205,7 +205,7 @@ function setincomebocin (){
 <h3 className='homeboxx'>HOME</h3>
   <div className='homeposition'>
     <div><h3>{props.homepage}</h3></div>
-    <div className='usergreetings'> Good Morning Abu ,</div>
+    <div className='usergreetings'> Good Morning {username} ,</div>
     </div>
 
   

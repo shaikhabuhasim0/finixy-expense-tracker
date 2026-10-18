@@ -11,6 +11,7 @@ import User from './components/User';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState } from 'react';
 import Loanlist from './components/Loanlist';
+import { useEffect } from 'react';
 
  function App() {
 
@@ -38,6 +39,13 @@ date : ""
   })
 
 const [formhistory,setformhistory] = useState([])
+const [username, setusername] = useState(
+  () => localStorage.getItem("username")
+);
+
+useEffect(() => {
+  localStorage.setItem("username", username);
+}, [username]);
 
   return (
     <>
@@ -64,6 +72,7 @@ notification={notification} setnotification={setnotification}
   type={type} setType={setType}
   date = {date }setdate = {setdate}
   notification={notification} setnotification={setnotification}
+  username={username} setusername={setusername}
   />}/>
 
 <Route path="Transiction" element={<Transictions 
@@ -90,13 +99,18 @@ formhistory = {formhistory} setformhistory={setformhistory}
 notification={notification} setnotification={setnotification}
 />}/>
 
-<Route path="User" element={<User/>}/>
+<Route path="User" element={<User
+type={type} setType={setType}
+username={username} setusername={setusername}
+notification={notification} setnotification={setnotification}
+/>}/>
 
 <Route path="Loanlist" element={<Loanlist
 type={type} setType={setType}
 form = {form} setform = {setform}
 formhistory = {formhistory} setformhistory={setformhistory}
 notification={notification} setnotification={setnotification}
+
 />}/>
 
 </Routes>
