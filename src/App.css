@@ -1338,22 +1338,6 @@ margin-left: 20px;
   font-size: 20px;
 }
 
-
-.paidloansection{
-
-  border : 2px solid black ;
-  height : 200px;
-  width: 300px;
-  margin-top: 8px;
-  border-radius: 15px;
-}
-
-.paidloansection1{
-margin-top: 4px;
-margin-left: 8px;
-  color: #0d6efd;
-}
-
 /* congratulations page css  */
 
 .loan-success {
@@ -1406,6 +1390,7 @@ margin-left: 8px;
   text-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
+
 
 /* inslighst page ka css */
 
@@ -1489,3 +1474,83 @@ margin-left: 155px;
 font-size: 15px;
 }
 
+/* LOAN LIST PAGE CSS !!!!!!!!!!!!!!!!!!!!!!!!! */
+/* LOANLIST PAGE KA CSS  */
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 280px;
+  padding: 8px 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: 0.3s ease;
+}
+
+.searchbar:focus-within {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.searchicon {
+  font-size: 24px;
+  color: #777;
+  line-height: 1;
+}
+
+.searchbar input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #222;
+}
+
+.searchbar input::placeholder {
+  color: #999;
+}
+
+.right-tick-icon {
+  margin-left: 150px;
+}
+
+.paidloansection{
+
+  border : 2px solid black ;
+  height : 200px;
+  width: 300px;
+  margin-top: 8px;
+  border-radius: 15px;
+}
+
+.paidloansection1{
+margin-top: 4px;
+margin-left: 8px;
+  color: #0d6efd;
+}
+
+.remainingloancontainer{
+  border : 2px solid black ;
+  height : 200px;
+  width: 300px;
+  margin-top: 8px;
+  border-radius: 15px;
+}
+
+.creditscorebox{
+  margin-top: 10px;
+    border : 2px solid black ;
+  height : 50px;
+  width: 300px;
+  margin-top: 8px;
+  border-radius: 15px;
+}
+
+.creditscoretext{
+margin-top: 50px;
+}

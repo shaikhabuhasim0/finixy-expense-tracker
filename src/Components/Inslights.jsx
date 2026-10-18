@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { Pie , PieChart, BarChart, Bar, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { getTotalPaid, getTotalRemaining, gettotalIncome ,gettotalExpense , gettotalPaid1 , gettotalremainingamount} from "./utils/loanCalc";
 
-
-
 export default function Inslights(props) {
 
    const {  history, sethistory , type , setType , date , setdate , formhistory , setformhistory} = props;

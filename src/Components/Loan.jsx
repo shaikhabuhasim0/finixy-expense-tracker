@@ -464,7 +464,6 @@ return (
 
 {type === "congratulations-bar" && (
 
-
 <div className="loan-success">
   <div className="success-icon">🎉</div>
   <h3>Congratulations!</h3>
