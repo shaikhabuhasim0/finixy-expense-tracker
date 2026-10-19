@@ -92,49 +92,50 @@ const oldesttdate = [...history].sort(
     <div className="sumarrybox">
       <h5 className="summaryname">SUMMARY  <h6 className={filterType==="income" ? "greencolor" : "redcolor"}>  {filterType==="income"? "All Income" : "All Expense"}</h6> </h5>
 
-{history
-  .filter((item) => {
-    if (filterType === "all") {
-      return true;
-    }
+ {history.length > 0 ? (
+    history
+      .filter((item) => {
+        if (filterType === "all") {
+          return true;
+        }
 
-    return item.type === filterType;
-  })
-  .sort((a, b) => {
-    if (date === "newest") {
-      return new Date(b.date) - new Date(a.date);
-    }
+        return item.type === filterType;
+      })
+      .sort((a, b) => {
+        if (date === "newest") {
+          return new Date(b.date) - new Date(a.date);
+        }
 
-    if (date === "oldest") {
-      return new Date(a.date) - new Date(b.date);
-    }
+        if (date === "oldest") {
+          return new Date(a.date) - new Date(b.date);
+        }
 
-    return 0;
-  })
-  .map((item) => (
-    <div
-      key={item.id}
-      className={
-        item.type === "income"
-          ? "history-type income"
-          : "history-type expence"
-      }
-    >
-      <span>
-        {item.type === "income" ? "+" : "-"} {item.source}
-      </span>
+        return 0;
+      })
+      .map((item) => (
+        <div
+          key={item.id}
+          className={
+            item.type === "income"
+              ? "history-type income"
+              : "history-type expence"
+          }
+        >
+          <span>
+            {item.type === "income" ? "+" : "-"} {item.source}
+          </span>
 
-      <span>
-        ₹{item.amount}
-      </span>
+          <span>₹{item.amount}</span>
 
-      <span className="blueclass">
-        {new Date(item.date).toLocaleDateString()}
-      </span>
-    </div>
-  ))}
-
-    </div>
+          <span className="blueclass">
+            {new Date(item.date).toLocaleDateString()}
+          </span>
+        </div>
+      ))
+  ) : (
+    <div className="sumarryboxmessage">Nothing to show</div>
+  )}
+</div>
     </>
   )
 }
