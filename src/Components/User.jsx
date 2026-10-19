@@ -2,9 +2,18 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { useNavigate } from 'react-router-dom';
 export default function User(props) {
-  const {username,setusername ,type , setType , userinfo , setuserinfo}= props
+const {
+  username,
+  setusername,
+  type,
+  setType,
+  userinfo,
+  setuserinfo,
+  sethistory,
+  setformhistory
+} = props;
 
 
   function changename (){
@@ -17,15 +26,42 @@ setTimeout(() => {
 }, 600);
 }
 
-function saveuserinfo (){
-  setTimeout(() => {
-  setType("")
-}, 600);
+function saveuserinfo() {
+  localStorage.setItem("userinfo", JSON.stringify(userinfo));
+  setType("");
 }
 
 function loaduserinfoform(){
 setType("loadinguserinfoform")
 }
+
+// to delet all data 
+function deletallthedata() {
+  // Delete saved data
+  localStorage.removeItem("transactions");
+  localStorage.removeItem("form");
+  localStorage.removeItem("userinfo");
+
+  // Reset React states
+  sethistory([]);
+  setformhistory([]);
+
+  setuserinfo({
+    username: "",
+    usermail: "",
+    usermobileno: "",
+    useraadharno: "",
+    useraccountno: "",
+    userpanno: ""
+  });
+}
+
+//for loan history terminator 
+const navigate = useNavigate();
+function openabountpage (){
+      navigate('/About');
+}
+
   return (
     <>
     <div>
@@ -119,8 +155,8 @@ className='userinfomationdiv'
 </div>
 </div>
 <div className='dangerzonediv'>
-  <span>Danger Zone ❌ </span>
-<button type="button" className="danger-btn">
+  <span>Danger Zone  </span>
+<button type="button" className="danger-btn" onClick={deletallthedata}>
   <i className="fa-solid fa-trash"></i>
   Clear Data
 </button>
@@ -129,7 +165,7 @@ className='userinfomationdiv'
 <div>
   <div className="account-section">
 
-  <button className="account-btn" onClick={() => setType("about")}>
+  <button className="account-btn" onClick={openabountpage}>
     <i className="fa-solid fa-circle-info"></i>
     <span>About Finixy</span>
     <i className="fa-solid fa-chevron-right arrow"></i>

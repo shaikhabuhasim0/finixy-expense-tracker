@@ -12,6 +12,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState } from 'react';
 import Loanlist from './components/Loanlist';
 import { useEffect } from 'react';
+import About from './components/About';
 
  function App() {
 
@@ -47,13 +48,19 @@ useEffect(() => {
   localStorage.setItem("username", username);
 }, [username]);
 
-const [userinfo, setuserinfo] = useState({
-  username: "",
-  usermail: "",
-  usermobileno: "",
-  useraadharno: "",
-  useraccountno: "",
-  userpanno: ""
+const [userinfo, setuserinfo] = useState(() => {
+  const savedInfo = localStorage.getItem("userinfo");
+
+  return savedInfo
+    ? JSON.parse(savedInfo)
+    : {
+        username: "",
+        usermail: "",
+        usermobileno: "",
+        useraadharno: "",
+        useraccountno: "",
+        userpanno: ""
+      };
 });
 
 useEffect(() => {
@@ -117,6 +124,9 @@ type={type} setType={setType}
 username={username} setusername={setusername}
 notification={notification} setnotification={setnotification}
 userinfo={userinfo} setuserinfo={setuserinfo}
+history={history}
+sethistory={sethistory}
+setformhistory={setformhistory}
 />}/>
 
 <Route path="Loanlist" element={<Loanlist
@@ -125,6 +135,9 @@ form = {form} setform = {setform}
 formhistory = {formhistory} setformhistory={setformhistory}
 notification={notification} setnotification={setnotification}
 
+/>}/>
+
+<Route path="About" element={<About
 />}/>
 
 </Routes>

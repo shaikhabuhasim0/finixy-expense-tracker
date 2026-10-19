@@ -8,9 +8,8 @@ export default function Homepage(props) {
    const { transaction, setTransaction, history, sethistory ,addtrans ,setaddtrans ,currentbalance, setcurrentbalance , type , setType , date , setdate ,notification , setnotification , username ,setusername} = props;
    // upar wale 4 
     
-    
-    const [startingbalance , setstartingbalance]= useState("")
-   
+    const [startingbalance, setstartingbalance] = useState("");
+const [isEditing, setisEditing] = useState(false);
 // cancle button 
 function canclebtn (){
 
@@ -27,8 +26,13 @@ function canclebtn (){
   .filter((item) => item.type === "expense")
   .reduce((total, item) => total + Number(item.amount), 0);
 
+  // const finalBalance =
+  // Number(currentbalance || 0) +
+  // totalIncome -
+  // totalExpense;
+
   const finalBalance =
-  Number(currentbalance || 0) +
+  Number(startingbalance || 0) +
   totalIncome -
   totalExpense;
 
@@ -85,12 +89,12 @@ setTimeout(()=>{
  sethistory([]);
   setTimeout(()=>{
     setType("")
-  },2000)
+  },800)
 
 setnotification("History Has Been Deleted 🗑️ ")
 setTimeout(()=>{
   setnotification("")
-},3000)
+},4000)
 }
 
 }
@@ -171,22 +175,29 @@ useEffect(() => {
   }
 }, []);
 
- function editcb(){
-
-
+function editcb() {
+  setstartingbalance(String(finalBalance));
+  setisEditing(true);
 }
 
- function savecb(){
+function savecb() {
+  const amount = Number(startingbalance);
 
-localStorage.setItem("amount", currentbalance);
+  if (startingbalance.trim() === "" || !Number.isFinite(amount) || amount < 0) {
+    setnotification("Please Enter A Valid Amount ⚠️");
+    return;
+  }
 
-localStorage.setItem("amount", startingbalance);
+  localStorage.setItem("amount", String(amount));
+  setcurrentbalance(String(amount));
+  setstartingbalance(String(amount));
+  setisEditing(false);
 
- setnotification("Current Balance Update Sucessfully 💰")
+  setnotification("Current Balance Updated Successfully 💰");
 
-  setTimeout(()=>{
-    setnotification("")
-  },3000)
+  setTimeout(() => {
+    setnotification("");
+  }, 3000);
 }
 
 // 
@@ -212,17 +223,30 @@ function setincomebocin (){
     <div className='input-cb'>
       <p>CURRENT BALANCE </p>
     <div className="d-flex gap-2">
-  <input
-    type="text"
-    className="form-control"
-    placeholder="Enter Amount$"
-    value={finalBalance}
-    onChange={(e)=>setcurrentbalance(e.target.value)}
-    
-    />
+<input
+  type="number"
+  className="form-control"
+  placeholder="Enter Amount"
+  value={isEditing ? startingbalance : finalBalance.toFixed(2)}
+  onChange={(e) => setstartingbalance(e.target.value)}
+  readOnly={!isEditing}
+/>
 
-  <button className="btn btn-primary" onClick={editcb}>Edit</button>
-  <button className="btn btn-danger" onClick={savecb}>Save</button>
+<button
+  className="btn btn-primary"
+  onClick={editcb}
+  disabled={isEditing}
+>
+  Edit
+</button>
+
+<button
+  className="btn btn-danger"
+  onClick={savecb}
+  disabled={!isEditing}
+>
+  Save
+</button>
 </div>
 </div>
 
@@ -247,8 +271,57 @@ function setincomebocin (){
   </div>
 </div>
 
-  {addtrans === "moneyform" && (
+{/* end  */}
+<div className='historybox'>
+  <h4 className='histo'>History <button onClick={()=>{ if (history.length===0){
+setnotification("There is Nothing To Delet 🚫")
+setTimeout(()=>{
+  setnotification("")
+},3000)
+ }
+ 
+ else {setType("delethsitory")}}}> <i className="fa-solid fa-trash"></i></button></h4>
 
+
+  {history.map((item) => 
+
+  (
+    
+    <div key={item.id} className={item.type==="income"? "history-type income" : "history-type expence"}>
+      <span>{item.type === "income" ? "+" : "-"} {item.source}</span>
+      <span>
+
+        ₹{item.amount} {item.type === "income" ? " IN" : "  EX"}
+
+      </span>
+    </div>
+  
+  ))}
+</div>
+
+{/* delet btn  */}
+
+{type === "delethsitory" && (
+  <div className="form-backdrop-histodelet">
+  <div className='historyboxx'><h6 className="historyboxx5"> Do You Want To Delet History ? </h6>
+  
+<div className='history-buttons '>
+    <button type="button" className="btn btn-primary" onClick={canclebtn}>Cancle</button>
+  <button type="button" className="btn btn-danger" onClick={delethsitory}>Delet?</button>
+
+</div>
+  </div>
+  </div>
+)}
+
+{/* notifications bar  */}
+<div className='notifications'>
+  <span className='notifications1'><h6>{notification}</h6></span>
+</div>
+
+{/* form start */}
+{addtrans === "moneyform" && (
+<div className="form-backdrop">
   <div className="transictions">
     <div className="twobtn">
    <button type="button" className="btn btn-outline-warning" onClick={setincomebocin}>IN</button>
@@ -348,54 +421,9 @@ setTimeout(()=>{
    </div>
    
   </div>
-  
-   )}
-
-
-
-
-<div className='historybox'>
-  <h4 className='histo'>History <button onClick={()=>{ if (history.length===0){
-setnotification("There is Nothing To Delet 🚫")
-setTimeout(()=>{
-  setnotification("")
-},3000)
- }
- 
- else {setType("delethsitory")}}}> <i className="fa-solid fa-trash"></i></button></h4>
-
-
-  {history.map((item) => 
-
-  (
-    
-    <div key={item.id} className={item.type==="income"? "history-type income" : "history-type expence"}>
-      <span>{item.type === "income" ? "+" : "-"} {item.source}</span>
-      <span>
-
-        ₹{item.amount} {item.type === "income" ? " IN" : "  EX"}
-
-      </span>
-    </div>
-  
-  ))}
-</div>
-
-{type === "delethsitory" && (
-  <div className='historyboxx'><h6 className="historyboxx5"> Do You Want To Delet History ? </h6>
-  
-<div className='history-buttons '>
-    <button type="button" className="btn btn-primary" onClick={canclebtn}>Cancle</button>
-  <button type="button" className="btn btn-danger" onClick={delethsitory}>Delet?</button>
-
-</div>
   </div>
-  
-)}
-
-<div className='notifications'>
-  <span className='notifications1'><h6>{notification}</h6></span>
-</div>
+   )}
+   {/* form end */}
     </> 
     
   )
