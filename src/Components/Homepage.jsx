@@ -282,8 +282,8 @@ setTimeout(()=>{
  
  else {setType("delethsitory")}}}> <i className="fa-solid fa-trash"></i></button></h4>
 
-
-  {history.map((item) => 
+{history.length > 0 ? (
+history.map((item) => 
 
   (
     
@@ -296,7 +296,12 @@ setTimeout(()=>{
       </span>
     </div>
   
-  ))}
+  )) 
+) : ( 
+
+  <div className="sumarryboxmessage"> Nothing To Show ...  </div>
+
+ )}
 </div>
 
 {/* delet btn  */}

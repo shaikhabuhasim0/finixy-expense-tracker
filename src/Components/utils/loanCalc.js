@@ -75,5 +75,17 @@ export function getLoanRemaining(loan) {
   return Math.max(0, totalLoanAmount - paid);
 }
 
+export function getallpaidloans (){
+  return filteredLoans.filter((loan) => {
+          return getLoanRemaining(loan) === 0;
+      });
+}
+
+export function getallunpaidloans (){
+  return filteredLoans.filter((loan) => {
+          return getLoanRemaining(loan) > 1;
+      });
+}
+
 
 // (income - expense) / income * 100 formula !! 

@@ -5,7 +5,7 @@ import { getTotalPaid, getTotalRemaining, gettotalIncome ,gettotalExpense , gett
 
 export default function Inslights(props) {
 
-   const {  history, sethistory , type , setType , date , setdate , formhistory , setformhistory} = props;
+   const {  history, sethistory , type , setType , date , setdate , formhistory , setformhistory , getallpaidloans , getallunpaidloans} = props;
 
   const totalPaid = getTotalPaid(formhistory);
   const totalRemaining = getTotalRemaining(formhistory);
@@ -14,6 +14,7 @@ export default function Inslights(props) {
     { name: "Paid", value: totalPaid },
     { name: "Remaining", value: totalRemaining },
   ];
+
 const COLORS = [ "#22c55e", "#fd0000"];
 
 // name me type , value me amount !! 
@@ -23,7 +24,7 @@ const barData = history.map((item, i) => ({
   type: item.type,                                // income ya expense
 }));
 
-const BAR_COLORS = ["#22c55e", "#fd0000"]; // green, red
+const BAR_COLORS = ["#2563c1", "#fd0000"]; // green, red
 
 // first one 
 const income = gettotalIncome(history);
@@ -36,6 +37,13 @@ const totalremainingg = gettotalremainingamount(formhistory)
 
 const remainingamountinpercent =  totalpaid > 0 ? Number(totalpaid-totalremainingg) / totalpaid * 100 : 0
 
+    const data2 = [
+    { name: "Empty", value: 60 },
+    { name: "Empty", value: 40 },
+  ];
+
+  const Colors2 = ["#4cdde7" , "#e74ccd"]
+
   return (
     <>
     <div> 
@@ -47,7 +55,9 @@ const remainingamountinpercent =  totalpaid > 0 ? Number(totalpaid-totalremainin
     <div className='borderofdonut'>
     <div>
    <div className='loanbargraph'>
-  <ResponsiveContainer width="100%" height="100%">
+
+    {formhistory.length> 0 ? (
+        <ResponsiveContainer width="100%" height="100%">
     <PieChart>
       <Pie   data={data} dataKey="value" nameKey="name" innerRadius={35} outerRadius={60}>
         {data.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
@@ -55,9 +65,19 @@ const remainingamountinpercent =  totalpaid > 0 ? Number(totalpaid-totalremainin
       <Tooltip />
     </PieChart>
   </ResponsiveContainer>
+    ) : (  <ResponsiveContainer width="100%" height="100%">
+    <PieChart>
+      <Pie   data={data2} dataKey="value" nameKey="name" innerRadius={35} outerRadius={60}>
+        {data.map((_, i) => <Cell key={i} fill={Colors2[i % COLORS.length]} />)}
+      </Pie>
+      <Tooltip />
+    </PieChart>
+  </ResponsiveContainer>)
+    }
   </div>
   </div>
 </div>
+
 <div className="loanbargraph-text">
   <span className="paid-text">Total Paid : {totalPaid}</span>
   <br />
@@ -65,7 +85,7 @@ const remainingamountinpercent =  totalpaid > 0 ? Number(totalpaid-totalremainin
 </div>
 <div className='incomesandexpencedata'>
 <div className="incomeexpensebar">
-  <ResponsiveContainer width="100%" height="100%">
+  {history.length > 0 ? (<ResponsiveContainer width="100%" height="100%">
     <BarChart data={barData}>
       <XAxis dataKey="name" />
       <YAxis />
@@ -80,7 +100,10 @@ const remainingamountinpercent =  totalpaid > 0 ? Number(totalpaid-totalremainin
       </Bar>
     </BarChart>
   </ResponsiveContainer>
-All Incomes & expence Data 
+) : (
+  <div className='inslights-texttt'> No History Record Found... </div>)
+  }
+   
 </div>
 </div>
 <div className='donokabaap'> 
