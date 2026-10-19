@@ -72,10 +72,84 @@ Name :  <span>{userinfo.username}</span>
 className='userinfomationdiv'
 >
 <button type="button" className="btn btn-primary btn-sm updateuserinfobtn" onClick={loaduserinfoform}>
-Update User Info <i class="fa-solid fa-circle-info"></i>
+ Update User Info <i className="fa-solid fa-circle-info"></i>
+</button>
+
+<div className='darkmodetoggle-all'>
+  <div className='fordisplayflex-oftoggle'>
+    <label className="form-check-label" htmlFor="fieldSwitch">
+     Dark-Mode
+  </label>
+<div className="form-check form-switch">
+  <input
+    className="form-check-input"
+    type="checkbox"
+    role="switch"
+    id="fieldSwitch"
+  />
+  </div>
+</div>
+</div>
+</div>
+
+<div className='languagesection'>
+<div className="language-option">
+ ㅤ Language :ㅤ
+  <img
+    src="https://flagcdn.com/w40/gb.png"
+    alt="United Kingdom"
+    className="uk-flag"
+  />
+  <span>ㅤEnglish (UK)</span>
+</div>
+</div>
+<div className='notification-toggle'>
+<div className='fordisplayflex-oftoggle'>
+    <label className="form-check-label" htmlFor="fieldSwitch">
+     Enable Notifications 
+  </label>
+<div className="form-check form-switch">
+  <input
+    className="form-check-input"
+    type="checkbox"
+    role="switch"
+    id="fieldSwitch"
+  />
+  </div>
+</div>
+</div>
+<div className='dangerzonediv'>
+  <span>Danger Zone ❌ </span>
+<button type="button" className="danger-btn">
+  <i className="fa-solid fa-trash"></i>
+  Clear Data
 </button>
 </div>
-Danger Button 
+
+<div>
+  <div className="account-section">
+
+  <button className="account-btn" onClick={() => setType("about")}>
+    <i className="fa-solid fa-circle-info"></i>
+    <span>About Finixy</span>
+    <i className="fa-solid fa-chevron-right arrow"></i>
+  </button>
+
+  <button
+    className="account-btn logout-btn"
+    onClick={() => {
+      if (window.confirm("Are you sure you want to logout?")) {
+        localStorage.removeItem("authToken");
+        window.location.reload();
+      }
+    }}
+  >
+    <i className="fa-solid fa-right-from-bracket"></i>
+    <span>Logout</span>
+    <i className="fa-solid fa-chevron-right arrow"></i>
+  </button>
+</div>
+</div>
 
 {type==="loadinguserinfoform" && (
   <div>
@@ -85,44 +159,62 @@ placeholder="Enter Name"
         maxLength={15}
         value={userinfo.username}
         onChange={(i) => {
-          setuserinfo(i.target.value);
-        }}
+  setuserinfo({
+    ...userinfo,
+    username: i.target.value
+  });
+}}
 />
 <br/>
 E-Mail = <input type="text" placeholder="Enter E-Mail"
         maxLength={15}
         value={userinfo.usermail}
         onChange={(i) => {
-          setuserinfo(i.target.value);
-        }} />
+  setuserinfo({
+    ...userinfo,
+    usermail: i.target.value
+  });
+}} />
 <br/>
 Mobile No = <input type="text" placeholder="Enter Mobile No"
         maxLength={15}
         value={userinfo.usermobileno}
         onChange={(i) => {
-          setuserinfo(i.target.value);
-        }} />
+  setuserinfo({
+    ...userinfo,
+    usermobileno: i.target.value
+  });
+}} />
 <br/>
 Aadhar No = <input type="text" placeholder="Enter Aadhar No"
         maxLength={15}
         value={userinfo.useraadharno}
         onChange={(i) => {
-          setuserinfo(i.target.value);
-        }}/>
+  setuserinfo({
+    ...userinfo,
+    useraadharno: i.target.value
+  });
+}}/>
 <br/>
 Account NO = <input type="text" placeholder="Enter Account NO "
         maxLength={15}
         value={userinfo.useraccountno}
         onChange={(i) => {
-          setuserinfo(i.target.value);
-        }}/>
+  setuserinfo({
+    ...userinfo,
+    useraccountno: i.target.value
+  });
+}}/>
 <br/>
 Pan No = <input type="text" placeholder="Enter Pan No"
         maxLength={15}
         value={userinfo.userpanno}
         onChange={(i) => {
-          setuserinfo(i.target.value);
-        }}/>
+  setuserinfo({
+    ...userinfo,
+    userpanno: i.target.value
+  });
+}}/>
 <br/>
 <button className="btn-solid btn-styled theme-success" onClick={saveuserinfo}>save</button>
   </div>

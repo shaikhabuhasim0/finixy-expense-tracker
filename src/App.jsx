@@ -47,17 +47,17 @@ useEffect(() => {
   localStorage.setItem("username", username);
 }, [username]);
 
-const [userinfo , setuserinfo] = useState({
-  username : "",
-  usermail : "",
-  usermobileno : "",
-  useraadharno : "",
-  useraccountno : "",
-  userpanno : ""
- })
+const [userinfo, setuserinfo] = useState({
+  username: "",
+  usermail: "",
+  usermobileno: "",
+  useraadharno: "",
+  useraccountno: "",
+  userpanno: ""
+});
 
- useEffect(() => {
-  localStorage.setItem("userinfo", userinfo);
+useEffect(() => {
+  localStorage.setItem("userinfo", JSON.stringify(userinfo));
 }, [userinfo]);
 
   return (
