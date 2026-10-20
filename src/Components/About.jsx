@@ -22,6 +22,10 @@ export default function About() {
     decisions, develop better saving habits, and move toward a more secure
     financial future.
   </p>
+  <p>
+    Dev : ABU HASIM !! 
+    
+  </p>
 </div>
     </>
   )
