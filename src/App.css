@@ -236,8 +236,6 @@ display: flex;
 .historybox{
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-
-  height: 100px;
   width: 300px;
   max-height:175px;
   margin-top: 20px;
@@ -584,7 +582,7 @@ margin-bottom: 15px;
 
 .sumarrybox {
   width: 300px;
-  height: 100px;
+  height: 210px;
 max-height: 240px;
   margin-left: 0;
   margin-top: 25px;
@@ -1722,7 +1720,7 @@ margin-top: 50px;
 }
 
 
-/* USER PAGE CSS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 */
+/* USER PAGE CSS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 */
 .userlogo{
   font-size: 80px;
   /* border: 2px solid red ;
@@ -1753,90 +1751,152 @@ font-size: 12px;
   margin-left: 50px;
 }
 
-.boxofuserdetails{
-  border : 2px solid black ;
-  height: 150px;
+/* USER DETAILS BOX */
+
+.boxofuserdetails {
+  box-sizing: border-box;
   width: 270px;
-  border-radius: 8px;
   margin-top: 10px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
 }
 
-.boxofuserdetailsform{
-  margin-left: 9px;
+.boxofuserdetailsform {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555;
 }
 
-.updateusereinfo{
-  color:#6366f1;
+/* values (name, mail, mobile...) thode dark */
+.boxofuserdetailsform span {
+  color: #111;
+  font-weight: 400;
 }
 
-.updateuserinfobtn {
-  background-color: #957bf1 !important;
-  border-color: #957bf1  !important;
-  color: white !important;
-  border-radius: 8px;
-  transition: 0.3s ease;
-  height: 20px;
-  margin-top: 13px;
- 
+/* USER PAGE: Update button se Logout tak ka poora section
+   (purane in sab classes ko isse replace kar do) */
+
+.updateusereinfo {
+  color: #6366f1;
 }
 
-.updateuserinfobtn:hover {
-  background-color: #6e4dd1 !important;
-  border-color: #957bf1  !important;
-}
-
-.userinfotext-1{
+.userinfotext-1 {
   margin-bottom: 25px;
 }
 
-.fordisplayflex-oftoggle{
+/* ---------- Update User Info button + Dark mode ---------- */
+.userinfomationdiv {
   display: flex;
-  gap: 10px;
-}
-
-.darkmodetoggle-all{
-  margin-top: 14px;
-  margin-left: 10px;
-}
-
-.languagesection{
-  border: 2px solid black ;
-  height: 40px;
+  align-items: center;
+  justify-content: space-between;
   width: 270px;
-  margin-top: 10px;
-  border-radius: 15px;
+  margin-top: 14px;
 }
 
-.languagesection-text{
+.userinfomationdiv .updateuserinfobtn {
+  height: auto;
+  margin: 0;
+  padding: 6px 12px;
+  font-size: 13px;
+  background-color: #957bf1 !important;
+  border-color: #957bf1 !important;
+  color: white !important;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
 
-  margin-left: 10px;
-  margin-top: 15px;
+.userinfomationdiv .updateuserinfobtn:hover {
+  background-color: #6e4dd1 !important;
+  border-color: #957bf1 !important;
+}
+
+.darkmodetoggle-all {
+  margin: 0;
+}
+
+.fordisplayflex-oftoggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fordisplayflex-oftoggle .form-check-label {
+  margin: 0;
+  font-size: 13px;
+  color: #333;
+}
+
+.fordisplayflex-oftoggle .form-switch {
+  margin: 0;
+  min-height: 0;
+}
+
+/* ---------- Language box ---------- */
+.languagesection {
+  box-sizing: border-box;
+  width: 270px;
+  height: auto;
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+  color: #333;
 }
 
 .uk-flag {
-  width: 28px;
+  width: 26px;
   height: auto;
   object-fit: contain;
 }
 
-.language-option{
-  
-  margin-left: 3px;
-  margin-top: 3px;
+/* ---------- Notifications ---------- */
+.notification-toggle {
+  width: 270px;
+  margin-top: 14px;
+  padding: 0 2px;
 }
 
-.notification-toggle{
+.notification-toggle .fordisplayflex-oftoggle {
+  justify-content: space-between;
+}
 
-  margin-top: 10px;
+.notification-toggle .form-check-label {
+  font-size: 14px;
+}
+
+/* ---------- Danger zone ---------- */
+.dangerzonediv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 270px;
+  margin-top: 14px;
+  padding: 0 2px;
+  font-size: 14px;
+  color: #333;
 }
 
 .danger-btn {
-  background-color: #dc3545;
+  background-color: #be4c57;
   color: white;
   border: none;
-  padding: 5px 9px;
-  border-radius: 5px;
-  font-size: 10px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
   font-weight: 500;
   cursor: pointer;
   display: inline-flex;
@@ -1850,19 +1910,19 @@ font-size: 12px;
 }
 
 .danger-btn i {
-  font-size: 9px;
+  font-size: 10px;
 }
 
-.dangerzonediv{
-  margin-top: 8px;
-}
-
-
-.account-section h5 {
-  font-size: 14px;
-  font-weight: 600;
-  margin: 0 0 10px;
-  color: #222;
+/* ---------- About + Logout ---------- */
+.account-section {
+  box-sizing: border-box;
+  width: 270px;
+  margin: 14px 0 80px;        /* neeche bottom nav ke liye jagah */
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+  overflow: hidden;
 }
 
 .account-btn {
@@ -1870,15 +1930,24 @@ font-size: 12px;
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 6px;
+  padding: 12px 14px;
   border: none;
   background: transparent;
   color: #333;
   font-size: 13px;
   text-align: left;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 0;
   transition: background 0.2s ease;
+}
+
+.account-btn + .account-btn {
+  border-top: 1px solid #eee;   /* About aur Logout ke beech patli line */
+}
+
+.account-btn i:first-child {
+  width: 16px;
+  text-align: center;
 }
 
 .account-btn:hover {
@@ -1903,5 +1972,214 @@ font-size: 12px;
   color: #dc3545;
 }
 
-/* income and expence form .. HOMEPAGE */
+/* USER INFORMATION FORM (chhota size) */
 
+.useringomation-form-border {
+  box-sizing: border-box;
+  width: 310px;
+  max-width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 14px;
+  background: #fff;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  position: fixed;
+  z-index: 1000;
+  top: 25%;
+  left: 1.5%;
+}
+
+/* title (h1/h2/h3 jo bhi ho) */
+.useringomation-form-border h1,
+.useringomation-form-border h2,
+.useringomation-form-border h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #222;
+}
+
+.useringomation-form-inputs {
+  margin: 0;
+}
+
+.useringomation-form-inputs label {
+  display: block;
+  margin: 8px 0 3px;
+  font-size: 10px;
+  color: #333;
+}
+
+.userinfo-label {
+  font-size: 10px;
+}
+
+.useringomation-form-inputs input,
+.useringomation-form-inputs select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 7px 10px;
+  font-size: 13px;
+  color: #222;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+}
+
+.useringomation-form-inputs input::placeholder {
+  color: #888;
+}
+
+.useringomation-form-inputs input:focus,
+.useringomation-form-inputs select:focus {
+  border-color: #198754;
+}
+
+/* X button: upar right corner */
+.cutbutton {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1;
+  color: #444;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.cutbutton:hover {
+  color: #dc2626;
+}
+
+/* Save button: poori width, green */
+/* .savebuttonnnn div hai, andar button hai -> style button par lagani hai */
+.savebuttonnnn {
+  margin: 12px 0 0;
+  width: 100%;
+}
+
+.savebuttonnnn button.btn-solid {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: #198754;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.savebuttonnnn button.btn-solid:hover {
+  background: #157347;
+}
+
+.savebtnofusername{
+  width: 50px;
+  margin-left: 160px;
+  margin-bottom: 10px;
+}
+
+.save-btn-displayflex{
+  display: flex;
+}
+
+/* UPDATE NAME BOX (position pehle jaisi hi hai) */
+
+.username-updatebox {
+  box-sizing: border-box;
+  width: 229px;
+  padding: 12px;
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  top: 40%;
+  position: fixed;
+  left: 2.8%;
+}
+
+/* title + X button ek row me */
+.margin-nameki {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+}
+
+.cutbuttoncss {
+  margin: 0;
+  font-size: 10px;
+}
+
+/* input poori width */
+.inputboxof-name {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 7px 10px;
+  font-size: 13px;
+  color: #222;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+}
+
+.inputboxof-name:focus {
+  border-color: #198754;
+}
+
+/* save button: poori width, green */
+.savebtnofusername {
+  margin-top: 10px;
+}
+
+.username-updatebox .savebuttonnnn {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 7px 0;
+  font-size: 10px;
+  font-weight: 500;
+  color: #fff;
+  background: #198754;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.username-updatebox .savebuttonnnn:hover {
+  background: #157347;
+}
+
+.notificationpanel-userpage {
+  display: inline-block;          /* sirf text jitna hi background aayega */
+  padding: 6px 14px;
+  background: rgba(0, 0, 0, 0.12); /* halka transparent black */
+  color: #000;
+  font-size: 14px;
+  border-radius: 8px;
+  position: fixed;
+top: 14.5%;
+z-index: 999;
+left: 3%;
+
+}
+
+/* notification khali ho to box na dikhe */
+.notificationpanel-userpage:empty {
+  display: none;
+}
