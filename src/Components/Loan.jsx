@@ -165,9 +165,13 @@ function payduebtn2 (){
   setTimeout(()=>{
    setType("")
  },300)
+
  // congratualtions bar !! 
 if (Math.abs(amt - remainingamount) < 0.01) {
-setType("congratulations-bar");
+    setTimeout(()=>{
+  setType("congratulations-bar");
+ },800)
+  setType("");
 }
 }
 
@@ -184,7 +188,7 @@ setTimeout(()=>{
     setformhistory([]);
   setTimeout(()=>{
     setType("")
-  },2000)
+  },1350)
 
 setnotification("History Has Been Deleted 🗑️ ")
 setTimeout(()=>{
@@ -200,7 +204,9 @@ function openhistorypage (){
       navigate('/Loanlist');
 }
 
-
+function canclebtn (){
+  setType("")
+}
   return (
     <>
     <div>
@@ -380,8 +386,19 @@ function openhistorypage (){
 </div>
 )}
 
-<div className='allloans'>All Dues  <span className='binbtnhahaha' onClick={deletallloans}><FontAwesomeIcon icon={faTrash} style={{ color: 'red' }} /></span>
-{formhistory.map((item)=>{
+<div className='allloans'>All Dues  <span className='binbtnhahaha' onClick={()=>{ if (formhistory.length===0){
+setnotification("There is Nothing To Delet 🚫")
+setTimeout(()=>{
+  setnotification("")
+},3000)
+ }
+ 
+ else {setType("delethsitory")}}}><FontAwesomeIcon icon={faTrash} style={{ color: 'red' }} /></span>
+
+{/* start of this system */}
+
+{formhistory.length > 0 ? (
+formhistory.map((item)=>{
   const dueDate = new Date(item.date);
   dueDate.setMonth(dueDate.getMonth() + 1);
 return (
@@ -401,8 +418,12 @@ return (
   </div>
 </div>
 )
-})}
+}) 
+)
+:(<div className='inslights-texttt1'> Nothing To Show... </div>)
+}
 </div>
+
 <div>
   {type==="loadpayingform" && (
     <div className="modal-overlay2">
@@ -442,6 +463,9 @@ return (
     }
   }}
 />
+
+{/* end of this system */}
+
   <button
   type="button"
   className="btn btn-success my-btn2"
@@ -463,17 +487,32 @@ return (
 <div>  
 
 {type === "congratulations-bar" && (
-
+<div className="form-backdrop">
 <div className="loan-success">
+  <span className='closebtnofcongratualtoins'><button type="button" className="btn-close" onClick={canclebtn}></button></span>
   <div className="success-icon">🎉</div>
   <h3>Congratulations!</h3>
-  <p>Your {form.loanname} has been cleared successfully.</p>
+  <p>Your {form.loanname}Loan has been cleared successfully.</p>
   <span>Outstanding Balance: ₹0.00</span>
 </div>
-
+</div>
 )}
 
 </div>
+{/* delet btn  */}
+
+{type === "delethsitory" && (
+  <div className="form-backdrop-histodelet">
+  <div className='historyboxx'><h6 className="historyboxx5"> Do You Want To Delet History ? </h6>
+  
+<div className='history-buttons '>
+    <button type="button" className="btn btn-primary" onClick={canclebtn}>Cancle</button>
+  <button type="button" className="btn btn-danger" onClick={deletallloans}>Delet?</button>
+
+</div>
+  </div>
+  </div>
+)}
     </>
   )
 }

@@ -48,18 +48,18 @@ const oldesttdate = [...history].sort(
     <div className="tran"><h3>WALLET</h3></div>
     <div className="mainbox-inex">
       <div className="incomeboxes">Heighest Income
-        <div className="incomeboxes-value">{showhighestincome}</div>
+        <div className="incomeboxes-value">₹ {showhighestincome}</div>
       </div>
             <div className="incomeboxes">Heighest Expense
-        <div className="incomeboxes-value">{showhighestexpense}</div>
+        <div className="incomeboxes-value">₹ {showhighestexpense}</div>
       </div>
     </div>
     <div className="mainboxfor-tin">
       <div className="totalincomebox">Total Income`s 
-        <div className="totalincomebox1">{totalincomeofalltime}</div>
+        <div className="totalincomebox1">₹ {totalincomeofalltime}</div>
       </div>
       <div className="totalincomebox">Total Expense`s 
-        <div className="totalincomebox1">{totalexpenseofalltime}</div>
+        <div className="totalincomebox1">₹ {totalexpenseofalltime}</div>
       </div>
     </div>
 
@@ -87,7 +87,7 @@ const oldesttdate = [...history].sort(
 </div>
     </div>
  <div className="totaltransictoiionnnn">
- <h6>TOTAL NO OF TRANSICTIONS = <span className="boldtrans"> {totalincomeofalltime+totalexpenseofalltime}</span></h6>
+ <h6>TOTAL NO OF TRANSICTIONS = <span className="boldtrans"> "{totalincomeofalltime+totalexpenseofalltime}" </span></h6>
  </div>
  <div className="sumarrybox">
  <h5 className="summaryname">SUMMARY  <h6 className={filterType==="income" ? "greencolor" : "redcolor"}>  {filterType==="income"? "All Income" : "All Expense"}</h6> </h5>

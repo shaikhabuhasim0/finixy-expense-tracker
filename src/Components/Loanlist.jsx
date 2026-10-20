@@ -88,8 +88,7 @@ onChange={(e) => setSearch(e.target.value)}
 
   <div className='remainingloancontainer'>
   <div>
-  <span className='unpaidloanscolor'>Unpaid Loans</span>
- <span className='right-tick-icon'>❌</span>
+  <span className='unpaidloanscolor'>Unpaid Loans <span className='right-tick-icon'>❌</span></span>
 
  {allunpaidloans.length > 0 ? (
   allunpaidloans.map((loan) => (
