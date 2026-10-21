@@ -356,9 +356,14 @@ body {
   bottom: 75px;
   transform: translateX(-50%);
 
-  width: min(300px, 90vw);
+  width: max-content;
+  max-width: 90vw;
   margin: 0;
-  pointer-events: none;     /* neeche ke buttons par click na rukey */
+  padding: 8px 16px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
 
   display: flex;
   justify-content: center;
@@ -366,11 +371,9 @@ body {
   text-align: center;
 }
 
-.notifications1 h6 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  animation: textPopup 0.6s ease;
+/* notification khali ho to card na dikhe */
+.notifications:has(h6:empty) {
+  display: none;
 }
 
 @keyframes textPopup {
@@ -801,7 +804,8 @@ body {
   font-size: 18px;
 }
 
-/* ===== Insights page CSS ===== */
+/* ===== Insights page CSS (phone-friendly version) =====
+   Is poore block se purana Insights wala CSS replace karna. */
 
 :root {
   --text: #1f2937;
@@ -816,14 +820,18 @@ body {
   --font: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', Arial, sans-serif;
 }
 
-/* Page heading */
+/* "No History Record Found" message (graph ki jagah, beech me) */
 .inslights-texttt {
-  font-size: 17px;
-  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
+  font-size: 15px;
   font-family: var(--font);
   font-weight: 600;
+  text-align: center;
   color: var(--primary);
-  margin-top: 60px;
 }
 
 /* Loan insights text */
@@ -834,12 +842,25 @@ body {
   color: var(--primary);
 }
 
-/* Loan bar graph (left aligned) */
+/* Donut card */
+.borderofdonut {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin-top: 10px;
+  padding: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+/* Loan donut graph (card ke andar, beech me) */
 .loanbargraph {
-  width: 180px;
-  height: 180px;
-  margin-left: 0;
-  margin-right: auto;
+  width: 100%;
+  height: 160px;            /* graph ko height chahiye, warna dikhega nahi */
+  margin: 0;
 }
 
 .loanbargraph-text {
@@ -875,12 +896,12 @@ body {
 /* Income & expense card */
 .incomesandexpencedata {
   box-sizing: border-box;
-  width: 270px;
-  height: auto;            /* graph ke hisaab se adjust hoga */
+  width: 100%;
+  max-width: 420px;
+  height: auto;
   min-height: 80px;
-  max-height: 200px;
   margin-top: 10px;
-  padding: 10px 8px;       /* andar 252px milte hain, graph 250px ka hai */
+  padding: 10px 8px;
   font-size: 13px;
   font-family: var(--font);
   color: var(--primary);
@@ -890,33 +911,20 @@ body {
   box-shadow: var(--shadow);
 }
 
-/* Income / expense bar graph (left aligned) */
+/* Income / expense bar graph */
 .incomeexpensebar {
-  width: 250px;
-  max-width: 100%;         /* box se bahar nahi jayega */
-  height: 150px;
-  margin-top: 10px;
-  margin-right: auto;
+  width: 100%;
+  height: 170px;            /* graph ko height chahiye */
+  margin: 0;
   font-size: 10px;
 }
 
-/* Donut card */
-.borderofdonut {
-  box-sizing: border-box;
-  width: 180px;
-  height: 160px;
-  margin-top: 10px;
-  padding: 8px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-}
-
-/* Donut wrapper (donuts side by side) */
+/* Savings / Remaining wrapper (side by side) */
 .donokabaap {
   display: flex;
   gap: 10px;
+  width: 100%;
+  max-width: 420px;
   margin-top: 20px;
 }
 
@@ -924,10 +932,13 @@ body {
 .betano22,
 .betano11 {
   box-sizing: border-box;
+  min-width: 0;
   height: 30px;
+  padding: 0 6px;
   display: flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
   font-size: 13px;
   font-family: var(--font);
   color: var(--text);
@@ -937,8 +948,9 @@ body {
   box-shadow: var(--shadow);
 }
 
-.betano22 { width: 160px; }
-.betano11 { width: 120px; }
+/* pehle 120px aur 160px the, ab same ratio (3:4) me screen ke hisaab se */
+.betano11 { flex: 3; }
+.betano22 { flex: 4; }
 
 /* Bin button */
 .binbtnhahaha {
@@ -954,6 +966,11 @@ body {
 }
 
 /* =========================
+   LOAN PAGE  (phone-friendly version)
+   Is poori file se purana Loan page ka CSS replace karna.
+========================= */
+
+/* =========================
    LOAN CARDS
 ========================= */
 
@@ -965,16 +982,21 @@ body {
 .loancardsnosecond {
   display: flex;
   gap: 10px;
+  width: 100%;
+  max-width: 420px;
   margin-top: 14px;
 }
 
 .loancard {
+  box-sizing: border-box;
+  flex: 1;                    /* dono card barabar width */
+  min-width: 0;
+  min-height: 60px;
+
   background: white;
   border: 1px solid #e2e7ed;
   border-radius: 12px;
   padding: 12px;
-  width: 140px;
-  min-height: 60px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 
   display: flex;
@@ -988,8 +1010,11 @@ body {
 }
 
 .loancard strong {
-  font-size: 18px;
   margin-top: 5px;
+  font-size: 17px;
+  overflow: hidden;           /* bada amount ho to ... se kat jaye */
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 
@@ -997,53 +1022,54 @@ body {
    ADD LOAN BUTTON
 ========================= */
 
+.addnewloankaflex {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 420px;
+}
+
 .loanbtnnn {
+  flex: 0 1 230px;
+  min-width: 0;
   margin-top: 16px;
 }
 
 .loanbtnnn button {
-  width: 230px;
-  max-width: 100%;
+  width: 100%;
+}
+
+.listicon1 {
+  flex-shrink: 0;
+  margin-left: 20px;
+  margin-top: 17px;
+  font-size: 20px;
 }
 
 
 /* =========================
-   MODAL OVERLAY (shared by Add Loan + Pay Due)
+   MODAL OVERLAY (Add Loan + Pay Due, screen ke beech me)
 ========================= */
 
-.modal-overlay {
+.modal-overlay,
+.modal-overlay2 {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
 
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-
   z-index: 1000;
   padding: 16px;
-  padding-top: 120px;
-  padding-left: 20px;
-  overflow-y: auto;
+  overflow-y: auto;           /* chhoti screen / keyboard par scroll hoga */
   box-sizing: border-box;
 }
 
-.modal-overlay2{
-    position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-
-  z-index: 1000;
-  padding: 16px;
-  padding-top: 350px;
-  padding-left: 16px;
-  overflow-y: auto;
-  box-sizing: border-box;
+/* margin:auto se box beech me aata hai aur lamba ho to upar se kat'ta nahi */
+.loanboxxx,
+.payingform {
+  margin: auto;
 }
+
 
 /* =========================
    ADD LOAN FORM
@@ -1051,9 +1077,10 @@ body {
 
 .loanboxxx {
   position: relative;
+  box-sizing: border-box;
 
-  width: 300px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 340px;
 
   padding: 16px;
 
@@ -1126,17 +1153,17 @@ body {
 ========================= */
 
 .allloans {
+  box-sizing: border-box;
   margin-top: 18px;
 
-  width: 300px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 420px;
 
   max-height: 270px;
   overflow-y: auto;
+  overflow-x: hidden;
 
   padding: 14px;
-
-  box-sizing: border-box;
 
   background: white;
   border: 1px solid #e2e7ed;
@@ -1148,10 +1175,17 @@ body {
   font-weight: 600;
 }
 
+/* bin icon: right side me (pehle margin-left: 155px tha) */
+.allloans .binbtnhahaha {
+  float: right;
+  margin-left: 0;
+}
+
 
 /* Individual loan row */
 
 .allloans > div {
+  clear: both;                /* bin icon ke neeche se shuru ho */
   margin-top: 9px;
   padding: 10px;
 
@@ -1198,10 +1232,10 @@ body {
 }
 
 .due-row {
-  /* display: flex; */
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+  overflow-wrap: anywhere;    /* lamba loan name bahar na nikle */
 }
 
 .due-label {
@@ -1213,20 +1247,27 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   margin-top: 4px;
 }
 
+.due-value,
+.due-date {
+  font-weight: 600;
+}
 
-/* Pay button */
+
+/* Pay button (list wala) */
 
 .my-btn {
+  flex-shrink: 0;
   padding: 3px 9px !important;
   font-size: 12px !important;
 
   height: auto !important;
   width: auto !important;
 
-  margin-left: 5px;
+  margin-left: 0;             /* pehle 60px tha, space footer ka gap deta hai */
 }
 
 
@@ -1237,8 +1278,8 @@ body {
 .payingform {
   position: relative;
 
-  width: 300px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 340px;
 
   padding: 16px;
 
@@ -1273,31 +1314,20 @@ body {
 
   font-size: 13px;
   line-height: 1.8;
+  overflow-wrap: anywhere;
 }
 
-.due-value{
-  font-weight: 600;
-}
+/* amount input + Pay button ek hi line me */
 
-.due-date{
-  font-weight: 600;
-}
-
-.my-btn{
-  margin-left: 60px;
-}
-
-.allunpaidtransictions{
-  color : red ;
-}
-
-.allpaidtransictions{
-  color :green;
+.inputtagtocloseloan {
+  width: 130px;
+  max-width: 55%;
+  border-radius: 7px;
+  margin-top: 16px;
 }
 
 .my-btn2 {
-margin-left: 80px;
-
+  margin-left: 10px;          /* pehle 80px tha, chhoti screen par neeche gir jata tha */
 
   padding: 5px 14px !important;
   font-size: 12px !important;
@@ -1324,76 +1354,75 @@ margin-left: 80px;
   box-shadow: 0 1px 5px rgba(22, 163, 74, 0.3);
 }
 
-.inputtagtocloseloan{
-  /* font-size: 10px; */
-  width: 100px;
-  border-radius: 7px;
-  margin-top: 16px;
+
+.allunpaidtransictions {
+  color: red;
 }
 
-.inslights-texttt1{
+.allpaidtransictions {
+  color: green;
+}
+
+.inslights-texttt1 {
   color: #6366f1;
   font-size: 19px;
-  
 }
+
 
 /* =========================
-   MOBILE
+   NOTIFICATION (navbar ke thik upar, beech me)
 ========================= */
 
-@media (max-width: 500px) {
+.notificationsofloan {
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  bottom: 75px;
+  transform: translateX(-50%);
 
-  .loan-page {
-    padding: 16px 14px 80px;
-  }
-
-  .loancards,
-  .loancardsnosecond {
-    gap: 7px;
-  }
-
-  .loancard {
-    width: calc(50% - 4px);
-    box-sizing: border-box;
-  }
-
-  .loanboxxx,
-  .allloans,
-  .payingform {
-    width: 100%;
-    max-width: 100%;
-  }
-
-}
-
-.notificationsofloan{
+  width: max-content;
+  max-width: 90vw;
+  margin: 0;
+  padding: 8px 16px;
+  text-align: center;
   color: red;
-  margin-left: 40px;
-  margin-top: 10px;
+  background: #fff;           /* peeche ke rows ke upar text na chhape */
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
 }
 
-.addnewloankaflex{
-
-  display: flex;
+.notificationsofloan h6 {
+  margin: 0;
 }
 
-.listicon1{
-
-margin-left: 20px;
-  margin-top: 17px;
-  font-size: 20px;
+/* notification khali ho to card na dikhe */
+.notificationsofloan:has(h6:empty) {
+  display: none;
 }
 
-/* congratulations div css  */
+
+/* =========================
+   CONGRATULATIONS POPUP
+========================= */
 
 .loan-success {
-  background: #fff;
+  position: fixed;
+  z-index: 9999;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  box-sizing: border-box;
+  width: min(300px, 90vw);
+  padding: 18px 24px;
+
+  background: white;
   color: #333;
-  padding: 18px;
-  margin: 15px 0;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #ddd;
   border-radius: 10px;
   text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .success-icon {
@@ -1419,39 +1448,23 @@ margin-left: 20px;
   font-weight: 500;
 }
 
-.loan-success {
-  position: fixed;
-  /* top: 0px; */
-  bottom: 20%;
-  left: 1.3%;
-  /* transform: translateX(-50%); */
-  z-index: 9999;
-
-  background: white;
-  color: #333;
-  padding: 18px 24px;
-  width: 90%;
-  max-width: 300px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.closebtnofcongratualtoins{
-  margin-left: 220px;
+/* X button: card ke upar right corner me (pehle margin-left: 220px tha) */
+.loan-success .closebtnofcongratualtoins {
+  display: block;
+  margin: -6px -12px 0 0;
+  text-align: right;
 }
 
 
-/* LOAN LIST PAGE CSS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1!!! */
-/* LOANLIST PAGE KA CSS */
+/* LOANLIST PAGE KA CSS  (phone-friendly version)
+   Is poori file se purani Loanlist CSS replace karna. */
 
 .searchbar {
   display: flex;
   align-items: center;
   gap: 10px;
   width: 100%;
-  max-width: 280px;
+  max-width: 420px;
   padding: 8px 15px;
   background: #fff;
   border: 1px solid #ddd;
@@ -1473,6 +1486,7 @@ margin-left: 20px;
 
 .searchbar input {
   width: 100%;
+  min-width: 0;
   border: none;
   outline: none;
   background: transparent;
@@ -1484,16 +1498,18 @@ margin-left: 20px;
   color: #999;
 }
 
+/* heading ka tick / cross icon: right side me (pehle margin-left: 150px tha) */
 .right-tick-icon {
-  margin-left: 150px;
+  margin-left: 0;
 }
 
 /* ==========================================
-   PAID LOANS BOX  (ye pehle jaisa hi hai)
+   PAID LOANS BOX
    ========================================== */
 .paidloansection {
   box-sizing: border-box;
-  width: 300px;
+  width: 100%;
+  max-width: 420px;
   height: 185px;
   margin-top: 8px;
   padding: 0 14px 6px;
@@ -1529,12 +1545,16 @@ margin-left: 20px;
   position: sticky;
   top: 0;
   z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0 -14px 4px;
   padding: 10px 14px;
   background: #fff;
   color: #0d6efd;
   font-size: 15px;
   font-weight: 600;
+  white-space: nowrap;
   border-bottom: 1px solid #eee;
 }
 
@@ -1543,6 +1563,7 @@ margin-left: 20px;
   padding: 8px 0;
   font-size: 13px;
   color: #333;
+  overflow-wrap: anywhere;      /* lamba loan name bahar na nikle */
   border-bottom: 1px solid #eee;
 }
 
@@ -1553,13 +1574,10 @@ margin-left: 20px;
 /* ==========================================
    UNPAID LOANS BOX
    ========================================== */
- /* ==========================================
-   UNPAID LOANS BOX  (paid jaisa hi look)
-   Isse purana unpaid wala poora block replace kar do
-   ========================================== */
 .remainingloancontainer {
   box-sizing: border-box;
-  width: 300px;
+  width: 100%;
+  max-width: 420px;
   height: 200px;
   margin-top: 8px;
   padding: 0 14px 6px;
@@ -1572,7 +1590,6 @@ margin-left: 20px;
   scrollbar-width: thin;
   scrollbar-color: #c9ced6 transparent;
 
-  /* andar ke saare loan details paid jaise hi dikhein */
   font-size: 13px;
   font-weight: 400;
   color: #333;
@@ -1616,23 +1633,22 @@ margin-left: 20px;
   font-size: 15px;
   font-weight: 600;
   line-height: 1.3;
-  white-space: nowrap;          /* "Unpaid Loans" ek hi line me rahe */
+  white-space: nowrap;
   border-bottom: 1px solid #eee;
 }
 
-/* har unpaid loan ke beech patli line (paid jaisi) */
-.remainingloancontainer > :not(.unpaidloanscolor) {
-  /* margin: 0;
-  padding: 8px 0;
-  border-bottom: 1px solid #342b2b; */
-    margin: 0;
+/* JSX me saare loans ek extra <div> ke andar hain (container > div > loan),
+   isliye selector me ">  div  >" lagana zaruri hai */
+.remainingloancontainer > div > :not(.unpaidloanscolor) {
+  margin: 0;
   padding: 8px 0;
   font-size: 13px;
   color: #333;
+  overflow-wrap: anywhere;
   border-bottom: 1px solid #eee;
 }
 
-.remainingloancontainer > :not(.unpaidloanscolor):last-child {
+.remainingloancontainer > div > :not(.unpaidloanscolor):last-child {
   border-bottom: none;
 }
 
@@ -1644,10 +1660,12 @@ margin-left: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 300px;
-  height: 50px;
+  width: 100%;
+  max-width: 420px;
+  min-height: 50px;             /* chhoti screen par text 2 line ho to box bada ho jaye */
+  height: auto;
   margin-top: 8px;
-  padding: 0 14px;
+  padding: 8px 14px;
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 15px;
@@ -1658,19 +1676,19 @@ margin-left: 20px;
   text-align: center;
 }
 
-/* text box ke andar beech me aaye, bahar na nikle */
 .creditscoretext {
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 
 /* ========================================== */
 
 .loanlistsectionlast {
   display: flex;
-  gap: 50px;
-  margin-top: 14px;  
-  margin-left: 15px;         /* credit box se thoda neeche */
+  flex-wrap: wrap;
+  gap: 6px 40px;
+  margin-top: 14px;
+  margin-left: 15px;
 }
 
 .redwalacreditreconrdtext {
@@ -1678,43 +1696,50 @@ margin-left: 20px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
-/* USER PAGE CSS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 */
-.userlogo{
+/* USER PAGE CSS  (phone-friendly version)
+   Is poori file se purani User page ki CSS replace karna. */
+
+/* ---------- User logo + naam (beech me) ---------- */
+.userlogo {
   font-size: 80px;
-  /* border: 2px solid red ;
-  border-radius: 50%; */
-  width: 70px;
-  margin-left: 70px;
+  width: 100%;
+  margin: 0;
+  text-align: center;
 }
 
-.userlogokanaam{
-  margin-left: 80px;
+.userlogokanaam {
+  display: block;
+  margin: 0;
+  text-align: center;
 }
 
-.pencilsize{
-font-size: 12px;  
+.pencilsize {
+  font-size: 12px;
+  margin-left: 4px;
 }
 
 .userinformationicon {
   color: blue;
 }
 
-.userinfomationdiv{
-  font-size: 12px;
-  display: flex;
-}
-
-.userinfomationplusbtn{
-
+.userinfomationplusbtn {
   margin-left: 50px;
 }
 
-/* USER DETAILS BOX */
+.updateusereinfo {
+  color: #6366f1;
+}
 
+.userinfotext-1 {
+  margin-bottom: 25px;
+}
+
+
+/* ---------- USER DETAILS BOX ---------- */
 .boxofuserdetails {
   box-sizing: border-box;
-  width: 270px;
+  width: 100%;
+  max-width: 420px;
   margin-top: 10px;
   padding: 12px 14px;
   background: #fff;
@@ -1728,6 +1753,7 @@ font-size: 12px;
   font-size: 14px;
   line-height: 1.8;
   color: #555;
+  overflow-wrap: anywhere;      /* lamba mail bahar na nikle */
 }
 
 /* values (name, mail, mobile...) thode dark */
@@ -1736,27 +1762,21 @@ font-size: 12px;
   font-weight: 400;
 }
 
-/* USER PAGE: Update button se Logout tak ka poora section
-   (purane in sab classes ko isse replace kar do) */
-
-.updateusereinfo {
-  color: #6366f1;
-}
-
-.userinfotext-1 {
-  margin-bottom: 25px;
-}
 
 /* ---------- Update User Info button + Dark mode ---------- */
 .userinfomationdiv {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 270px;
+  gap: 10px;
+  width: 100%;
+  max-width: 420px;
   margin-top: 14px;
+  font-size: 12px;
 }
 
 .userinfomationdiv .updateuserinfobtn {
+  flex-shrink: 0;
   height: auto;
   margin: 0;
   padding: 6px 12px;
@@ -1794,10 +1814,12 @@ font-size: 12px;
   min-height: 0;
 }
 
+
 /* ---------- Language box ---------- */
 .languagesection {
   box-sizing: border-box;
-  width: 270px;
+  width: 100%;
+  max-width: 420px;
   height: auto;
   margin-top: 12px;
   padding: 10px 14px;
@@ -1822,11 +1844,14 @@ font-size: 12px;
   object-fit: contain;
 }
 
-/* ---------- Notifications ---------- */
+
+/* ---------- Notifications toggle ---------- */
 .notification-toggle {
-  width: 270px;
+  width: 100%;
+  max-width: 420px;
   margin-top: 14px;
   padding: 0 2px;
+  box-sizing: border-box;
 }
 
 .notification-toggle .fordisplayflex-oftoggle {
@@ -1837,12 +1862,15 @@ font-size: 12px;
   font-size: 14px;
 }
 
+
 /* ---------- Danger zone ---------- */
 .dangerzonediv {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 270px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 420px;
   margin-top: 14px;
   padding: 0 2px;
   font-size: 14px;
@@ -1872,11 +1900,13 @@ font-size: 12px;
   font-size: 10px;
 }
 
+
 /* ---------- About + Logout ---------- */
 .account-section {
   box-sizing: border-box;
-  width: 270px;
-  margin: 14px 0 80px;        /* neeche bottom nav ke liye jagah */
+  width: 100%;
+  max-width: 420px;
+  margin: 14px 0 80px;          /* neeche bottom nav ke liye jagah */
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
@@ -1931,14 +1961,13 @@ font-size: 12px;
   color: #dc3545;
 }
 
-/* USER INFORMATION FORM (chhota size) */
 
+/* ---------- USER INFORMATION FORM (screen ke beech me) ---------- */
 .useringomation-form-border {
   box-sizing: border-box;
-  width: 310px;
-  max-width: 95%;
+  width: min(310px, 92vw);
   max-height: 90vh;
-  overflow-y: auto;
+  overflow-y: auto;             /* keyboard khulne par andar scroll hoga */
   padding: 14px;
   background: #fff;
   border: none;
@@ -1946,8 +1975,9 @@ font-size: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   position: fixed;
   z-index: 1000;
-  top: 25%;
-  left: 1.5%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* title (h1/h2/h3 jo bhi ho) */
@@ -1960,8 +1990,12 @@ font-size: 12px;
   color: #222;
 }
 
+/* "Name =", "E-Mail =" jaise text ka size yahin se badlega */
 .useringomation-form-inputs {
   margin: 0;
+  padding-top: 18px;            /* upar X button ke liye jagah */
+  font-size: 12px;
+  color: #333;
 }
 
 .useringomation-form-inputs label {
@@ -1978,7 +2012,9 @@ font-size: 12px;
 .useringomation-form-inputs input,
 .useringomation-form-inputs select {
   box-sizing: border-box;
+  display: block;               /* text upar, input neeche */
   width: 100%;
+  margin: 3px 0 10px;
   padding: 7px 10px;
   font-size: 13px;
   color: #222;
@@ -1986,6 +2022,11 @@ font-size: 12px;
   border: 1px solid #ddd;
   border-radius: 6px;
   outline: none;
+}
+
+/* JSX ke <br/> ab extra khali line na banayein */
+.useringomation-form-inputs br {
+  display: none;
 }
 
 .useringomation-form-inputs input::placeholder {
@@ -2016,8 +2057,7 @@ font-size: 12px;
   color: #dc2626;
 }
 
-/* Save button: poori width, green */
-/* .savebuttonnnn div hai, andar button hai -> style button par lagani hai */
+/* Save button (User Info form): poori width, green */
 .savebuttonnnn {
   margin: 12px 0 0;
   width: 100%;
@@ -2041,29 +2081,25 @@ font-size: 12px;
   background: #157347;
 }
 
-.savebtnofusername{
-  width: 50px;
-  margin-left: 160px;
-  margin-bottom: 10px;
-}
-
-.save-btn-displayflex{
+.save-btn-displayflex {
   display: flex;
 }
 
-/* UPDATE NAME BOX (position pehle jaisi hi hai) */
 
+/* ---------- UPDATE NAME BOX (screen ke beech me) ---------- */
 .username-updatebox {
   box-sizing: border-box;
-  width: 229px;
+  width: min(280px, 90vw);
   padding: 12px;
   background: #fff;
   border: none;
   border-radius: 10px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-  top: 40%;
   position: fixed;
-  left: 2.8%;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* title + X button ek row me */
@@ -2100,18 +2136,21 @@ font-size: 12px;
   border-color: #198754;
 }
 
-/* save button: poori width, green */
+/* chhota save button, right side me (pehle margin-left: 160px tha) */
 .savebtnofusername {
-  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+  margin: 10px 0 0;
 }
 
 .username-updatebox .savebuttonnnn {
   display: block;
   box-sizing: border-box;
-  width: 100%;
+  width: auto;
   margin: 0;
-  padding: 7px 0;
-  font-size: 10px;
+  padding: 6px 18px;
+  font-size: 12px;
   font-weight: 500;
   color: #fff;
   background: #198754;
@@ -2124,18 +2163,25 @@ font-size: 12px;
   background: #157347;
 }
 
+
+/* ---------- NOTIFICATION (upar, beech me) ---------- */
 .notificationpanel-userpage {
-  display: inline-block;          /* sirf text jitna hi background aayega */
+  display: inline-block;
+  box-sizing: border-box;
+  width: max-content;                 /* text ek line me aaye, teen line me na toote */
+  max-width: 90vw;
   padding: 6px 14px;
-  background: rgba(0, 0, 0, 0.12); /* halka transparent black */
+  background: rgba(0, 0, 0, 0.12);   /* halka transparent black */
   color: #000;
   font-size: 14px;
+  text-align: center;
   border-radius: 8px;
   position: fixed;
-top: 14.5%;
-z-index: 999;
-left: 3%;
-
+  top: 20px;                          /* page ke upar ki khali jagah, content ke upar nahi chhapta */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;                      /* popup ke upar bhi dikhe */
+  pointer-events: none;
 }
 
 /* notification khali ho to box na dikhe */
