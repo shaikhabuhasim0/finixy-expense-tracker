@@ -12,147 +12,174 @@
   position: fixed;
   bottom: 0;
   left: 0;
-
-  width: 25%;
+  width: 100%;
+  max-width: 480px;          /* laptop par bahut chauda na ho */
   height: 60px;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-sizing: content-box;
 
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 
   background: #ffffff;
   border-top: 1px solid #e5e7eb;
   box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.06);
-
   z-index: 1000;
-
-  justify-content: space-evenly;
-  align-items: center;
 }
 
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  color: #222;
+}
 
-/* homepage */
+/* homepage  (phone-friendly version)
+   Sab kuch screen ki width ke hisaab se adjust hota hai.
+   Laptop par bhi bahut chauda nahi failta (max-width 420px). */
 
-.homeposition{
+/* side me scroll na aaye */
+html,
+body {
+  overflow-x: hidden;
+}
+
+.homeposition {
   justify-content: flex-start;
 }
 
 
 /* maininput box */
 
-.input-cb{
+.input-cb {
+  box-sizing: border-box;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
 
-  height: 100px;
-  width: 300px;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
 
   margin-top: 20px;
-
-  padding-top: 10px;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding: 10px 12px 12px;
 
   background: #ffffff;
-
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
 }
 
-
-.input-cb p{
+.input-cb p {
   margin-bottom: 8px;
-
   font-size: 14px;
   font-weight: 600;
 }
 
-
 /* current balance input */
-
-.input-cb input{
+.input-cb input {
   border-radius: 8px;
+  min-width: 0;            /* input buttons ko dhakel ke bahar na nikale */
+}
+
+.input-cb .btn {
+  flex-shrink: 0;
 }
 
 
-/* boxes */
+/* Income / Expense boxes */
 
-.container1{
+.container1 {
   display: flex;
-
   gap: 10px;
-
+  width: 100%;
+  max-width: 420px;
   margin-top: 30px;
-
   justify-content: flex-start;
 }
 
-
-.box{
-  width: 140px;
-  height: 100px;
+.box {
+  box-sizing: border-box;
+  flex: 1;                 /* dono box barabar width lenge */
+  min-width: 0;
+  min-height: 100px;
+  height: auto;
 
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-
-  justify-content: flex-start;
-
   background: #ffffff;
-
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-
   padding: 10px;
 }
 
 
-/* buttons */
+/* Add New Transiction button */
 
-.d-grid{
+.transictionbtnnn {
+  margin-left: 0;
+  width: 100%;
+  max-width: 420px;
+}
+
+.transictionbtnnn .d-grid {
+  width: 100%;             /* bootstrap ka col-2 (chhota width) override */
+  margin-top: 18px;
+}
+
+.d-grid {
   margin-top: 18px;
 }
 
 
 /* amount box */
 
-.amountbox{
+.amountbox {
+  box-sizing: border-box;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
 
-  height: 50px;
-  width: 110px;
+  width: 100%;
+  min-height: 40px;
+  height: auto;
 
-  margin-left: 7px;
-  margin-top: 5px;
-
+  margin: 5px 0 0;
   padding: 8px;
 
   background: #ffffff;
+  overflow: hidden;
+}
+
+.amounts1,
+.amounts2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
-/* transactions */
+/* transactions popup (screen ke beech me) */
 
-.transictions{
-
-/* start  */
+.transictions {
   position: fixed;
   z-index: 1000;
   top: 50%;
-  left: 11%;
+  left: 50%;
   transform: translate(-50%, -50%);
-/* end  */
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
- 
-  min-height: 50px;
-  width: 300px;
 
-  margin-top: 27px;
-
+  box-sizing: border-box;
+  width: min(320px, 92vw);
+  max-height: 90vh;
+  overflow-y: auto;         /* keyboard khulne par bhi andar scroll hoga */
+  margin: 0;
   padding: 10px;
 
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
   background: #ffffff;
-
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-
-
 }
 
 .form-backdrop {
@@ -173,93 +200,83 @@
   z-index: 999;
 }
 
-.twobtn{
+.twobtn {
+  display: flex;
+  align-items: center;
   gap: 5px;
-display: flex;
-  margin-left: 5px;
-  margin-top: 5px;
+  margin: 5px 5px 0;
 }
 
-.itemno1{
-
- margin-left: 160px;
- margin-top: 5px;
- font-size: 10px;
-
+.itemno1 {
+  margin-left: auto;        /* X button hamesha right me */
+  margin-top: 0;
+  font-size: 10px;
 }
 
 /* transaction details */
 
-.liningbox{
+.liningbox {
+  box-sizing: border-box;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
 
-  height: 140px;
-  width: 300px;
+  width: 100%;
+  height: auto;
 
-  margin-top: 20px;
-  margin-left: -11px;
-
-  padding-left: 15px;
-  padding-top: 10px;
+  margin: 15px 0 0;
+  padding: 10px 15px 15px;
 
   background: white;
-
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
+.liningbox2 {
+  margin: 5px 0 12px;
+  font-size: 20px;
+}
 
-.liningbox2{
-  margin-top: 15px;
- 
+.liningbox input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.liningbox .btn {
+  margin-top: 4px;
 }
 
 
 /* income amount */
 
-.amounts1{
+.amounts1 {
   color: #16a34a;
-  font-weight: 600;
 }
-
 
 /* expense amount */
 
-.amounts2{
+.amounts2 {
   color: #dc2626;
-  font-weight: 600;
 }
 
 
 /* history */
 
-.historybox{
+.historybox {
+  box-sizing: border-box;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  width: 300px;
-  max-height:175px;
-  margin-top: 20px;
 
+  width: 100%;
+  max-width: 420px;
+  max-height: 175px;
+  margin-top: 20px;
   padding: 12px;
 
   background: #ffffff;
-
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-
   overflow-y: auto;
 }
-
-/* .histo{
-  margin: top;
-   display: flex;
-
-}
-
-.histo1{
-  margin: top;
- 
-
-} */
 
 .histo {
   display: flex;
@@ -280,83 +297,80 @@ display: flex;
   transform: scale(1.1);
 }
 
-.historybox::-webkit-scrollbar{
+.historybox::-webkit-scrollbar {
   width: 6px;
 }
 
-.historybox::-webkit-scrollbar-thumb{
+.historybox::-webkit-scrollbar-thumb {
   background: #c5c5c5;
   border-radius: 10px;
 }
 
-.historybox::-webkit-scrollbar-track{
+.historybox::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-.colornames{
+/* history ki har row: naam left me, amount right me */
+.history-type {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 3px 0;
+}
+
+.history-type span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history-type span:last-child {
+  white-space: nowrap;
+}
+
+.colornames {
   color: green;
   margin-top: 9px;
 }
 
-.colornames1{
+.colornames1 {
   color: red;
-  
 }
 
-.transictionbtnnn{
-  margin-left: 20px;
-}
-
-.history-type.income{
+.history-type.income {
   color: green;
 }
 
-.history-type.expence{
-  color:red;
+.history-type.expence {
+  color: red;
 }
 
+
+/* notification (navbar ke thik upar, beech me) */
+
 .notifications {
-  /* border: 2px solid black; */
   position: fixed;
   z-index: 1000;
-   top: 80%;
-  height: 75px;
-  width: 300px;
-  margin-top: 15px;
-  border-radius: 10px;
+  left: 50%;
+  bottom: 75px;
+  transform: translateX(-50%);
+
+  width: min(300px, 90vw);
+  margin: 0;
+  pointer-events: none;     /* neeche ke buttons par click na rukey */
 
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* SIRF TEXT par animation */
-.notifications1 h6 {
-  margin: 0;
-  animation: textPopup 0.6s ease;
-}
-
-@keyframes textPopup {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-
-  60% {
-    opacity: 1;
-    transform: scale(1.15);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+  text-align: center;
 }
 
 .notifications1 h6 {
   margin: 0;
   font-size: 16px;
   font-weight: 500;
+  animation: textPopup 0.6s ease;
 }
 
 @keyframes textPopup {
@@ -372,47 +386,53 @@ display: flex;
 }
 
 
-.historyboxx{
+/* delete history popup (screen ke beech me) */
 
-/* start */
+.historyboxx {
   position: fixed;
   z-index: 1000;
-top: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
+  box-sizing: border-box;
+  width: min(300px, 90vw);
+  height: auto;
+  margin: 0;
+  padding: 16px;
 
-  border: 1px solid #e2e8f0;
-    background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  border-radius: 12px;
-height : 90px ;
-width: 300px;
-    display: flex;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 160px;
-  margin-left: 20px;
+  gap: 14px;
+
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
 }
-.history-buttons{
+
+.history-buttons {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   width: 100%;
-  padding-right: 5px;
-  font-size: 10px;
-
-}
-.historyboxx5{
-  margin-left: 5px;
+  padding-right: 0;
 }
 
-.homeboxx{
+.historyboxx5 {
+  margin: 0;
+  text-align: center;
+}
 
-margin-bottom: 15px;
-/* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-
+.homeboxx {
+  margin-bottom: 15px;
 }
 
 /* =========================
-   TRANSACTION PAGE
+   TRANSACTION PAGE  (phone-friendly version)
+   Sirf ye hissa replace karna (Insights wala CSS jaisa hai waisa hi rehne dena)
 ========================= */
 
 /* WALLET HEADING */
@@ -434,12 +454,17 @@ margin-bottom: 15px;
 .mainbox-inex {
   display: flex;
   gap: 12px;
+  width: 100%;
+  max-width: 420px;
   margin-top: 25px;
 }
 
 .incomeboxes {
-  width: 140px;
-  height: 105px;
+  box-sizing: border-box;
+  flex: 1;                   /* dono box barabar width */
+  min-width: 0;
+  height: auto;
+  min-height: 105px;
 
   border: 1px solid #e2e8f0;
   border-radius: 12px;
@@ -449,14 +474,17 @@ margin-bottom: 15px;
 
   padding: 12px;
 
+  display: flex;
+  flex-direction: column;    /* heading 2 line ki ho tab bhi dono value barabar line me */
+  gap: 12px;
+
   font-size: 13px;
   font-weight: 600;
-
- 
 }
 
 .incomeboxes-value {
-  margin-top: 12px;
+  box-sizing: border-box;
+  margin-top: auto;
 
   width: 100%;
   min-height: 42px;
@@ -476,8 +504,6 @@ margin-bottom: 15px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-
-
 }
 
 
@@ -486,12 +512,17 @@ margin-bottom: 15px;
 .mainboxfor-tin {
   display: flex;
   gap: 12px;
+  width: 100%;
+  max-width: 420px;
   margin-top: 15px;
 }
 
 .totalincomebox {
-  width: 140px;
-  height: 65px;
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 0;
+  height: auto;
+  min-height: 65px;
 
   border: 1px solid #e2e8f0;
   border-radius: 12px;
@@ -513,6 +544,10 @@ margin-bottom: 15px;
 
   font-size: 17px;
   font-weight: 700;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 
@@ -520,6 +555,7 @@ margin-bottom: 15px;
 
 .dropdown-all {
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
 
   margin-top: 25px;
@@ -569,7 +605,8 @@ margin-bottom: 15px;
 .totaltransictoiionnnn h6 {
   margin: 0;
 
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 1.5;
   font-weight: 600;
 
   color: #475569;
@@ -581,9 +618,12 @@ margin-bottom: 15px;
 ========================= */
 
 .sumarrybox {
-  width: 300px;
-  height: 210px;
-max-height: 240px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  min-height: 120px;
+  max-height: 260px;
   margin-left: 0;
   margin-top: 25px;
 
@@ -596,34 +636,42 @@ max-height: 240px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.sumarryboxmessage{
-
-  align-items: center;
-  justify-content: center;
-  margin-left: 70px;
-  color:#6e4dd1;
+.sumarryboxmessage {
+  margin: 0;
+  padding: 20px 0;
+  text-align: center;
+  color: #6e4dd1;
 }
 
 /* SUMMARY HEADING */
 
 .summaryname {
-  margin-bottom: 12px;
+  margin: 0 0 12px;
 
   font-size: 15px;
   font-weight: 700;
 
   position: sticky;
-  top: 0;
+  top: -12px;                /* box ke padding tak chipka rahe */
+  z-index: 2;
 
   background: white;
 
-  padding-bottom: 8px;
+  padding: 12px 0 8px;
 
   border-bottom: 1px solid #e2e8f0;
-  gap : 40px;
+  gap: 12px;
   display: flex;
+  align-items: center;
+}
+
+.summaryname h6 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 
@@ -635,6 +683,7 @@ max-height: 240px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
 
   padding: 8px 10px;
 
@@ -646,6 +695,20 @@ max-height: 240px;
 
   font-size: 13px;
   font-weight: 600;
+}
+
+/* Summary ki row: naam (lamba ho to ... ), amount aur date poori dikhein */
+.sumarrybox .history-type span:first-child {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sumarrybox .history-type span:not(:first-child) {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 
@@ -682,7 +745,6 @@ max-height: 240px;
 
 .mainbox-inex .incomeboxes:first-child {
   border: 1px solid #e2e8f0;
- 
   color: #15803d;
 }
 
@@ -696,7 +758,6 @@ max-height: 240px;
 
 .mainbox-inex .incomeboxes:last-child {
   border: 1px solid #e2e8f0;
- 
   color: #dc2626;
 }
 
@@ -723,22 +784,21 @@ max-height: 240px;
   color: #dc2626;
 }
 
-.greencolor{
-
+.greencolor {
   color: #15803d;
 }
 
-.redcolor{
-  color : red ;
+.redcolor {
+  color: red;
 }
 
-.blueclass{
+.blueclass {
   color: dodgerblue;
 }
 
-.boldtrans{
-  color:dodgerblue;
-  font-size: 20px;
+.boldtrans {
+  color: dodgerblue;
+  font-size: 18px;
 }
 
 /* ===== Insights page CSS ===== */
@@ -894,17 +954,12 @@ max-height: 240px;
 }
 
 /* =========================
-   LOAN PAGE
+   LOAN CARDS
 ========================= */
 
 .loan-page {
   padding: 18px 20px 90px;
 }
-
-
-/* =========================
-   LOAN CARDS
-========================= */
 
 .loancards,
 .loancardsnosecond {
@@ -1389,102 +1444,6 @@ margin-left: 20px;
 
 
 /* LOAN LIST PAGE CSS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1!!! */
-/* LOANLIST PAGE KA CSS  */
-
- /* .searchbar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  max-width: 280px;
-  padding: 8px 15px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-sizing: border-box;
-  transition: 0.3s ease;
-}
-
-.searchbar:focus-within {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
-}
-
-.searchicon {
-  font-size: 24px;
-  color: #777;
-  line-height: 1;
-}
-
-.searchbar input {
-  width: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 14px;
-  color: #222;
-}
-
-.searchbar input::placeholder {
-  color: #999;
-}
-
-.right-tick-icon {
-  margin-left: 150px;
-}
-
-.paidloansection{
-
-  border : 2px solid black ;
-  
-   max-height : 190px;
-   height: 80px;
-  width: 300px;
-  margin-top: 8px;
-  border-radius: 15px;
-}
-
-.paidloansection1{
-margin-top: 4px;
-margin-left: 8px;
-  color: #0d6efd;
-}
-
-.remainingloancontainer{
-  border : 2px solid black ;
-  height : 200px;
-  width: 300px;
-  margin-top: 8px;
-  border-radius: 15px;
-}
-
-.creditscorebox{
-  margin-top: 10px;
-    border : 2px solid black ;
-  height : 50px;
-  width: 300px;
-  margin-top: 8px;
-  border-radius: 15px;
-}
-
-.creditscoretext{
-margin-top: 50px;
-}
-
-.loanlistsectionlast{
- display: flex;
- gap : 50px;
-}
-
-.redwalacreditreconrdtext{
-  color : rgb(226, 86, 86);
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-.unpaidloanscolor{
-  color: #0d6efd;
-} */
-
 /* LOANLIST PAGE KA CSS */
 
 .searchbar {
@@ -1719,7 +1678,7 @@ margin-top: 50px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-
+/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 /* USER PAGE CSS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 */
 .userlogo{
   font-size: 80px;

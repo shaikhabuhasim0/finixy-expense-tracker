@@ -372,9 +372,9 @@ function canclebtn (){
         form.totalamount.length === 0 ||
         form.intrestrate.length === 0 ||
         form.timeperiod.length === 0 ||
-        form.totalamount.length <=0 ||
-        form.intrestrate.length < 0 ||
-        form.timeperiod.length <=0
+        form.totalamount <=0 ||
+        form.intrestrate < 0 ||
+        form.timeperiod <=0
       ) {
         console.log("fill all fields");
         return;

@@ -305,9 +305,9 @@ Pan no = <input type="text" placeholder="Enter Pan No"
         userinfo.useraadharno.length === 0 ||
         userinfo.useraccountno.length === 0 ||
         userinfo.userpanno.length === 0 ||
-        userinfo.usermobileno.length <=0 ||
-        userinfo.useraadharno.length <=0 ||
-        userinfo.useraccountno.length <=0
+        userinfo.usermobileno <=0 ||
+        userinfo.useraadharno <=0 ||
+        userinfo.useraccountno <=0
       ) {
         console.log("fill all fields");
         return;
@@ -331,8 +331,10 @@ Pan no = <input type="text" placeholder="Enter Pan No"
     <button type="button" className="btn btn-primary" onClick={canclebtn}>Cancle</button>
   <button type="button" className="btn btn-danger" onClick={()=>{
     deletallthedata () 
+    setType("")
     setnotification("All Data Has Been Deleted Permanently .")
       setTimeout(() => {
+        
   setnotification("")
       }, 3000);
   }}>Delet?</button>
